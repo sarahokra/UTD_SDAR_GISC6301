@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tiefelsdorf">
+<meta name="dcterms.date" content="2025-12-08">
+
+<title>Chapter 10: Non-Parametric Statistics and Chi-Square Tests – final_exam_quarto</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./icon02.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-bce83624dd429190d13db9bf62533269.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">final_exam_quarto</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w00_IntroToScriptsAndData.html">GISC6301</a></li><li class="breadcrumb-item"><a href="./w16_Chapter10NonParStats.html">Wk16-ch10.Non-Parametric Statistics and Chi-Square Tests</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">GISC6301</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w00_IntroToScriptsAndData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk00-Introduction to Scripts in the RStudio-Environment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w05_Chapter01_Data_and_Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk05-ch1.Data &amp; Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w06_DisplayingData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk06-ch2.Data Visualization Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w07_Chapter03_MeanVar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk07-ch3.Measures of Central Tendency and Variation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w08_Chapt04Relationships.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk08-ch4.Bivariate Relationships</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w08_MotivationDataStory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk08-Motivation Data Story</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w09_Chapt04BivariateRegression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk09-ch4.Bivariate Regression Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w10_Chapt13MultipleRegression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk10-ch13.Multiple Regression Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w11_Chapter05A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk11-ch5A.Probabilities and Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w11_Chapter05B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk11-ch5B.Probabilities and Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w12_Chapter06Sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk12-ch6.Sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w13_Chapter07Estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk13-ch7.Point and Interval Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w14_Chapter08SingleTests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk14-ch8.One-Sample Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w15_Chapter09TwoSampleMeanTest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk15-ch9.Two-Sample Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w16_Chapter10NonParStats.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Wk16-ch10.Non-Parametric Statistics and Chi-Square Tests</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">To be continued...</span></span>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#non-parametric-statistics" id="toc-non-parametric-statistics" class="nav-link active" data-scroll-target="#non-parametric-statistics"><span class="header-section-number">1</span> Non-Parametric Statistics</a>
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">1.1</span> Introduction</a></li>
+  <li><a href="#when-to-use-non-parametric-methods" id="toc-when-to-use-non-parametric-methods" class="nav-link" data-scroll-target="#when-to-use-non-parametric-methods"><span class="header-section-number">1.2</span> When to Use Non-Parametric Methods?</a></li>
+  <li><a href="#comparison-of-parametric-and-non-parametric-tests" id="toc-comparison-of-parametric-and-non-parametric-tests" class="nav-link" data-scroll-target="#comparison-of-parametric-and-non-parametric-tests"><span class="header-section-number">1.3</span> Comparison of Parametric and Non-parametric Tests</a></li>
+  <li><a href="#scope-of-application" id="toc-scope-of-application" class="nav-link" data-scroll-target="#scope-of-application"><span class="header-section-number">1.4</span> Scope of Application</a></li>
+  <li><a href="#sample-size-considerations" id="toc-sample-size-considerations" class="nav-link" data-scroll-target="#sample-size-considerations"><span class="header-section-number">1.5</span> Sample Size Considerations</a></li>
+  </ul></li>
+  <li><a href="#goodness-of-fit-tests" id="toc-goodness-of-fit-tests" class="nav-link" data-scroll-target="#goodness-of-fit-tests"><span class="header-section-number">2</span> Goodness-of-Fit Tests</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview"><span class="header-section-number">2.1</span> Overview</a></li>
+  <li><a href="#the-chi-square-test" id="toc-the-chi-square-test" class="nav-link" data-scroll-target="#the-chi-square-test"><span class="header-section-number">2.2</span> The Chi-Square Test</a>
+  <ul class="collapse">
+  <li><a href="#data-transformation" id="toc-data-transformation" class="nav-link" data-scroll-target="#data-transformation"><span class="header-section-number">2.2.1</span> Data Transformation</a></li>
+  <li><a href="#basic-concept" id="toc-basic-concept" class="nav-link" data-scroll-target="#basic-concept"><span class="header-section-number">2.2.2</span> Basic Concept</a></li>
+  <li><a href="#expected-frequencies" id="toc-expected-frequencies" class="nav-link" data-scroll-target="#expected-frequencies"><span class="header-section-number">2.2.3</span> Expected Frequencies</a></li>
+  <li><a href="#structure-of-the-goodness-of-fit-test" id="toc-structure-of-the-goodness-of-fit-test" class="nav-link" data-scroll-target="#structure-of-the-goodness-of-fit-test"><span class="header-section-number">2.2.4</span> Structure of the Goodness-of-Fit Test</a></li>
+  <li><a href="#the-test-statistic" id="toc-the-test-statistic" class="nav-link" data-scroll-target="#the-test-statistic"><span class="header-section-number">2.2.5</span> The Test Statistic</a></li>
+  <li><a href="#poisson-distribution-foundation" id="toc-poisson-distribution-foundation" class="nav-link" data-scroll-target="#poisson-distribution-foundation"><span class="header-section-number">2.2.6</span> Poisson Distribution Foundation</a></li>
+  <li><a href="#degrees-of-freedom" id="toc-degrees-of-freedom" class="nav-link" data-scroll-target="#degrees-of-freedom"><span class="header-section-number">2.2.7</span> Degrees of Freedom</a></li>
+  <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link" data-scroll-target="#formal-definition"><span class="header-section-number">2.2.8</span> Formal Definition</a></li>
+  </ul></li>
+  <li><a href="#example-in-r" id="toc-example-in-r" class="nav-link" data-scroll-target="#example-in-r"><span class="header-section-number">2.3</span> Example in R</a>
+  <ul class="collapse">
+  <li><a href="#important-notes" id="toc-important-notes" class="nav-link" data-scroll-target="#important-notes"><span class="header-section-number">2.3.1</span> Important Notes</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#contingency-tables" id="toc-contingency-tables" class="nav-link" data-scroll-target="#contingency-tables"><span class="header-section-number">3</span> Contingency Tables</a>
+  <ul class="collapse">
+  <li><a href="#overview-1" id="toc-overview-1" class="nav-link" data-scroll-target="#overview-1"><span class="header-section-number">3.1</span> Overview</a>
+  <ul class="collapse">
+  <li><a href="#example-household-size-vs-car-ownership" id="toc-example-household-size-vs-car-ownership" class="nav-link" data-scroll-target="#example-household-size-vs-car-ownership"><span class="header-section-number">3.1.1</span> Example: Household Size vs Car Ownership</a></li>
+  </ul></li>
+  <li><a href="#testing-for-independence" id="toc-testing-for-independence" class="nav-link" data-scroll-target="#testing-for-independence"><span class="header-section-number">3.2</span> Testing for Independence</a>
+  <ul class="collapse">
+  <li><a href="#statistical-independence" id="toc-statistical-independence" class="nav-link" data-scroll-target="#statistical-independence"><span class="header-section-number">3.2.1</span> Statistical Independence</a></li>
+  <li><a href="#hypotheses" id="toc-hypotheses" class="nav-link" data-scroll-target="#hypotheses"><span class="header-section-number">3.2.2</span> Hypotheses</a></li>
+  </ul></li>
+  <li><a href="#construction-of-the-test-statistic" id="toc-construction-of-the-test-statistic" class="nav-link" data-scroll-target="#construction-of-the-test-statistic"><span class="header-section-number">3.3</span> Construction of the Test Statistic</a>
+  <ul class="collapse">
+  <li><a href="#initial-approach" id="toc-initial-approach" class="nav-link" data-scroll-target="#initial-approach"><span class="header-section-number">3.3.1</span> Initial Approach</a></li>
+  <li><a href="#using-counts-instead-of-probabilities" id="toc-using-counts-instead-of-probabilities" class="nav-link" data-scroll-target="#using-counts-instead-of-probabilities"><span class="header-section-number">3.3.2</span> Using Counts Instead of Probabilities</a></li>
+  <li><a href="#poisson-distribution-for-cell-counts" id="toc-poisson-distribution-for-cell-counts" class="nav-link" data-scroll-target="#poisson-distribution-for-cell-counts"><span class="header-section-number">3.3.3</span> Poisson Distribution for Cell Counts</a></li>
+  <li><a href="#the-chi-square-statistic" id="toc-the-chi-square-statistic" class="nav-link" data-scroll-target="#the-chi-square-statistic"><span class="header-section-number">3.3.4</span> The Chi-Square Statistic</a></li>
+  <li><a href="#degrees-of-freedom-1" id="toc-degrees-of-freedom-1" class="nav-link" data-scroll-target="#degrees-of-freedom-1"><span class="header-section-number">3.3.5</span> Degrees of Freedom</a></li>
+  <li><a href="#minimum-expected-cell-counts" id="toc-minimum-expected-cell-counts" class="nav-link" data-scroll-target="#minimum-expected-cell-counts"><span class="header-section-number">3.3.6</span> Minimum Expected Cell Counts</a></li>
+  <li><a href="#when-minimum-count-rules-are-not-satisfied" id="toc-when-minimum-count-rules-are-not-satisfied" class="nav-link" data-scroll-target="#when-minimum-count-rules-are-not-satisfied"><span class="header-section-number">3.3.7</span> When Minimum Count Rules Are Not Satisfied</a></li>
+  <li><a href="#power-concerns" id="toc-power-concerns" class="nav-link" data-scroll-target="#power-concerns"><span class="header-section-number">3.3.8</span> Power Concerns</a></li>
+  </ul></li>
+  <li><a href="#formal-test-procedure" id="toc-formal-test-procedure" class="nav-link" data-scroll-target="#formal-test-procedure"><span class="header-section-number">3.4</span> Formal Test Procedure</a></li>
+  </ul></li>
+  <li><a href="#r-code-examples" id="toc-r-code-examples" class="nav-link" data-scroll-target="#r-code-examples"><span class="header-section-number">4</span> R Code Examples</a>
+  <ul class="collapse">
+  <li><a href="#chi-square-goodness-of-fit-test" id="toc-chi-square-goodness-of-fit-test" class="nav-link" data-scroll-target="#chi-square-goodness-of-fit-test"><span class="header-section-number">4.1</span> Chi-Square Goodness-of-Fit Test</a></li>
+  <li><a href="#chi-square-test-for-independence" id="toc-chi-square-test-for-independence" class="nav-link" data-scroll-target="#chi-square-test-for-independence"><span class="header-section-number">4.2</span> Chi-Square Test for Independence</a></li>
+  <li><a href="#titanic-example" id="toc-titanic-example" class="nav-link" data-scroll-target="#titanic-example"><span class="header-section-number">4.3</span> Titanic Example</a></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization"><span class="header-section-number">4.4</span> Visualization</a></li>
+  <li><a href="#effect-of-sample-size-on-chi-square-test" id="toc-effect-of-sample-size-on-chi-square-test" class="nav-link" data-scroll-target="#effect-of-sample-size-on-chi-square-test"><span class="header-section-number">4.5</span> Effect of Sample Size on Chi-Square Test</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w00_IntroToScriptsAndData.html">GISC6301</a></li><li class="breadcrumb-item"><a href="./w16_Chapter10NonParStats.html">Wk16-ch10.Non-Parametric Statistics and Chi-Square Tests</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Chapter 10: Non-Parametric Statistics and Chi-Square Tests</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Tiefelsdorf </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 8, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="non-parametric-statistics" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Non-Parametric Statistics</h1>
+<section id="introduction" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.1</span> Introduction</h2>
+<ul>
+<li><p><strong>Parametric statistics</strong> makes statements about population parameters, that come from well-specified population distributions, such as <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\pi\)</span> or <span class="math inline">\(\sigma^2\)</span></p></li>
+<li><p>The estimators <span class="math inline">\(\bar{X}\)</span>, <span class="math inline">\(P\)</span>, or <span class="math inline">\(s^2\)</span>, their associated standard errors, sampling distributions (or asymptotic sampling distributions based on the central limit theorem) are used to develop the critical regions, calculate confidence intervals, <span class="math inline">\(p\)</span>-values (significance or PROB-values) etc.</p></li>
+<li><p><strong>Non-parametric</strong> and/or <strong>distribution free</strong> statistical tests do not use as stringent assumptions about the underlying population distribution and therefore ignore population parameters.</p></li>
+</ul>
+</section>
+<section id="when-to-use-non-parametric-methods" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="when-to-use-non-parametric-methods"><span class="header-section-number">1.2</span> When to Use Non-Parametric Methods?</h2>
+<ol type="1">
+<li><p>The <strong>sample sizes</strong> are fairly small so that the central limit theorem is not applicable.</p></li>
+<li><p>If the <strong>distribution of the population</strong> is unknown and/or assumptions about it are not reasonable.</p>
+<p><em>Note:</em> There are tests based on sample observations to check if the underlying population follows a particular parametric distribution (e.g., Chi-square goodness-of-fit test or the Kolmogorov-Smirnov test).</p></li>
+<li><p>If the random variables are qualitative, i.e., measured on the <strong>nominal or ordinal scale</strong>.</p>
+<p><em>Exception:</em> We know about the exact binomial tests for nominal scaled observations.</p></li>
+</ol>
+<ul>
+<li>For many parametric tests there are equivalent tests in the non-parametric domain (see BBR Chapter 10)</li>
+</ul>
+</section>
+<section id="comparison-of-parametric-and-non-parametric-tests" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="comparison-of-parametric-and-non-parametric-tests"><span class="header-section-number">1.3</span> Comparison of Parametric and Non-parametric Tests</h2>
+<ul>
+<li><p>If the underlying parametric assumptions are satisfied and quality data are available, <strong>parametric tests are superior</strong>.</p></li>
+<li><p>The actual <span class="math inline">\(\alpha\)</span>-error of non-parametric tests may be smaller by an unknown quantity if the underlying parametric assumptions are satisfied.</p>
+<p>That is, non-parametric tests may be <strong>conservative</strong>, because they reject the <span class="math inline">\(H_0\)</span> at a nominal error level substantially less frequently than their parametric counterparts.</p></li>
+<li><p>The likelihood of committing a <span class="math inline">\(\beta\)</span>-error (not rejecting <span class="math inline">\(H_0\)</span> even though it is incorrect) is smaller for parametric tests if the parametric assumptions are satisfied.</p></li>
+</ul>
+</section>
+<section id="scope-of-application" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="scope-of-application"><span class="header-section-number">1.4</span> Scope of Application</h2>
+<ul>
+<li><p>Due to the <strong>robustness</strong> of non-parametric tests they can be applied to a broader range of underlying populations and measurement scales.</p></li>
+<li><p>Remember we always can transform variables on a higher-level measurement scale to variables on a lower order (e.g., interval to ordinal scale).</p></li>
+</ul>
+</section>
+<section id="sample-size-considerations" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="sample-size-considerations"><span class="header-section-number">1.5</span> Sample Size Considerations</h2>
+<ul>
+<li><p>For <strong>small sample sizes</strong> <span class="math inline">\(n\)</span> we cannot apply the central limit theorem, when the underlying distribution assumptions are violated.</p></li>
+<li><p>For small sample sizes <span class="math inline">\(n\)</span>, non-parametric test statistics have the advantage that their sampling distribution under the null hypothesis can be derived using <strong>combinatorial arguments</strong>. See, for instance, the Mann-Whitney test pp 385-390.</p></li>
+<li><p>For <strong>larger sample sizes</strong> <span class="math inline">\(n\)</span>, non-parametric tests frequently make use of:</p>
+<ul>
+<li>[a] an assumed distribution of the observations, which is different from the normal distribution, and/or</li>
+<li>[b] a normal approximation by calculating the expected value <span class="math inline">\(E(T|H_0)\)</span> and standard error <span class="math inline">\(\sqrt{Var(T|H_0)}\)</span> of the test statistics <span class="math inline">\(T\)</span> assuming the null hypothesis is true</li>
+</ul></li>
+<li><p>For non-parametric test statistics with an underlying <strong>discrete distribution</strong>, we will <strong>not be able</strong> to exhaust the nominal significance level <span class="math inline">\(\alpha\)</span> exactly (remember exact binomial test), and we will rather make use of the discrete PROB-values.</p></li>
+</ul>
+</section>
+</section>
+<section id="goodness-of-fit-tests" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Goodness-of-Fit Tests</h1>
+<section id="overview" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">2.1</span> Overview</h2>
+<ul>
+<li><p>Statistical tests often assume that the underlying population follows a particular distribution, like the normal distribution for most parametric test.</p></li>
+<li><p>Statistical <strong>Goodness-of-Fit tests</strong> check whether the sample observations have been sampled from a hypothetical population.</p></li>
+</ul>
+</section>
+<section id="the-chi-square-test" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="the-chi-square-test"><span class="header-section-number">2.2</span> The Chi-Square Test</h2>
+<section id="data-transformation" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="data-transformation"><span class="header-section-number">2.2.1</span> Data Transformation</h3>
+<p>Depending on the measurement scale of the random variable a transformation needs to be applied:</p>
+<ul>
+<li><p>If the underlying distribution is <strong>continuous</strong>, then it needs to be re-scaled into the ordinal scale by building a mutually exclusive and disjunctive partition (class intervals) of the underlying support of the random variable <span class="math inline">\(X\)</span>.</p></li>
+<li><p>If the underlying distribution is <strong>discrete</strong> one can work with the classified data immediately.</p></li>
+</ul>
+</section>
+<section id="basic-concept" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="basic-concept"><span class="header-section-number">2.2.2</span> Basic Concept</h3>
+<ul>
+<li><p>The underlying idea is to count the number of sample observations <span class="math inline">\(f_i\)</span> (<strong>observed frequencies</strong>) of the random variable <span class="math inline">\(X\)</span> within the class intervals <span class="math inline">\(i \in \{1, \ldots, k\}\)</span>.</p>
+<p><em>Note:</em> At least two classes are needed to perform the test.</p></li>
+</ul>
+</section>
+<section id="expected-frequencies" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="expected-frequencies"><span class="header-section-number">2.2.3</span> Expected Frequencies</h3>
+<p>Assuming that the hypothetical population follows a particular distribution, the <strong>expected counts</strong> within each class are calculated using the cumulative distribution function:</p>
+<p><span class="math display">\[F_i = n \cdot (F(\text{upper bound of class } i) - F(\text{lower bound of class } i))\]</span></p>
+<p><strong>Important:</strong> For the <span class="math inline">\(\chi^2\)</span>-test the expected count has to be <span class="math inline">\(F_i \geq 5\)</span>. Should the expected count be below 5, then consecutive classes need to be pooled together.</p>
+<p>Both sets of counts are then compared within the classes.</p>
+</section>
+<section id="structure-of-the-goodness-of-fit-test" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="structure-of-the-goodness-of-fit-test"><span class="header-section-number">2.2.4</span> Structure of the Goodness-of-Fit Test</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w16_Chapter10NonParStats/table_11-13_gof_structure.png" class="img-fluid figure-img"></p>
+<figcaption>TABLE 11-13: Structure of a χ² Goodness-of-Fit Test</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-test-statistic" class="level3" data-number="2.2.5">
+<h3 data-number="2.2.5" class="anchored" data-anchor-id="the-test-statistic"><span class="header-section-number">2.2.5</span> The Test Statistic</h3>
+<p>The test statistic is:</p>
+<p><span class="math display">\[\chi^2 = \sum_{i=1}^{k} z_i^2 \quad \text{with} \quad z_i^2 = \frac{(f_i - F_i)^2}{F_i}\]</span></p>
+</section>
+<section id="poisson-distribution-foundation" class="level3" data-number="2.2.6">
+<h3 data-number="2.2.6" class="anchored" data-anchor-id="poisson-distribution-foundation"><span class="header-section-number">2.2.6</span> Poisson Distribution Foundation</h3>
+<ul>
+<li>The individual counts follow under <span class="math inline">\(H_0\)</span> a <strong>Poisson distribution</strong>:</li>
+</ul>
+<p><span class="math display">\[f_i \sim Poisson(F_i)\]</span></p>
+<p>The Poisson distribution has the expectation <span class="math inline">\(E(f_i) = F_i\)</span> and the variance <span class="math inline">\(Var(f_i) = F_i\)</span>.</p>
+<p>Therefore, <span class="math inline">\(z_i = \frac{f_i - E(f_i)}{\sqrt{Var(f_i)}}\)</span> follows approximately a standard normal distribution.</p>
+<ul>
+<li><p>On average this approximation works well for a Poisson distribution if <span class="math inline">\(E(f_i) \geq 5\)</span>.</p></li>
+<li><p><strong>Squaring</strong> a standard normal distributed variable <span class="math inline">\(z_i\)</span> makes it a <span class="math inline">\(\chi^2\)</span>-distributed variable with one degree of freedom, that is, <span class="math inline">\(z_i^2 \sim \chi^2_{df=1}\)</span>.</p></li>
+<li><p>The <strong>sum</strong> of <span class="math inline">\(\chi^2\)</span>-distributed random variables is again <span class="math inline">\(\chi^2\)</span>-distributed. The sum’s degrees of freedom become the sum of the individual degrees of freedom.</p></li>
+</ul>
+</section>
+<section id="degrees-of-freedom" class="level3" data-number="2.2.7">
+<h3 data-number="2.2.7" class="anchored" data-anchor-id="degrees-of-freedom"><span class="header-section-number">2.2.7</span> Degrees of Freedom</h3>
+<p>The total degrees of freedom over all class intervals are equal to:</p>
+<p><span class="math display">\[df = \underbrace{k}_{\text{# of classes}} - \underbrace{\text{# of estimated parameters}}_{\text{2 for } \bar{X} \text{ and } s^2 \text{ of the normal distribution}} - \underbrace{1}_{\text{for the constraint } n = \sum_{i=1}^{k} f_i = \sum_{i=1}^{k} F_i}\]</span></p>
+<p>Several degrees of freedom are lost due to: 1. The use of estimated parameters based on the sample observations to calibrate the hypothetical distribution 2. The constraint that the overall sample size <span class="math inline">\(N\)</span> and expected counts need to be equal</p>
+</section>
+<section id="formal-definition" class="level3" data-number="2.2.8">
+<h3 data-number="2.2.8" class="anchored" data-anchor-id="formal-definition"><span class="header-section-number">2.2.8</span> Formal Definition</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w16_Chapter10NonParStats/table_10-11_gof_test.png" class="img-fluid figure-img"></p>
+<figcaption>TABLE 10-11: Chi-Square Goodness-of-Fit Test</figcaption>
+</figure>
+</div>
+<p><strong>Background:</strong></p>
+<p>The <span class="math inline">\(\chi^2\)</span> test is used to check if a sample distribution agrees with a theoretical probability distribution. The underlying random variable can be measured at the nominal level or higher. The sample consists of <span class="math inline">\(n\)</span> observations distributed over <span class="math inline">\(k\)</span> categories. Each category has <span class="math inline">\(O_j\)</span> observations, thus <span class="math inline">\(\sum O_j = n\)</span>. The theoretical distribution is used to generate expected frequencies for each category in the sample. For example, in testing a sample against the uniform distribution, each sample category would have the same expected frequency, equal to the sample size divided by the number of categories. The expected count for each category is denoted <span class="math inline">\(E_j\)</span>. The test is based on the differences between <span class="math inline">\(O_j\)</span> and <span class="math inline">\(E_j\)</span>. For this test to be reliable, all <span class="math inline">\(E_j\)</span> should exceed 2, and 80% of the <span class="math inline">\(E_j\)</span> should exceed 5.</p>
+<p><strong>Hypotheses:</strong></p>
+<p>Letting <span class="math inline">\(Y\)</span> be the random variable, and <span class="math inline">\(f(Y)\)</span> be the theoretical probability distribution of <span class="math inline">\(Y\)</span>, the null and alternative hypotheses are:</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: The sample was drawn from a population <span class="math inline">\(f(Y)\)</span></li>
+<li><span class="math inline">\(H_A\)</span>: The sample was drawn from some distribution other than <span class="math inline">\(f(Y)\)</span></li>
+</ul>
+<p><strong>Test statistic:</strong></p>
+<p>Under <span class="math inline">\(H_0\)</span> the following has an approximate <span class="math inline">\(\chi^2\)</span> distribution:</p>
+<p><span class="math display">\[X^2 = \sum_{j=1}^{k} \frac{(O_j - E_j)^2}{E_j}\]</span></p>
+<p>with degrees of freedom <span class="math inline">\(df = k - m - 1\)</span> where <span class="math inline">\(m\)</span> is the number of parameters in <span class="math inline">\(f(Y)\)</span> estimated from the sample.</p>
+<p><strong>Decision rule:</strong></p>
+<ul>
+<li><span class="math inline">\(H_0\)</span> is rejected when <span class="math inline">\(PV &lt; \alpha\)</span>, and we conclude that the sample did not arise from the distribution <span class="math inline">\(f(Y)\)</span>.</li>
+<li>Otherwise (if <span class="math inline">\(PV \geq \alpha\)</span>), we fail to reject <span class="math inline">\(H_0\)</span> and draw no conclusion about the underlying population.</li>
+</ul>
+</section>
+</section>
+<section id="example-in-r" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="example-in-r"><span class="header-section-number">2.3</span> Example in R</h2>
+<p>The test can be set up in R by using the probabilities of each class using the reference distribution.</p>
+<p>For instance, if we have 4 classes and assume a uniform distribution, then the theoretical probabilities become <span class="math inline">\(\pi_1 = 0.25\)</span>, <span class="math inline">\(\pi_2 = 0.25\)</span>, <span class="math inline">\(\pi_3 = 0.25\)</span> and <span class="math inline">\(\pi_4 = 0.25\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>chi.results <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(<span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">29</span>, <span class="dv">35</span>, <span class="dv">16</span>), <span class="at">p =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>chi.results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Output:</strong></p>
+<pre><code>Chi-squared test for given probabilities
+
+data:  c(20, 29, 35, 16)
+X-squared = 8.88, df = 3, p-value = 0.03093</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>chi.results<span class="sc">$</span>expected</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Output:</strong></p>
+<pre><code>[1] 25 25 25 25</code></pre>
+<section id="important-notes" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="important-notes"><span class="header-section-number">2.3.1</span> Important Notes</h3>
+<ol type="1">
+<li><p>The <strong>expected frequencies</strong> need to be checked for the <strong>low count condition</strong>.</p></li>
+<li><p>In this case the degrees of freedom are correct but in other situations they need to be reduced by the number of parameters which were estimated from the data to obtain the theoretical distribution.</p></li>
+<li><p>The theoretical probabilities need to sum to one.</p></li>
+<li><p>Explore the online help for the function <code>chisq.test()</code>.</p></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="contingency-tables" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Contingency Tables</h1>
+<section id="overview-1" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="overview-1"><span class="header-section-number">3.1</span> Overview</h2>
+<ul>
+<li><p><strong>Contingency tables</strong> are a cross-tabulation of two (or more) nominal or ordinal scaled variables.</p></li>
+<li><p><strong>Row and column sums</strong> represent the <strong>univariate sample frequency</strong> distributions of the variables <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>,</p>
+<p>whereas the <strong>cell counts</strong> <span class="math inline">\(X_{ij}\)</span> denote the sample frequency of the joint occurrences of the events <span class="math inline">\(X_1 = i \cap X_2 = j\)</span></p></li>
+</ul>
+<section id="example-household-size-vs-car-ownership" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="example-household-size-vs-car-ownership"><span class="header-section-number">3.1.1</span> Example: Household Size vs Car Ownership</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w16_Chapter10NonParStats/contingency_table_example.png" class="img-fluid figure-img"></p>
+<figcaption>Contingency Table: Household Size vs Car Ownership</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="testing-for-independence" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="testing-for-independence"><span class="header-section-number">3.2</span> Testing for Independence</h2>
+<ul>
+<li><p>Contingency tables allow testing the <strong>null hypothesis</strong> whether two nominal or ordinal scaled variables are <strong>jointly statistically independent</strong> of each other</p>
+<p>against the <strong>alternative hypothesis</strong> that they are statistically related with each other.</p></li>
+</ul>
+<section id="statistical-independence" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="statistical-independence"><span class="header-section-number">3.2.1</span> Statistical Independence</h3>
+<p>Recall the concept of statistical independence:</p>
+<p><span class="math display">\[\Pr(X_1 = i \cap X_2 = j) = \Pr(X_1 = i) \cdot \Pr(X_2 = j)\]</span></p>
+</section>
+<section id="hypotheses" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="hypotheses"><span class="header-section-number">3.2.2</span> Hypotheses</h3>
+<p>Therefore, the null and alternative hypotheses become:</p>
+<p><span class="math display">\[H_0: \pi_{ij} = \pi_i^r \cdot \pi_j^c\]</span></p>
+<p>against</p>
+<p><span class="math display">\[H_A: \pi_{ij} \neq \pi_i^r \cdot \pi_j^c \quad \text{for at least one pair } (i, j)\]</span></p>
+</section>
+</section>
+<section id="construction-of-the-test-statistic" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="construction-of-the-test-statistic"><span class="header-section-number">3.3</span> Construction of the Test Statistic</h2>
+<section id="initial-approach" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="initial-approach"><span class="header-section-number">3.3.1</span> Initial Approach</h3>
+<p>At first glance the underlying test statistic could center around the absolute difference between the observed proportion and the expected probabilities: <span class="math inline">\(|p_{ij} - \pi_{ij}|\)</span>.</p>
+<p>Just small difference − due to sampling variations − would support the null hypothesis.</p>
+<p>However, two issues need to be considered:</p>
+<ol type="1">
+<li><p>The expected probabilities need to be calculated from <strong>estimates</strong> of the marginal relative row and column frequencies:</p>
+<p><span class="math display">\[\hat{\pi}_{ij} = \hat{\pi}_i^r \cdot \hat{\pi}_j^c \quad \text{with} \quad \hat{\pi}_i^r = p_i^r = x_{i+}/n \quad \text{and} \quad \hat{\pi}_j^c = p_j^c = x_{+j}/n\]</span></p></li>
+<li><p>Just using the expected and observed probabilities ignores the <strong>sampling variability</strong> which depends on the <strong>sample size</strong> <span class="math inline">\(n\)</span>.</p></li>
+<li><p>The distribution of <span class="math inline">\(|p_{ij} - \pi_{ij}|\)</span> is unknown and cannot be approximated by the standard normal distribution.</p></li>
+</ol>
+</section>
+<section id="using-counts-instead-of-probabilities" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="using-counts-instead-of-probabilities"><span class="header-section-number">3.3.2</span> Using Counts Instead of Probabilities</h3>
+<p>For these reasons the test statistics are expressed in terms of <strong>observed</strong> and <strong>expected counts</strong> (i.e., frequencies) rather than probabilities:</p>
+<p><span class="math display">\[E(X_{ij} | H_0) = n \cdot \hat{\pi}_{ij} = n \cdot p_i^r \cdot p_j^c\]</span></p>
+<p><span class="math display">\[= n \cdot \frac{\sum_{j=1}^{J} x_{ij}}{n} \cdot \frac{\sum_{i=1}^{I} x_{ij}}{n} = \frac{\sum_{j=1}^{J} x_{ij} \cdot \sum_{i=1}^{I} x_{ij}}{n}\]</span></p>
+<p><span class="math display">\[= \frac{x_{i+} \cdot x_{+j}}{n}\]</span></p>
+</section>
+<section id="poisson-distribution-for-cell-counts" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="poisson-distribution-for-cell-counts"><span class="header-section-number">3.3.3</span> Poisson Distribution for Cell Counts</h3>
+<p><span class="math inline">\(X_{ij}\)</span> are counts and thus again can be assumed to follow a <strong>Poisson distribution</strong>:</p>
+<p><span class="math display">\[X_{ij} \sim Poisson(n \cdot \pi_{ij})\]</span></p>
+<p>with <span class="math inline">\(n \cdot \pi_{ij} = E(X_{ij} | H_0) = Var(X_{ij} | H_0)\)</span> (because the expectation and variance of a Poisson distribution are identical)</p>
+</section>
+<section id="the-chi-square-statistic" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="the-chi-square-statistic"><span class="header-section-number">3.3.4</span> The Chi-Square Statistic</h3>
+<p>Summing the squared and standardized differences between the observed and expected frequencies (i.e., squared z-transformed variables) leads to the <span class="math inline">\(\chi^2\)</span>-statistic:</p>
+<p><span class="math display">\[\chi^2 = \sum_{i=1}^{I} \sum_{j=1}^{J} \frac{\left[X_{ij} - E(X_{ij} | H_0)\right]^2}{Var(X_{ij} | H_0)} = \sum_{i=1}^{I} \sum_{j=1}^{J} \frac{\left[X_{ij} - E(X_{ij} | H_0)\right]^2}{E(X_{ij} | H_0)}\]</span></p>
+</section>
+<section id="degrees-of-freedom-1" class="level3" data-number="3.3.5">
+<h3 data-number="3.3.5" class="anchored" data-anchor-id="degrees-of-freedom-1"><span class="header-section-number">3.3.5</span> Degrees of Freedom</h3>
+<p>In total there are <span class="math inline">\(I \times J\)</span> cells in a contingency table. However, since the expected cell frequencies are estimated from the row and column sums minus the double counting of the sample size <span class="math inline">\(n\)</span>, in total <span class="math inline">\((I + J - 1)\)</span> degrees of freedom are lost.</p>
+<p><span class="math display">\[df = I \times J - (I + J - 1) = (I - 1) \times (J - 1)\]</span></p>
+<p>Consequently, once we know the <span class="math inline">\((I - 1)\)</span> row sums and <span class="math inline">\((J - 1)\)</span> column sums as well as the total sum <span class="math inline">\(n\)</span>, only <span class="math inline">\((I - 1) \times (J - 1)\)</span> expected cell counts can vary freely.</p>
+</section>
+<section id="minimum-expected-cell-counts" class="level3" data-number="3.3.6">
+<h3 data-number="3.3.6" class="anchored" data-anchor-id="minimum-expected-cell-counts"><span class="header-section-number">3.3.6</span> Minimum Expected Cell Counts</h3>
+<p>Approximating summands <span class="math inline">\(\frac{\left[X_{ij} - E(X_{ij} | H_0)\right]^2}{Var(X_{ij} | H_0)}\)</span> by the <span class="math inline">\(\chi^2\)</span>-distribution is only feasible if <span class="math inline">\(E(X_{ij} | H_0) \geq 5\)</span> for almost all cells.</p>
+<p>Just a few cells are allowed to have an expectation <span class="math inline">\(E(X_{ij} | H_0) \geq 2\)</span>.</p>
+<p><em>Note: Other books quote different minimum expected counts.</em></p>
+</section>
+<section id="when-minimum-count-rules-are-not-satisfied" class="level3" data-number="3.3.7">
+<h3 data-number="3.3.7" class="anchored" data-anchor-id="when-minimum-count-rules-are-not-satisfied"><span class="header-section-number">3.3.7</span> When Minimum Count Rules Are Not Satisfied</h3>
+<p>Should the minimum count rules <strong>not</strong> be satisfied then:</p>
+<ol type="1">
+<li><p>One could switch to an <strong>exact test</strong> based on the multi-nominal distribution (similar to the exact binomial test).</p></li>
+<li><p><strong>Aggregate classes</strong> along rows or columns if this is meaningful from a contextual perspective. This will increase the expected count in the aggregated classes but reduce the degree of freedom.</p></li>
+<li><p><strong>Drop</strong> either a class that has a low row or column counts (thus leading to low expected counts)</p></li>
+</ol>
+</section>
+<section id="power-concerns" class="level3" data-number="3.3.8">
+<h3 data-number="3.3.8" class="anchored" data-anchor-id="power-concerns"><span class="header-section-number">3.3.8</span> Power Concerns</h3>
+<p>As the sample size increases − while keeping all table rates constant − it will become <strong>more likely to reject the null hypothesis</strong> because the <span class="math inline">\(\chi^2\)</span> statistic will increase while the degrees of freedom stay the same.</p>
+<p>For instance, doubling the cell counts (i.e., <span class="math inline">\(2 \cdot n\)</span>) doubles the <span class="math inline">\(\chi^2\)</span> statistic, while leaving its degrees of freedom unchanged. <span class="math inline">\(\Rightarrow\)</span> It becomes more significant.</p>
+</section>
+</section>
+<section id="formal-test-procedure" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="formal-test-procedure"><span class="header-section-number">3.4</span> Formal Test Procedure</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w16_Chapter10NonParStats/table_11-22_independence_test.png" class="img-fluid figure-img"></p>
+<figcaption>TABLE 11-22: Chi-Square Test for Independence in Contingency Tables</figcaption>
+</figure>
+</div>
+<p><strong>Specification:</strong></p>
+<p>A total of <span class="math inline">\(n\)</span> observations of two nominal/ordinal variables are cross-classified in a contingency table of dimensions <span class="math inline">\(r \times c\)</span>. The observed frequency in the <span class="math inline">\(ij\)</span>th cell is denoted <span class="math inline">\(f_{ij}\)</span>. Expected frequencies for these cells are calculated from:</p>
+<p><span class="math display">\[F_{ij} = \frac{R_i C_j}{n}\]</span></p>
+<p>Here <span class="math inline">\(R_i\)</span> is the observed frequency count of the <span class="math inline">\(i\)</span>th row, and <span class="math inline">\(C_j\)</span> is the observed frequency count of the <span class="math inline">\(j\)</span>th column.</p>
+<p><strong>Hypotheses:</strong></p>
+<ul>
+<li><p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\pi_{ij} = \pi_i^r \pi_j^c\)</span> for <span class="math inline">\(i = 1, 2, \ldots, r\)</span>; <span class="math inline">\(j = 1, 2, \ldots, c\)</span></p>
+<p>The variables are statistically independent.</p></li>
+<li><p><span class="math inline">\(H_A\)</span>: <span class="math inline">\(\pi_{ij} \neq \pi_i^r \pi_j^c\)</span> for at least one <span class="math inline">\(ij\)</span> pair</p>
+<p>The variables are not statistically independent.</p></li>
+</ul>
+<p><strong>Test statistic:</strong></p>
+<p><span class="math display">\[X^2 = \sum_{i=1}^{r} \sum_{j=1}^{c} \frac{(f_{ij} - F_{ij})^2}{F_{ij}}\]</span></p>
+<p>with <span class="math inline">\((r - 1)(c - 1)\)</span> degrees of freedom</p>
+<p><strong>Decision rule:</strong></p>
+<p>Reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(X^2 &gt; A\)</span>, where <span class="math inline">\(A = \chi^2[1 - \alpha, (r-1)(c-1)]\)</span>.</p>
+</section>
+</section>
+<section id="r-code-examples" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> R Code Examples</h1>
+<section id="chi-square-goodness-of-fit-test" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="chi-square-goodness-of-fit-test"><span class="header-section-number">4.1</span> Chi-Square Goodness-of-Fit Test</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test if observed frequencies match expected uniform distribution</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>observed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">29</span>, <span class="dv">35</span>, <span class="dv">16</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">sum</span>(observed)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">length</span>(observed)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Uniform distribution - equal probabilities</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>expected_prob <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span>k, k)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>expected_freq <span class="ot">&lt;-</span> n <span class="sc">*</span> expected_prob</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Chi-square test</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>chi_result <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(observed, <span class="at">p =</span> expected_prob)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(chi_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Chi-squared test for given probabilities
+
+data:  observed
+X-squared = 8.88, df = 3, p-value = 0.03093</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine expected frequencies</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Expected frequencies:"</span>, chi_result<span class="sc">$</span>expected, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Expected frequencies: 25 25 25 25 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manual calculation</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>chi_sq_manual <span class="ot">&lt;-</span> <span class="fu">sum</span>((observed <span class="sc">-</span> expected_freq)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> expected_freq)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> k <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(chi_sq_manual, df)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Manual calculation:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Manual calculation:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Chi-squared:"</span>, <span class="fu">round</span>(chi_sq_manual, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Chi-squared: 8.88 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"df:"</span>, df, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>df: 3 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"p-value:"</span>, <span class="fu">round</span>(p_value, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>p-value: 0.0309 </code></pre>
+</div>
+</div>
+</section>
+<section id="chi-square-test-for-independence" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="chi-square-test-for-independence"><span class="header-section-number">4.2</span> Chi-Square Test for Independence</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a contingency table: Household Size vs Car Ownership</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>household_car <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">2</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                          <span class="dv">7</span>, <span class="dv">10</span>, <span class="dv">6</span>, <span class="dv">3</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                          <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">6</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                          <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">15</span>), </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(household_car) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"HH Size 2"</span>, <span class="st">"HH Size 3"</span>, <span class="st">"HH Size 4"</span>, <span class="st">"HH Size 5"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(household_car) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"0 Cars"</span>, <span class="st">"1 Car"</span>, <span class="st">"2 Cars"</span>, <span class="st">"3 Cars"</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Contingency Table:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Contingency Table:"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(household_car)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          0 Cars 1 Car 2 Cars 3 Cars
+HH Size 2     10     8      3      2
+HH Size 3      7    10      6      3
+HH Size 4      4     5     12      6
+HH Size 5      1     2      6     15</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform chi-square test for independence</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>chi_indep <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(household_car)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(chi_indep)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  household_car
+X-squared = 37.17, df = 9, p-value = 2.454e-05</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Expected frequencies under independence</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Expected frequencies under H0:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Expected frequencies under H0:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(chi_indep<span class="sc">$</span>expected, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          0 Cars 1 Car 2 Cars 3 Cars
+HH Size 2   5.06  5.75   6.21   5.98
+HH Size 3   5.72  6.50   7.02   6.76
+HH Size 4   5.94  6.75   7.29   7.02
+HH Size 5   5.28  6.00   6.48   6.24</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Residuals (standardized)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Pearson residuals:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Pearson residuals:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(chi_indep<span class="sc">$</span>residuals, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          0 Cars 1 Car 2 Cars 3 Cars
+HH Size 2   2.20  0.94  -1.29  -1.63
+HH Size 3   0.54  1.37  -0.38  -1.45
+HH Size 4  -0.80 -0.67   1.74  -0.38
+HH Size 5  -1.86 -1.63  -0.19   3.51</code></pre>
+</div>
+</div>
+</section>
+<section id="titanic-example" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="titanic-example"><span class="header-section-number">4.3</span> Titanic Example</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Titanic data</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Titanic)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to individual records</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>TitanicIndividual <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">lapply</span>(<span class="fu">as.data.frame</span>(Titanic), </span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>                                          <span class="cf">function</span>(x) <span class="fu">rep</span>(x, Titanic)))</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Test: Is survival independent of sex?</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>survival_sex <span class="ot">&lt;-</span> <span class="fu">table</span>(TitanicIndividual<span class="sc">$</span>Survived, TitanicIndividual<span class="sc">$</span>Sex)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Survival by Sex:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Survival by Sex:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(survival_sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     
+      Male Female
+  No  1364    126
+  Yes  367    344</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(survival_sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test with Yates' continuity correction
+
+data:  survival_sex
+X-squared = 454.5, df = 1, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test: Is survival independent of class?</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>survival_class <span class="ot">&lt;-</span> <span class="fu">table</span>(TitanicIndividual<span class="sc">$</span>Survived, TitanicIndividual<span class="sc">$</span>Class)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Survival by Class:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Survival by Class:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(survival_class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     
+      1st 2nd 3rd Crew
+  No  122 167 528  673
+  Yes 203 118 178  212</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(survival_class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  survival_class
+X-squared = 190.4, df = 3, p-value &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="visualization" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="visualization"><span class="header-section-number">4.4</span> Visualization</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the chi-square distribution</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>df_values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">25</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>df_plot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (d <span class="cf">in</span> df_values) {</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>  df_plot <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df_plot, </span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">data.frame</span>(<span class="at">x =</span> x, </span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y =</span> <span class="fu">dchisq</span>(x, <span class="at">df =</span> d), </span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>                              <span class="at">df =</span> <span class="fu">paste0</span>(<span class="st">"df = "</span>, d)))</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_plot, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> df)) <span class="sc">+</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Chi-Square Distribution for Various Degrees of Freedom"</span>,</span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="fu">expression</span>(chi<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Density"</span>,</span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Degrees of</span><span class="sc">\n</span><span class="st">Freedom"</span>) <span class="sc">+</span></span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="w16_Chapter10NonParStats_files/figure-html/visualization-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="effect-of-sample-size-on-chi-square-test" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="effect-of-sample-size-on-chi-square-test"><span class="header-section-number">4.5</span> Effect of Sample Size on Chi-Square Test</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrate how sample size affects chi-square statistic</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># while keeping proportions constant</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Original table</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>original <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Original table (n = 100):</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Original table (n = 100):</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(original)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]   10   30
+[2,]   20   40</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>chi_original <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(original, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Chi-squared:"</span>, <span class="fu">round</span>(chi_original<span class="sc">$</span>statistic, <span class="dv">3</span>), </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"p-value:"</span>, <span class="fu">round</span>(chi_original<span class="sc">$</span>p.value, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Chi-squared: 0.794 p-value: 0.373 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Double the sample size (same proportions)</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>doubled <span class="ot">&lt;-</span> original <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Doubled table (n = 200):</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Doubled table (n = 200):</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(doubled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]   20   60
+[2,]   40   80</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>chi_doubled <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(doubled, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Chi-squared:"</span>, <span class="fu">round</span>(chi_doubled<span class="sc">$</span>statistic, <span class="dv">3</span>), </span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"p-value:"</span>, <span class="fu">round</span>(chi_doubled<span class="sc">$</span>p.value, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Chi-squared: 1.587 p-value: 0.2077 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quadruple the sample size</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>quadrupled <span class="ot">&lt;-</span> original <span class="sc">*</span> <span class="dv">4</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Quadrupled table (n = 400):</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Quadrupled table (n = 400):</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(quadrupled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]   40  120
+[2,]   80  160</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>chi_quad <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(quadrupled, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Chi-squared:"</span>, <span class="fu">round</span>(chi_quad<span class="sc">$</span>statistic, <span class="dv">3</span>), </span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"p-value:"</span>, <span class="fu">round</span>(chi_quad<span class="sc">$</span>p.value, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Chi-squared: 3.175 p-value: 0.0748 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Note: Chi-squared statistic increases proportionally with sample size!</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Note: Chi-squared statistic increases proportionally with sample size!</code></pre>
+</div>
+</div>
+<hr>
+<p><em>Note: This document was converted from lecture slides for GISC6301 Geo-spatial Data Fundamentals (Fall 2025) by Tiefelsdorf.</em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

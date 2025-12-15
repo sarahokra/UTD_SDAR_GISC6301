@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tiefelsdorf">
+<meta name="dcterms.date" content="2025-11-03">
+
+<title>Chapter 05 (Part A): Probabilities and Random Variables – final_exam_quarto</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./icon02.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-bce83624dd429190d13db9bf62533269.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">final_exam_quarto</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w00_IntroToScriptsAndData.html">GISC6301</a></li><li class="breadcrumb-item"><a href="./w11_Chapter05A.html">Wk11-ch5A.Probabilities and Random Variables</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">GISC6301</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w00_IntroToScriptsAndData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk00-Introduction to Scripts in the RStudio-Environment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w05_Chapter01_Data_and_Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk05-ch1.Data &amp; Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w06_DisplayingData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk06-ch2.Data Visualization Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w07_Chapter03_MeanVar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk07-ch3.Measures of Central Tendency and Variation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w08_Chapt04Relationships.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk08-ch4.Bivariate Relationships</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w08_MotivationDataStory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk08-Motivation Data Story</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w09_Chapt04BivariateRegression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk09-ch4.Bivariate Regression Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w10_Chapt13MultipleRegression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk10-ch13.Multiple Regression Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w11_Chapter05A.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Wk11-ch5A.Probabilities and Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w11_Chapter05B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk11-ch5B.Probabilities and Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w12_Chapter06Sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk12-ch6.Sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w13_Chapter07Estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk13-ch7.Point and Interval Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w14_Chapter08SingleTests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk14-ch8.One-Sample Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w15_Chapter09TwoSampleMeanTest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk15-ch9.Two-Sample Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w16_Chapter10NonParStats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk16-ch10.Non-Parametric Statistics and Chi-Square Tests</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">To be continued...</span></span>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#probability-part-a" id="toc-probability-part-a" class="nav-link active" data-scroll-target="#probability-part-a"><span class="header-section-number">1</span> Probability (Part A)</a></li>
+  <li><a href="#basic-definitions-elementary-outcomes-events-and-set-theory" id="toc-basic-definitions-elementary-outcomes-events-and-set-theory" class="nav-link" data-scroll-target="#basic-definitions-elementary-outcomes-events-and-set-theory"><span class="header-section-number">2</span> Basic Definitions: Elementary Outcomes, Events and Set Theory</a>
+  <ul class="collapse">
+  <li><a href="#definitions-elementary-outcomes-and-sample-space" id="toc-definitions-elementary-outcomes-and-sample-space" class="nav-link" data-scroll-target="#definitions-elementary-outcomes-and-sample-space"><span class="header-section-number">2.1</span> Definitions: Elementary Outcomes and Sample Space</a></li>
+  <li><a href="#definition-event" id="toc-definition-event" class="nav-link" data-scroll-target="#definition-event"><span class="header-section-number">2.2</span> Definition: Event</a></li>
+  <li><a href="#definition-empty-set" id="toc-definition-empty-set" class="nav-link" data-scroll-target="#definition-empty-set"><span class="header-section-number">2.3</span> Definition: Empty Set</a></li>
+  <li><a href="#definition-complementary-event-bara" id="toc-definition-complementary-event-bara" class="nav-link" data-scroll-target="#definition-complementary-event-bara"><span class="header-section-number">2.4</span> Definition: Complementary Event <span class="math inline">\(\bar{A}\)</span></a></li>
+  <li><a href="#definition-subset" id="toc-definition-subset" class="nav-link" data-scroll-target="#definition-subset"><span class="header-section-number">2.5</span> Definition: Subset</a></li>
+  <li><a href="#definition-event-intersection" id="toc-definition-event-intersection" class="nav-link" data-scroll-target="#definition-event-intersection"><span class="header-section-number">2.6</span> Definition: Event Intersection</a></li>
+  <li><a href="#definition-mutually-exclusive-events" id="toc-definition-mutually-exclusive-events" class="nav-link" data-scroll-target="#definition-mutually-exclusive-events"><span class="header-section-number">2.7</span> Definition: Mutually Exclusive Events</a></li>
+  <li><a href="#definition-union" id="toc-definition-union" class="nav-link" data-scroll-target="#definition-union"><span class="header-section-number">2.8</span> Definition: Union</a></li>
+  <li><a href="#venn-diagrams" id="toc-venn-diagrams" class="nav-link" data-scroll-target="#venn-diagrams"><span class="header-section-number">2.9</span> Venn-Diagrams</a></li>
+  </ul></li>
+  <li><a href="#probabilities" id="toc-probabilities" class="nav-link" data-scroll-target="#probabilities"><span class="header-section-number">3</span> Probabilities</a>
+  <ul class="collapse">
+  <li><a href="#postulated-properties-of-probabilities-kolmogorovs-axioms" id="toc-postulated-properties-of-probabilities-kolmogorovs-axioms" class="nav-link" data-scroll-target="#postulated-properties-of-probabilities-kolmogorovs-axioms"><span class="header-section-number">3.1</span> Postulated Properties of Probabilities (Kolmogorov’s axioms)</a></li>
+  <li><a href="#definition-of-probabilities" id="toc-definition-of-probabilities" class="nav-link" data-scroll-target="#definition-of-probabilities"><span class="header-section-number">3.2</span> Definition of Probabilities</a>
+  <ul class="collapse">
+  <li><a href="#a-analytical-a-probability-model-based-on-counting-rules" id="toc-a-analytical-a-probability-model-based-on-counting-rules" class="nav-link" data-scroll-target="#a-analytical-a-probability-model-based-on-counting-rules"><span class="header-section-number">3.2.1</span> [a] Analytical: a probability model based on counting rules</a></li>
+  <li><a href="#b-relative-frequency" id="toc-b-relative-frequency" class="nav-link" data-scroll-target="#b-relative-frequency"><span class="header-section-number">3.2.2</span> [b] Relative Frequency</a></li>
+  <li><a href="#c-subjective-probabilities" id="toc-c-subjective-probabilities" class="nav-link" data-scroll-target="#c-subjective-probabilities"><span class="header-section-number">3.2.3</span> [c] Subjective Probabilities</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#counting-rules-for-computing-probabilities" id="toc-counting-rules-for-computing-probabilities" class="nav-link" data-scroll-target="#counting-rules-for-computing-probabilities"><span class="header-section-number">4</span> Counting Rules for Computing Probabilities</a></li>
+  <li><a href="#combinatorics" id="toc-combinatorics" class="nav-link" data-scroll-target="#combinatorics"><span class="header-section-number">5</span> Combinatorics</a>
+  <ul class="collapse">
+  <li><a href="#definition-combination" id="toc-definition-combination" class="nav-link" data-scroll-target="#definition-combination"><span class="header-section-number">5.1</span> Definition: Combination</a></li>
+  <li><a href="#definition-permutations" id="toc-definition-permutations" class="nav-link" data-scroll-target="#definition-permutations"><span class="header-section-number">5.2</span> Definition: Permutations</a></li>
+  <li><a href="#definition-product-rule-p-247" id="toc-definition-product-rule-p-247" class="nav-link" data-scroll-target="#definition-product-rule-p-247"><span class="header-section-number">5.3</span> Definition: Product Rule (p 247)</a></li>
+  <li><a href="#sampling-schemes" id="toc-sampling-schemes" class="nav-link" data-scroll-target="#sampling-schemes"><span class="header-section-number">5.4</span> Sampling Schemes</a>
+  <ul class="collapse">
+  <li><a href="#potential-permutations-by-sampling-twice-from-the-set-s-a-b-c-d-e-with-replacement" id="toc-potential-permutations-by-sampling-twice-from-the-set-s-a-b-c-d-e-with-replacement" class="nav-link" data-scroll-target="#potential-permutations-by-sampling-twice-from-the-set-s-a-b-c-d-e-with-replacement"><span class="header-section-number">5.4.1</span> Potential permutations by sampling twice from the set <span class="math inline">\(S = \{A, B, C, D, E\}\)</span> with replacement:</a></li>
+  <li><a href="#recall-the-definition-of-the-factorial" id="toc-recall-the-definition-of-the-factorial" class="nav-link" data-scroll-target="#recall-the-definition-of-the-factorial"><span class="header-section-number">5.4.2</span> Recall the definition of the factorial:</a></li>
+  <li><a href="#classification-scheme-for-sampling-twice-from-s-a-b-c-d-e" id="toc-classification-scheme-for-sampling-twice-from-s-a-b-c-d-e" class="nav-link" data-scroll-target="#classification-scheme-for-sampling-twice-from-s-a-b-c-d-e"><span class="header-section-number">5.4.3</span> Classification scheme for sampling twice from <span class="math inline">\(S = \{A, B, C, D, E\}\)</span>:</a></li>
+  </ul></li>
+  <li><a href="#hypergeometric-rule-p.-249" id="toc-hypergeometric-rule-p.-249" class="nav-link" data-scroll-target="#hypergeometric-rule-p.-249"><span class="header-section-number">5.5</span> Hypergeometric Rule (p.&nbsp;249)</a></li>
+  </ul></li>
+  <li><a href="#basic-probability-theorems" id="toc-basic-probability-theorems" class="nav-link" data-scroll-target="#basic-probability-theorems"><span class="header-section-number">6</span> Basic Probability Theorems</a>
+  <ul class="collapse">
+  <li><a href="#cross-tabulation-of-events" id="toc-cross-tabulation-of-events" class="nav-link" data-scroll-target="#cross-tabulation-of-events"><span class="header-section-number">6.1</span> Cross-tabulation of Events</a></li>
+  <li><a href="#marginal-probabilities" id="toc-marginal-probabilities" class="nav-link" data-scroll-target="#marginal-probabilities"><span class="header-section-number">6.2</span> Marginal Probabilities</a></li>
+  <li><a href="#definition-addition-theorem-p-207" id="toc-definition-addition-theorem-p-207" class="nav-link" data-scroll-target="#definition-addition-theorem-p-207"><span class="header-section-number">6.3</span> Definition: Addition Theorem (p 207)</a></li>
+  <li><a href="#definition-complementation-theorem-p.-208" id="toc-definition-complementation-theorem-p.-208" class="nav-link" data-scroll-target="#definition-complementation-theorem-p.-208"><span class="header-section-number">6.4</span> Definition: Complementation Theorem (p.&nbsp;208)</a></li>
+  <li><a href="#definition-conditional-probability-p-208" id="toc-definition-conditional-probability-p-208" class="nav-link" data-scroll-target="#definition-conditional-probability-p-208"><span class="header-section-number">6.5</span> Definition: Conditional Probability (p 208)</a></li>
+  <li><a href="#definition-multiplication-theorem-p-209" id="toc-definition-multiplication-theorem-p-209" class="nav-link" data-scroll-target="#definition-multiplication-theorem-p-209"><span class="header-section-number">6.6</span> Definition: Multiplication Theorem (p 209)</a></li>
+  <li><a href="#definition-statistical-independent-events-p-209" id="toc-definition-statistical-independent-events-p-209" class="nav-link" data-scroll-target="#definition-statistical-independent-events-p-209"><span class="header-section-number">6.7</span> Definition: Statistical Independent Events (p 209)</a></li>
+  </ul></li>
+  <li><a href="#the-bayes-theorem-left-for-the-homework" id="toc-the-bayes-theorem-left-for-the-homework" class="nav-link" data-scroll-target="#the-bayes-theorem-left-for-the-homework"><span class="header-section-number">7</span> The Bayes’ Theorem (left for the homework)</a>
+  <ul class="collapse">
+  <li><a href="#derivation" id="toc-derivation" class="nav-link" data-scroll-target="#derivation"><span class="header-section-number">7.1</span> Derivation</a></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><span class="header-section-number">7.2</span> Interpretation</a></li>
+  <li><a href="#total-probability" id="toc-total-probability" class="nav-link" data-scroll-target="#total-probability"><span class="header-section-number">7.3</span> Total Probability</a></li>
+  <li><a href="#general-form-of-the-bayes-theorem" id="toc-general-form-of-the-bayes-theorem" class="nav-link" data-scroll-target="#general-form-of-the-bayes-theorem"><span class="header-section-number">7.4</span> General Form of the Bayes’ Theorem</a></li>
+  <li><a href="#example-paleontologist-and-mosasaur" id="toc-example-paleontologist-and-mosasaur" class="nav-link" data-scroll-target="#example-paleontologist-and-mosasaur"><span class="header-section-number">7.5</span> Example: Paleontologist and Mosasaur</a>
+  <ul class="collapse">
+  <li><a href="#prior-probabilities" id="toc-prior-probabilities" class="nav-link" data-scroll-target="#prior-probabilities"><span class="header-section-number">7.5.1</span> Prior Probabilities</a></li>
+  <li><a href="#likelihood-information" id="toc-likelihood-information" class="nav-link" data-scroll-target="#likelihood-information"><span class="header-section-number">7.5.2</span> Likelihood Information</a></li>
+  <li><a href="#schematic-diagram" id="toc-schematic-diagram" class="nav-link" data-scroll-target="#schematic-diagram"><span class="header-section-number">7.5.3</span> Schematic Diagram</a></li>
+  <li><a href="#total-probability-1" id="toc-total-probability-1" class="nav-link" data-scroll-target="#total-probability-1"><span class="header-section-number">7.5.4</span> Total Probability</a></li>
+  <li><a href="#posteriori-probabilities" id="toc-posteriori-probabilities" class="nav-link" data-scroll-target="#posteriori-probabilities"><span class="header-section-number">7.5.5</span> Posteriori Probabilities</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">7.5.6</span> Conclusion</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#concept-of-a-random-variable" id="toc-concept-of-a-random-variable" class="nav-link" data-scroll-target="#concept-of-a-random-variable"><span class="header-section-number">8</span> Concept of a Random Variable</a>
+  <ul class="collapse">
+  <li><a href="#definition-random-variable-p-210" id="toc-definition-random-variable-p-210" class="nav-link" data-scroll-target="#definition-random-variable-p-210"><span class="header-section-number">8.1</span> Definition: Random Variable (p 210)</a></li>
+  </ul></li>
+  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes"><span class="header-section-number">9</span> Footnotes</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">10</span> Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w00_IntroToScriptsAndData.html">GISC6301</a></li><li class="breadcrumb-item"><a href="./w11_Chapter05A.html">Wk11-ch5A.Probabilities and Random Variables</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Chapter 05 (Part A): Probabilities and Random Variables</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Tiefelsdorf </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 3, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="probability-part-a" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Probability (Part A)</h1>
+<p>Part A covers basic probability theory (including appendix 5a) up to the concept of a random variable.</p>
+<p>Part B will review <strong>selected</strong> discrete and continuous distributions, the concepts of expectation and variance, and a brief overview over bivariate distributions.</p>
+<hr>
+</section>
+<section id="basic-definitions-elementary-outcomes-events-and-set-theory" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Basic Definitions: Elementary Outcomes, Events and Set Theory</h1>
+<p><em>Note: <strong>Set theory</strong> takes a distinct role in GISciences. E.g., areas can be conceived as a set of infinitely small points. Professional literature expresses many spatial operations in set theoretical terms. Furthermore, SQL database concepts and operations are framed as set theoretic operations.</em></p>
+<section id="definitions-elementary-outcomes-and-sample-space" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="definitions-elementary-outcomes-and-sample-space"><span class="header-section-number">2.1</span> Definitions: Elementary Outcomes and Sample Space</h2>
+<ul>
+<li><p>Each individual possible outcome <span class="math inline">\(\omega_i\)</span> (small omega) of an experiment is known as an <strong>elementary outcome</strong>, and the set of all possible elementary outcomes denotes the <strong>sample space</strong> <span class="math inline">\(\Omega = \{\omega_1, \ldots, \omega_n\}\)</span> (capital Omega).</p></li>
+<li><p>Elementary outcomes are <strong>disjunct</strong>, i.e., they do not overlap.</p></li>
+</ul>
+</section>
+<section id="definition-event" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="definition-event"><span class="header-section-number">2.2</span> Definition: Event</h2>
+<ul>
+<li>An event is a subset of the sample space, i.e., <span class="math inline">\(A \equiv \{\omega_2, \omega_5\}\)</span>, with elementary outcomes <span class="math inline">\(\omega_2\)</span> and <span class="math inline">\(\omega_5\)</span> constituting the event <span class="math inline">\(A\)</span>.</li>
+</ul>
+</section>
+<section id="definition-empty-set" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="definition-empty-set"><span class="header-section-number">2.3</span> Definition: Empty Set</h2>
+<ul>
+<li>An empty set does not contain any elementary outcomes and is denoted by <span class="math inline">\(\varnothing = \{\}\)</span>.</li>
+</ul>
+</section>
+<section id="definition-complementary-event-bara" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="definition-complementary-event-bara"><span class="header-section-number">2.4</span> Definition: Complementary Event <span class="math inline">\(\bar{A}\)</span></h2>
+<ul>
+<li>Let <span class="math inline">\(\Omega \equiv \{\omega_1, \omega_2, \omega_3, \omega_4, \omega_5\}\)</span> and event <span class="math inline">\(A \equiv \{\omega_2, \omega_5\}\)</span> then <span class="math inline">\(\bar{A} = \Omega - A = \{\omega_1, \omega_3, \omega_4\}\)</span></li>
+</ul>
+</section>
+<section id="definition-subset" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="definition-subset"><span class="header-section-number">2.5</span> Definition: Subset</h2>
+<ul>
+<li>Definition: a <strong>subset</strong> is a set whose members are <em>also</em> elements of another set.
+<ul>
+<li>Let <span class="math inline">\(A = \{\omega_1, \omega_2\}\)</span> and <span class="math inline">\(B = \{\omega_1, \omega_2, \omega_3\}\)</span> then <span class="math inline">\(A \subset B\)</span></li>
+<li>Any event <span class="math inline">\(A\)</span> is a subset of the sample space: <span class="math inline">\(A \subset \Omega\)</span></li>
+<li>A set <span class="math inline">\(A\)</span> and its complement <span class="math inline">\(\bar{A}\)</span> <strong>can never</strong> be subsets <span class="math inline">\(A \not\subset \bar{A}\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="definition-event-intersection" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="definition-event-intersection"><span class="header-section-number">2.6</span> Definition: Event Intersection</h2>
+<ul>
+<li>The intersection symbol is <span class="math inline">\(\cap\)</span>, which is also the logical <strong>AND</strong>. It means that both intersecting events must be <strong>satisfied simultaneously</strong> being members of their parent sets.
+<ul>
+<li>Let <span class="math inline">\(A = \{\omega_1, \omega_2, \omega_4\}\)</span> and <span class="math inline">\(B = \{\omega_1, \omega_2, \omega_3\}\)</span> then <span class="math inline">\(A \cap B = \{\omega_1, \omega_2\}\)</span></li>
+<li>If <span class="math inline">\(A \cap B \neq \varnothing\)</span> then <span class="math inline">\(A \cap B \subset A\)</span> and <span class="math inline">\(A \cap B \subset B\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="definition-mutually-exclusive-events" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="definition-mutually-exclusive-events"><span class="header-section-number">2.7</span> Definition: Mutually Exclusive Events</h2>
+<ul>
+<li>The intersection of <strong>mutually exclusive events</strong> is the empty set: <span class="math inline">\(A \cap B = \varnothing\)</span></li>
+</ul>
+</section>
+<section id="definition-union" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="definition-union"><span class="header-section-number">2.8</span> Definition: Union</h2>
+<ul>
+<li><p>The Union symbol is <span class="math inline">\(\cup\)</span>, which is also the logical <strong>Either-OR</strong>. Thus, either event <span class="math inline">\(A\)</span> or event <span class="math inline">\(B\)</span> or both events happen together.</p></li>
+<li><p>Let <span class="math inline">\(A = \{\omega_1, \omega_2, \omega_4\}\)</span> and <span class="math inline">\(B = \{\omega_1, \omega_2, \omega_3\}\)</span> then <span class="math inline">\(A \cup B = \{\omega_1, \omega_2, \omega_3, \omega_4\}\)</span>.</p></li>
+</ul>
+</section>
+<section id="venn-diagrams" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="venn-diagrams"><span class="header-section-number">2.9</span> Venn-Diagrams</h2>
+<p>Some <strong>Venn-Diagrams</strong> highlighting the intersection, union and complement:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w11_Chapter05A/fig01_venn_diagrams_basic.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Basic Venn diagrams showing set operations: union, intersection, complement, and De Morgan laws</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w11_Chapter05A/fig02_venn_diagrams_halloween.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Halloween-themed Venn diagrams illustrating logical operations: OR, AND, XOR, NOR, NAND, XNOR</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="probabilities" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Probabilities</h1>
+<section id="postulated-properties-of-probabilities-kolmogorovs-axioms" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="postulated-properties-of-probabilities-kolmogorovs-axioms"><span class="header-section-number">3.1</span> Postulated Properties of Probabilities (Kolmogorov’s axioms)</h2>
+<p>(pp.&nbsp;203-204)</p>
+<ol type="1">
+<li><p><span class="math inline">\(0 \leq \Pr(\omega_i) \leq 1\)</span> for all <span class="math inline">\(\omega_i \in \Omega\)</span>. In a <em>deterministic world</em> (no uncertainty) either <span class="math inline">\(\Pr(\omega_i) = 0\)</span> or <span class="math inline">\(\Pr(\omega_i) = 1\)</span>.</p></li>
+<li><p><span class="math inline">\(\Pr(A) = \sum_{\omega_i \in A} \Pr(\omega_i)\)</span>. This property requires that the elementary outcomes, which constitute the event <span class="math inline">\(A\)</span>, are mutually exclusive.</p></li>
+<li><p><span class="math inline">\(\Pr(\Omega) = 1\)</span> and <span class="math inline">\(\Pr(\varnothing) = 0\)</span>. This can be derived by deductive logic from the previous properties.</p></li>
+</ol>
+</section>
+<section id="definition-of-probabilities" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="definition-of-probabilities"><span class="header-section-number">3.2</span> Definition of Probabilities</h2>
+<p>Probabilities, as measure of <strong>uncertainties</strong> or <strong>likelihood</strong> of an experiment with <strong>many possible outcomes</strong>, can be obtained from several perspectives:</p>
+<section id="a-analytical-a-probability-model-based-on-counting-rules" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="a-analytical-a-probability-model-based-on-counting-rules"><span class="header-section-number">3.2.1</span> [a] Analytical: a probability model based on counting rules</h3>
+<p>This perspective is usually based on the appealing assumption that <strong>all elementary have equal probability</strong> <span class="math inline">\(\Pr(\omega_i) = \frac{1}{n}\)</span>.</p>
+<p>The equal probability assumption leads to the <strong>classical</strong> definition:</p>
+<p><span class="math display">\[\Pr(A) = \frac{|A|}{|\Omega|}\]</span></p>
+<p>with <span class="math inline">\(|\cdot|\)</span> denoting the <em>number of elements</em> in a set.</p>
+<p><strong>Criticism:</strong> [a] Circular definition because of the use of the definition of the probability in <span class="math inline">\(\Pr(\omega_i) = \frac{1}{n}\)</span>; [b] the event and sample spaces need to be countable.</p>
+</section>
+<section id="b-relative-frequency" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="b-relative-frequency"><span class="header-section-number">3.2.2</span> [b] Relative Frequency</h3>
+<p>Probabilities are obtained by repeating a random experiment under fixed conditions over a very large number of independent trials; e.g.,</p>
+<p><span class="math display">\[\Pr(success) = \lim_{n \to \infty} \left(\frac{number\ of\ successes}{total\ number\ of\ experiments}\right)\]</span></p>
+<p>Larger numbers of repetitions lead to more accurate estimates.</p>
+<p><strong>Criticism:</strong> [a] Theoretically requires infinite number of trials. [b] Conditions underlying each trial cannot be held indefinitely constant. [c] Some experiments cannot be repeated indefinitely (e.g., lifespan of light bulbs in a production process)</p>
+<p>See the script <strong>PROBFREQUENT.R</strong>:</p>
+<section id="changhos-experiment-500-random-tosses-of-a-fair-coin" class="level4" data-number="3.2.2.1">
+<h4 data-number="3.2.2.1" class="anchored" data-anchor-id="changhos-experiment-500-random-tosses-of-a-fair-coin"><span class="header-section-number">3.2.2.1</span> Changho’s experiment: 500 random tosses of a fair coin</h4>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w11_Chapter05A/fig03_coin_toss_changho.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Changho’s experiment: 500 random tosses of a fair coin showing convergence to 0.5</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="instructors-experiment-500-random-tosses-of-a-fair-coin" class="level4" data-number="3.2.2.2">
+<h4 data-number="3.2.2.2" class="anchored" data-anchor-id="instructors-experiment-500-random-tosses-of-a-fair-coin"><span class="header-section-number">3.2.2.2</span> Instructor’s Experiment: 500 random tosses of a fair coin</h4>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w11_Chapter05A/fig04_coin_toss_instructor.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Instructor’s experiment: 500 random tosses of a fair coin showing convergence to 0.5</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="c-subjective-probabilities" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="c-subjective-probabilities"><span class="header-section-number">3.2.3</span> [c] Subjective Probabilities</h3>
+<p>A person assigns subjectively a probability to a possibly random event.</p>
+<p>These subjective assessments may originate from <strong>personal experiences</strong> or “divine intuition”.</p>
+<p>For experience-based probabilities one assumes, that under similar circumstances one would observe an event occurring with a particular frequency.</p>
+<p><strong>Criticism:</strong> [a] The problem with subjective probabilities is that an external observer cannot <em>reproduce</em> the subjective probability (i.e., we cannot read people’s mind); [b] Subjective probabilities may not necessarily satisfy the Kolmogorov’s axioms.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="counting-rules-for-computing-probabilities" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Counting Rules for Computing Probabilities</h1>
+<p>Counting rules can be used to evaluate theoretically the number of elementary outcomes <span class="math inline">\(|A|\)</span> that satisfy the criteria of an event <span class="math inline">\(A\)</span> (i.e., the <strong>event space</strong>) and the number of all possible elementary outcomes <span class="math inline">\(|\Omega|\)</span> in the <strong>sample space</strong>. These allow developing, depending on the underlying assumptions, models for specific probability distributions.</p>
+<p>The analytic/geometric probability <span class="math inline">\(\Pr(A) = \frac{|A|}{|\Omega|}\)</span> of event <span class="math inline">\(A\)</span> provides the <strong>foundation</strong> of a counting rule-based probabilities.</p>
+<p>One just needs to <strong>enumerate</strong> all possible number of events in numerator <span class="math inline">\(|A|\)</span> and all possible events in the denominator <span class="math inline">\(|\Omega|\)</span>.</p>
+<hr>
+</section>
+<section id="combinatorics" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Combinatorics</h1>
+<p>The rules of combinatorics can be used to <strong>evaluate the size</strong> of the numerator and denominator.</p>
+<section id="definition-combination" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="definition-combination"><span class="header-section-number">5.1</span> Definition: Combination</h2>
+<p>A set <span class="math inline">\(C\)</span> of distinguishable objects <strong>regardless</strong> of their order.</p>
+<p>Example: <span class="math inline">\(\{a, b\} = \{b, a\}\)</span>. Both are just one event.</p>
+</section>
+<section id="definition-permutations" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="definition-permutations"><span class="header-section-number">5.2</span> Definition: Permutations</h2>
+<p>A set <span class="math inline">\(P\)</span> of distinguishable objects with <strong>distinct ordering</strong> (order is relevant here).</p>
+<p>Example: <span class="math inline">\(\{a, b\} \neq \{b, a\}\)</span>. Both are separate events.</p>
+</section>
+<section id="definition-product-rule-p-247" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="definition-product-rule-p-247"><span class="header-section-number">5.3</span> Definition: Product Rule (p 247)</h2>
+<p>Suppose there are <span class="math inline">\(r\)</span> sets of different objects. Each set <span class="math inline">\(i\)</span> has <span class="math inline">\(n_i\)</span> objects. If we select one object from each set, then there are in total <span class="math inline">\(\prod_{i=1}^{r} n_i = n_1 \cdot n_2 \cdots n_r\)</span> distinct combinations.</p>
+<p><strong>Example:</strong> we have <span class="math inline">\(n\)</span> objects (set 1) and we sample one object. From the remaining <span class="math inline">\(n-1\)</span> objects (now set 2) we sample again one object. Then there are <span class="math inline">\(n \cdot (n-1)\)</span> distinct combinations (i.e., pairs of events).</p>
+<hr>
+</section>
+<section id="sampling-schemes" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="sampling-schemes"><span class="header-section-number">5.4</span> Sampling Schemes</h2>
+<p><strong>Evaluation:</strong> Sampling <em>with</em> or <em>without</em> replacement and <em>with</em> (permutation) or <em>without</em> (combination) considering the order of events.</p>
+<section id="potential-permutations-by-sampling-twice-from-the-set-s-a-b-c-d-e-with-replacement" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="potential-permutations-by-sampling-twice-from-the-set-s-a-b-c-d-e-with-replacement"><span class="header-section-number">5.4.1</span> Potential permutations by sampling twice from the set <span class="math inline">\(S = \{A, B, C, D, E\}\)</span> with replacement:</h3>
+<p><span class="math display">\[S \times S = \begin{pmatrix}
+\{\mathbf{A}, \mathbf{A}\} &amp; \{A, B\} &amp; \{A, C\} &amp; \{A, D\} &amp; \{A, E\} \\
+\{B, A\} &amp; \{\mathbf{B}, \mathbf{B}\} &amp; \{B, C\} &amp; \{B, D\} &amp; \{B, E\} \\
+\{C, A\} &amp; \{C, B\} &amp; \{\mathbf{C}, \mathbf{C}\} &amp; \{C, D\} &amp; \{C, E\} \\
+\{D, A\} &amp; \{D, B\} &amp; \{D, C\} &amp; \{\mathbf{D}, \mathbf{D}\} &amp; \{D, E\} \\
+\{E, A\} &amp; \{E, B\} &amp; \{E, C\} &amp; \{E, D\} &amp; \{\mathbf{E}, \mathbf{E}\}
+\end{pmatrix}\]</span></p>
+<p>The symbol <span class="math inline">\(\times\)</span> denotes the <em>Cartesian Product</em> of two sets.</p>
+</section>
+<section id="recall-the-definition-of-the-factorial" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="recall-the-definition-of-the-factorial"><span class="header-section-number">5.4.2</span> Recall the definition of the factorial:</h3>
+<p><span class="math display">\[n! = 1 \cdot 2 \cdots n\]</span></p>
+<p>with <span class="math inline">\(0! = 1\)</span> by convention.</p>
+</section>
+<section id="classification-scheme-for-sampling-twice-from-s-a-b-c-d-e" class="level3" data-number="5.4.3">
+<h3 data-number="5.4.3" class="anchored" data-anchor-id="classification-scheme-for-sampling-twice-from-s-a-b-c-d-e"><span class="header-section-number">5.4.3</span> Classification scheme for sampling twice from <span class="math inline">\(S = \{A, B, C, D, E\}\)</span>:</h3>
+<p><span class="math inline">\(n\)</span> expresses the number of different elements in the sample space and <span class="math inline">\(p\)</span> is the size of sample (repeated samples from the set <span class="math inline">\(S\)</span>).</p>
+<ol type="1">
+<li><p><strong>With replacement</strong> and <strong>with considering order</strong> (i.e., permutation): <span class="math inline">\(5 \cdot 5 = 25\)</span></p>
+<p>General: <span class="math inline">\(n^p\)</span></p></li>
+<li><p><strong>Without replacement</strong> and <strong>with considering the order</strong> (i.e., permutation): <span class="math inline">\(5 \cdot 4 = 20\)</span></p>
+<p>General Permutations: <span class="math display">\[P_r^n = n \cdot (n-1) \cdots (n-r+1) = \frac{n!}{(n-r)!}\]</span></p></li>
+<li><p><strong>Without replacement</strong> and <strong>without considering order</strong> (i.e., combination): <span class="math inline">\(5 \cdot 4 / 2 = 10\)</span></p>
+<p>General Combinations: <span class="math display">\[C_r^n = P_r^n / r! = \left[n \cdot (n-1) \cdots (n-r+1)\right] / \left[1 \cdot 2 \cdots r\right] = \frac{n!}{(n-r)! \cdot r!} = \binom{n}{r}\]</span></p></li>
+<li><p><strong>With replacement</strong> and <strong>without considering order</strong> (i.e., combination): <span class="math inline">\(6 \cdot 5 / 2 = 15\)</span></p>
+<p>General: <span class="math display">\[\binom{n+r-1}{r} = \frac{(n+r-1)!}{(n-1)! \cdot r!}\]</span></p></li>
+</ol>
+</section>
+</section>
+<section id="hypergeometric-rule-p.-249" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="hypergeometric-rule-p.-249"><span class="header-section-number">5.5</span> Hypergeometric Rule (p.&nbsp;249)</h2>
+<p>The Hypergeometric Rule is a combination of the product rule and the combination rule.</p>
+<p>Suppose there are <span class="math inline">\(p\)</span> sets of objects. Each set has <span class="math inline">\(n_i\)</span> objects with the total number of objects being <span class="math inline">\(\sum_{i=1}^{p} n_i = n\)</span>.</p>
+<p>From each set we select <span class="math inline">\(r_i\)</span> with <span class="math inline">\(r_i \leq n_i\)</span> objects. The different number of possible combinations is:</p>
+<p><span class="math display">\[\binom{n_1}{r_1} \cdot \binom{n_2}{r_2} \cdots \binom{n_p}{r_p}\]</span></p>
+<hr>
+</section>
+</section>
+<section id="basic-probability-theorems" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Basic Probability Theorems</h1>
+<section id="cross-tabulation-of-events" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="cross-tabulation-of-events"><span class="header-section-number">6.1</span> Cross-tabulation of Events</h2>
+<p>The sample space <span class="math inline">\(\Omega = A \times B = \{A_1 \cap B_1, A_1 \cap B_2, A_1 \cap B_3, A_2 \cap B_1, A_2 \cap B_2, A_2 \cap B_3\}\)</span> is derived by evaluating all pairwise combinations of events <span class="math inline">\(A = \{A_1, A_2\}\)</span> with events <span class="math inline">\(B = \{B_1, B_2, B_3\}\)</span>.</p>
+<p>Let us arrange the probabilities of these events and their intersection in a cross-tabulation:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><span class="math inline">\(B_1\)</span></th>
+<th><span class="math inline">\(B_2\)</span></th>
+<th><span class="math inline">\(B_3\)</span></th>
+<th><span class="math inline">\(\sum\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(A_1\)</span></td>
+<td><span class="math inline">\(\Pr(A_1 \cap B_1)\)</span></td>
+<td><span class="math inline">\(\Pr(A_1 \cap B_2)\)</span></td>
+<td><span class="math inline">\(\Pr(A_1 \cap B_3)\)</span></td>
+<td><span class="math inline">\(\Pr(A_1)\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(A_2\)</span></td>
+<td><span class="math inline">\(\Pr(A_2 \cap B_1)\)</span></td>
+<td><span class="math inline">\(\Pr(A_2 \cap B_2)\)</span></td>
+<td><span class="math inline">\(\Pr(A_2 \cap B_3)\)</span></td>
+<td><span class="math inline">\(\Pr(A_2)\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\sum\)</span></td>
+<td><span class="math inline">\(\Pr(B_1)\)</span></td>
+<td><span class="math inline">\(\Pr(B_2)\)</span></td>
+<td><span class="math inline">\(\Pr(B_3)\)</span></td>
+<td><span class="math inline">\(\Pr(\Omega) = 1.0\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="marginal-probabilities" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="marginal-probabilities"><span class="header-section-number">6.2</span> Marginal Probabilities</h2>
+<p>The marginal probabilities of individual events <span class="math inline">\(A_i\)</span> or <span class="math inline">\(B_j\)</span> are:</p>
+<p><span class="math display">\[\Pr(A_i) = \Pr(A_i \cap B_1) + \Pr(A_i \cap B_2) + \Pr(A_i \cap B_3)\]</span></p>
+<p>and</p>
+<p><span class="math display">\[\Pr(B_j) = \Pr(A_1 \cap B_j) + \Pr(A_2 \cap B_j)\]</span></p>
+<p><strong>Why are we allowed to do this?</strong></p>
+<p>Answer: The intersections <span class="math inline">\(\Pr(A_i \cap B_j)\)</span> are based mutually exclusive pairs of events.</p>
+</section>
+<section id="definition-addition-theorem-p-207" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="definition-addition-theorem-p-207"><span class="header-section-number">6.3</span> Definition: Addition Theorem (p 207)</h2>
+<p><strong>Warning:</strong> Look out for the intersection of events:</p>
+<p><span class="math display">\[\Pr(A \cup B) = \Pr(A) + \Pr(B) - \Pr(A \cap B)\]</span></p>
+<p>Example: <span class="math inline">\(\Pr(A_i \cup B_j) = \Pr(A_i) + \Pr(B_j) - \Pr(A_i \cap B_j)\)</span></p>
+<p><strong>Special rule for mutually exclusive events</strong>, i.e, <span class="math inline">\(A_i \cap B_j = \varnothing\)</span>:</p>
+<p><span class="math display">\[\Pr(A_i \cup B_j) = \Pr(A_i) + \Pr(B_j)\]</span></p>
+</section>
+<section id="definition-complementation-theorem-p.-208" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="definition-complementation-theorem-p.-208"><span class="header-section-number">6.4</span> Definition: Complementation Theorem (p.&nbsp;208)</h2>
+<p><span class="math display">\[\Pr(\bar{A}) = \underbrace{1}_{=\Pr(\Omega)} - \Pr(A)\]</span></p>
+</section>
+<section id="definition-conditional-probability-p-208" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="definition-conditional-probability-p-208"><span class="header-section-number">6.5</span> Definition: Conditional Probability (p 208)</h2>
+<p>The probability of an event <span class="math inline">\(A\)</span> may <strong>change</strong> once another event <span class="math inline">\(B\)</span> has <strong>taken place</strong> ahead of it.</p>
+<p>This allows predicting the probabilities of events with the knowledge of a conditioning event <span class="math inline">\(B\)</span>:</p>
+<p><strong>General rule:</strong></p>
+<p><span class="math display">\[\Pr(A|B) = \frac{\Pr(A \cap B)}{\Pr(B)}\]</span></p>
+<p><strong>How to remember the rule:</strong> The event that conditions the other event (written after “|”) is in the denominator.</p>
+<p><strong>Note:</strong> Some books use the mathematical notation <span class="math inline">\(\Pr(A, B) \Leftrightarrow \Pr(A \cap B)\)</span> for the probability of the intersection of events.</p>
+</section>
+<section id="definition-multiplication-theorem-p-209" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="definition-multiplication-theorem-p-209"><span class="header-section-number">6.6</span> Definition: Multiplication Theorem (p 209)</h2>
+<p>Simple algebraic transformation of the definition of the conditional probabilities gives:</p>
+<p><span class="math display">\[\Pr(A \cap B) = \Pr(A|B) \cdot \Pr(B)\]</span> <span class="math display">\[= \Pr(B|A) \cdot \Pr(A)\]</span></p>
+</section>
+<section id="definition-statistical-independent-events-p-209" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="definition-statistical-independent-events-p-209"><span class="header-section-number">6.7</span> Definition: Statistical Independent Events (p 209)</h2>
+<p>Under statistical independence, the occurrence of a conditioning event <span class="math inline">\(B\)</span> <strong>does not change</strong> the probability for another event:</p>
+<p><span class="math display">\[\Pr(A) = \Pr(A|B)\]</span></p>
+<p>Equivalently using the definition of the conditional probability, we can write using the multiplication theorem of probabilities for <strong>independent events</strong>:</p>
+<p><span class="math display">\[\Pr(A \cap B) = \Pr(A) \cdot \Pr(B)\]</span></p>
+<hr>
+</section>
+</section>
+<section id="the-bayes-theorem-left-for-the-homework" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> The Bayes’ Theorem (left for the homework)</h1>
+<section id="derivation" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="derivation"><span class="header-section-number">7.1</span> Derivation</h2>
+<p>From the multiplication theorem we have:</p>
+<p><span class="math display">\[\Pr(A \cap B) = \Pr(A|B) \cdot \Pr(B) \quad \text{or} \quad \Pr(A \cap B) = \Pr(B|A) \cdot \Pr(A)\]</span></p>
+<p><span class="math display">\[\Leftrightarrow \Pr(A|B) \cdot \Pr(B) = \Pr(B|A) \cdot \Pr(A)\]</span></p>
+<p><span class="math display">\[\Rightarrow \Pr(A|B) = \frac{\Pr(B|A) \cdot \Pr(A)}{\Pr(B)} \quad \text{or alternatively,} \quad \Pr(B|A) = \frac{\Pr(A|B) \cdot \Pr(B)}{\Pr(A)}\]</span></p>
+</section>
+<section id="interpretation" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="interpretation"><span class="header-section-number">7.2</span> Interpretation</h2>
+<p>For the Bayesian equation:</p>
+<p><span class="math display">\[\Pr(B|A) = \frac{\Pr(A|B) \cdot \Pr(B)}{\Pr(A)}\]</span></p>
+<ul>
+<li>The probability <span class="math inline">\(\Pr(B)\)</span> is called the <strong>a priori</strong> probability (first believe in the probability) of event <span class="math inline">\(B\)</span></li>
+<li><span class="math inline">\(\Pr(B|A)\)</span> is called the <strong>posteriori</strong> probability (revised probability) of event <span class="math inline">\(B\)</span> after we have observed event <span class="math inline">\(A\)</span>.</li>
+<li>The probability <span class="math inline">\(\Pr(A|B)\)</span> is called the <strong>likelihood</strong> of event <span class="math inline">\(A\)</span> assuming event <span class="math inline">\(B\)</span> has taken place. The likelihood is assumed to be externally known.</li>
+</ul>
+</section>
+<section id="total-probability" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="total-probability"><span class="header-section-number">7.3</span> Total Probability</h2>
+<p>The <strong>total probability</strong> <span class="math inline">\(\Pr(A)\)</span> for event <span class="math inline">\(A\)</span> can be calculated using marginal probability equation:</p>
+<p><span class="math display">\[\Pr(A) = \sum_{j=1}^{r} \Pr(A \cap B_j) = \sum_{j=1}^{r} \Pr(A|B_j) \cdot \Pr(B_j)\]</span></p>
+<p>assuming <span class="math inline">\(\Pr(A|B_j)\)</span> and <span class="math inline">\(\Pr(B_j)\ \forall j\)</span> are externally given.</p>
+</section>
+<section id="general-form-of-the-bayes-theorem" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="general-form-of-the-bayes-theorem"><span class="header-section-number">7.4</span> General Form of the Bayes’ Theorem</h2>
+<p>This gives the general form of the Bayes’ theorem:</p>
+<p><span class="math display">\[\Pr(B_j|A) = \frac{\Pr(A|B_j) \cdot \Pr(B_j)}{\sum_{j=1}^{r} \Pr(A|B_j) \cdot \Pr(B_j)} \quad \text{for all events } B_j\]</span></p>
+<hr>
+</section>
+<section id="example-paleontologist-and-mosasaur" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="example-paleontologist-and-mosasaur"><span class="header-section-number">7.5</span> Example: Paleontologist and Mosasaur</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w11_Chapter05A/fig05_mosasaur.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Mosasaur skeleton - the paleontologist wishes to find the complete skeleton</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A paleontologist found downstream of a river some Mosasaur fragment.</p>
+<p>He/she wishes to conduct an expedition into either basin <span class="math inline">\(B_1\)</span> (with the area of 18 acres) or basin <span class="math inline">\(B_2\)</span> (with the area of 10 acres) from where these fragments may have originated.</p>
+<p><strong>Research question:</strong> Which basin maximizes the likelihood of finding the skeleton?</p>
+<section id="prior-probabilities" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="prior-probabilities"><span class="header-section-number">7.5.1</span> Prior Probabilities</h3>
+<p>The <strong>prior probabilities</strong> of the basins are proportional to their size:</p>
+<p><span class="math display">\[\Pr(B_1) = 18/(18+10) = 0.64 \quad \text{and} \quad \Pr(B_2) = 10/(18+10) = 0.36\]</span></p>
+<p>The higher prior probabilities direct the paleontologist to basin <span class="math inline">\(B_1\)</span>.</p>
+</section>
+<section id="likelihood-information" class="level3" data-number="7.5.2">
+<h3 data-number="7.5.2" class="anchored" data-anchor-id="likelihood-information"><span class="header-section-number">7.5.2</span> Likelihood Information</h3>
+<p>Skeletons are only found in Cretaceous rock (event <span class="math inline">\(A\)</span>). The proportions of Cretaceous rock in either basin is:</p>
+<p><span class="math display">\[\Pr(A|B_1) = 0.35 \quad \text{and} \quad \Pr(A|B_2) = 0.80\]</span></p>
+</section>
+<section id="schematic-diagram" class="level3" data-number="7.5.3">
+<h3 data-number="7.5.3" class="anchored" data-anchor-id="schematic-diagram"><span class="header-section-number">7.5.3</span> Schematic Diagram</h3>
+<!-- 
+IMAGE PLACEHOLDER: Schematic diagram showing basins B1 and B2 with their conditional probabilities A|B1 and A|B2
+-->
+</section>
+<section id="total-probability-1" class="level3" data-number="7.5.4">
+<h3 data-number="7.5.4" class="anchored" data-anchor-id="total-probability-1"><span class="header-section-number">7.5.4</span> Total Probability</h3>
+<p>The total probability of Cretaceous rock in both basins is:</p>
+<p><span class="math display">\[\Pr(A) = \Pr(A|B_1) \cdot \Pr(B_1) + \Pr(A|B_2) \cdot \Pr(B_2) = 0.35 \cdot 0.64 + 0.80 \cdot 0.36 = 0.512\]</span></p>
+</section>
+<section id="posteriori-probabilities" class="level3" data-number="7.5.5">
+<h3 data-number="7.5.5" class="anchored" data-anchor-id="posteriori-probabilities"><span class="header-section-number">7.5.5</span> Posteriori Probabilities</h3>
+<p><span class="math display">\[\Pr(B_1|A) = \frac{\Pr(A|B_1) \cdot \Pr(B_1)}{\Pr(A)}\]</span> <span class="math display">\[= \frac{0.35 \cdot 0.64}{0.512} = 0.4375\]</span></p>
+<p><span class="math display">\[\Pr(B_2|A) = \frac{0.80 \cdot 0.36}{0.512} = 0.5625\]</span></p>
+</section>
+<section id="conclusion" class="level3" data-number="7.5.6">
+<h3 data-number="7.5.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">7.5.6</span> Conclusion</h3>
+<p>The posteriori probabilities direct the paleontologist towards searching in basin <span class="math inline">\(B_2\)</span>.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="concept-of-a-random-variable" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Concept of a Random Variable</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w11_Chapter05A/fig06_random_variable_table.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Table 6-1: The Concept of a Random Variable - mapping from sample space to numerical values</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p><strong>Assumption:</strong> A numerical characteristic is measurable for each object (i.e., elementary outcome) in a population (i.e., the sample space)</p></li>
+<li><p>We can enumerate (or count) the different occurrence of this characteristic over all objects in the population.</p></li>
+</ul>
+<section id="definition-random-variable-p-210" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="definition-random-variable-p-210"><span class="header-section-number">8.1</span> Definition: Random Variable (p 210)</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w11_Chapter05A/fig07_random_variable_mapping.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Figure 4.11: A random variable is a mapping of events to the real line</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The <strong>function</strong> <span class="math inline">\(X(\cdot)\)</span> <strong>measures the numerical population characteristic</strong>. It is usually denoted in the statistical literature by a capital letter, e.g., <span class="math inline">\(X\)</span>.</p>
+<p><strong>Why are events translated into numerical values?</strong></p>
+<p>Answer: To perform calculations, it is easier to work with numbers rather than with descriptive characteristics of elements in sets.</p>
+<p>The probability of an event <span class="math inline">\(A\)</span> and its associated random variable <span class="math inline">\(X(A)\)</span> must be identical:</p>
+<p><span class="math display">\[\Pr(A) = \Pr(X(A))\]</span></p>
+<hr>
+</section>
+</section>
+<section id="footnotes" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Footnotes</h1>
+<p><strong>Def. Axiom:</strong> A self-evident principle or one that is intuitively accepted as being true without proof. In mathematics the axioms establish the basis for an argument.</p>
+<p><strong>Def. Theorem:</strong> A proposition that can be proven to the true by using explicit statements obtained from accepted axioms as argument.</p>
+<hr>
+</section>
+<section id="summary" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Summary</h1>
+<p>This chapter covered the following key concepts:</p>
+<ol type="1">
+<li><strong>Elementary Outcomes and Sample Space</strong> - The building blocks of probability theory</li>
+<li><strong>Set Operations</strong> - Intersection (<span class="math inline">\(\cap\)</span>), Union (<span class="math inline">\(\cup\)</span>), Complement (<span class="math inline">\(\bar{A}\)</span>)</li>
+<li><strong>Kolmogorov’s Axioms</strong> - The three fundamental properties of probabilities</li>
+<li><strong>Perspectives on Probability</strong> - Analytical, Relative Frequency, Subjective</li>
+<li><strong>Combinatorics</strong> - Permutations and Combinations for counting</li>
+<li><strong>Sampling Schemes</strong> - With/without replacement, with/without order</li>
+<li><strong>Probability Theorems</strong> - Addition, Complementation, Conditional, Multiplication</li>
+<li><strong>Statistical Independence</strong> - When events don’t affect each other</li>
+<li><strong>Bayes’ Theorem</strong> - Updating probabilities with new information</li>
+<li><strong>Random Variables</strong> - Mapping events to numerical values</li>
+</ol>
+<hr>
+<p><em>Document created for GISC6301: Geo-Spatial Data Analysis Fundamentals</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

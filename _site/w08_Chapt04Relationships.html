@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tiefelsdorf">
+<meta name="dcterms.date" content="2025-10-13">
+
+<title>Chapter 04: Bivariate Relationships – final_exam_quarto</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./icon02.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-bce83624dd429190d13db9bf62533269.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">final_exam_quarto</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w00_IntroToScriptsAndData.html">GISC6301</a></li><li class="breadcrumb-item"><a href="./w08_Chapt04Relationships.html">Wk08-ch4.Bivariate Relationships</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">GISC6301</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w00_IntroToScriptsAndData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk00-Introduction to Scripts in the RStudio-Environment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w05_Chapter01_Data_and_Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk05-ch1.Data &amp; Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w06_DisplayingData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk06-ch2.Data Visualization Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w07_Chapter03_MeanVar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk07-ch3.Measures of Central Tendency and Variation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w08_Chapt04Relationships.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Wk08-ch4.Bivariate Relationships</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w08_MotivationDataStory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk08-Motivation Data Story</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w09_Chapt04BivariateRegression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk09-ch4.Bivariate Regression Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w10_Chapt13MultipleRegression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk10-ch13.Multiple Regression Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w11_Chapter05A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk11-ch5A.Probabilities and Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w11_Chapter05B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk11-ch5B.Probabilities and Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w12_Chapter06Sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk12-ch6.Sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w13_Chapter07Estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk13-ch7.Point and Interval Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w14_Chapter08SingleTests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk14-ch8.One-Sample Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w15_Chapter09TwoSampleMeanTest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk15-ch9.Two-Sample Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w16_Chapter10NonParStats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk16-ch10.Non-Parametric Statistics and Chi-Square Tests</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">To be continued...</span></span>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#causality-and-lack-thereof" id="toc-causality-and-lack-thereof" class="nav-link active" data-scroll-target="#causality-and-lack-thereof"><span class="header-section-number">1</span> Causality and Lack Thereof</a></li>
+  <li><a href="#covariation-relationships" id="toc-covariation-relationships" class="nav-link" data-scroll-target="#covariation-relationships"><span class="header-section-number">2</span> Covariation Relationships</a></li>
+  <li><a href="#correlation-analysis" id="toc-correlation-analysis" class="nav-link" data-scroll-target="#correlation-analysis"><span class="header-section-number">3</span> Correlation Analysis</a></li>
+  <li><a href="#meaningfulness-of-the-correlation-coefficient" id="toc-meaningfulness-of-the-correlation-coefficient" class="nav-link" data-scroll-target="#meaningfulness-of-the-correlation-coefficient"><span class="header-section-number">4</span> Meaningfulness of the Correlation Coefficient</a>
+  <ul class="collapse">
+  <li><a href="#example-confounding-variable" id="toc-example-confounding-variable" class="nav-link" data-scroll-target="#example-confounding-variable"><span class="header-section-number">4.1</span> Example: Confounding Variable</a>
+  <ul class="collapse">
+  <li><a href="#birth-rate-analysis" id="toc-birth-rate-analysis" class="nav-link" data-scroll-target="#birth-rate-analysis"><span class="header-section-number">4.1.1</span> Birth Rate Analysis</a></li>
+  </ul></li>
+  <li><a href="#example-induced-correlation" id="toc-example-induced-correlation" class="nav-link" data-scroll-target="#example-induced-correlation"><span class="header-section-number">4.2</span> Example: Induced Correlation</a></li>
+  <li><a href="#example-spurious-correlation" id="toc-example-spurious-correlation" class="nav-link" data-scroll-target="#example-spurious-correlation"><span class="header-section-number">4.3</span> Example: Spurious Correlation</a></li>
+  <li><a href="#example-aggregation-effects" id="toc-example-aggregation-effects" class="nav-link" data-scroll-target="#example-aggregation-effects"><span class="header-section-number">4.4</span> Example: Aggregation Effects</a></li>
+  </ul></li>
+  <li><a href="#structure-of-pearsons-product-moment-correlation-coefficient" id="toc-structure-of-pearsons-product-moment-correlation-coefficient" class="nav-link" data-scroll-target="#structure-of-pearsons-product-moment-correlation-coefficient"><span class="header-section-number">5</span> Structure of Pearson’s Product-Moment Correlation Coefficient</a>
+  <ul class="collapse">
+  <li><a href="#covariance" id="toc-covariance" class="nav-link" data-scroll-target="#covariance"><span class="header-section-number">5.1</span> Covariance</a></li>
+  <li><a href="#geometric-interpretation" id="toc-geometric-interpretation" class="nav-link" data-scroll-target="#geometric-interpretation"><span class="header-section-number">5.2</span> Geometric Interpretation</a></li>
+  <li><a href="#standardization-to-correlation-coefficient" id="toc-standardization-to-correlation-coefficient" class="nav-link" data-scroll-target="#standardization-to-correlation-coefficient"><span class="header-section-number">5.3</span> Standardization to Correlation Coefficient</a>
+  <ul class="collapse">
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes"><span class="header-section-number">5.3.1</span> Notes</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#the-spearmans-rank-correlation-coefficient" id="toc-the-spearmans-rank-correlation-coefficient" class="nav-link" data-scroll-target="#the-spearmans-rank-correlation-coefficient"><span class="header-section-number">6</span> The Spearman’s Rank Correlation Coefficient</a></li>
+  <li><a href="#scatterplot-matrix" id="toc-scatterplot-matrix" class="nav-link" data-scroll-target="#scatterplot-matrix"><span class="header-section-number">7</span> Scatterplot Matrix</a></li>
+  <li><a href="#modifiable-areal-unit-problem" id="toc-modifiable-areal-unit-problem" class="nav-link" data-scroll-target="#modifiable-areal-unit-problem"><span class="header-section-number">8</span> Modifiable Areal Unit Problem</a>
+  <ul class="collapse">
+  <li><a href="#maup-statistics-table" id="toc-maup-statistics-table" class="nav-link" data-scroll-target="#maup-statistics-table"><span class="header-section-number">8.0.1</span> MAUP Statistics Table</a></li>
+  </ul></li>
+  <li><a href="#ecological-fallacy" id="toc-ecological-fallacy" class="nav-link" data-scroll-target="#ecological-fallacy"><span class="header-section-number">9</span> Ecological Fallacy</a></li>
+  <li><a href="#confounding" id="toc-confounding" class="nav-link" data-scroll-target="#confounding"><span class="header-section-number">10</span> Confounding</a>
+  <ul class="collapse">
+  <li><a href="#rescue-vest-crosstabulation-overall" id="toc-rescue-vest-crosstabulation-overall" class="nav-link" data-scroll-target="#rescue-vest-crosstabulation-overall"><span class="header-section-number">10.1</span> Rescue × Vest Crosstabulation (Overall)</a></li>
+  <li><a href="#rescue-vest-weather-crosstabulation" id="toc-rescue-vest-weather-crosstabulation" class="nav-link" data-scroll-target="#rescue-vest-weather-crosstabulation"><span class="header-section-number">10.2</span> Rescue × Vest × Weather Crosstabulation</a>
+  <ul class="collapse">
+  <li><a href="#fair-weather" id="toc-fair-weather" class="nav-link" data-scroll-target="#fair-weather"><span class="header-section-number">10.2.1</span> Fair Weather</a></li>
+  <li><a href="#foul-weather" id="toc-foul-weather" class="nav-link" data-scroll-target="#foul-weather"><span class="header-section-number">10.2.2</span> Foul Weather</a></li>
+  </ul></li>
+  <li><a href="#explanation" id="toc-explanation" class="nav-link" data-scroll-target="#explanation"><span class="header-section-number">10.3</span> Explanation</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">11</span> Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w00_IntroToScriptsAndData.html">GISC6301</a></li><li class="breadcrumb-item"><a href="./w08_Chapt04Relationships.html">Wk08-ch4.Bivariate Relationships</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Chapter 04: Bivariate Relationships</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Tiefelsdorf </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 13, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="causality-and-lack-thereof" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Causality and Lack Thereof</h1>
+<ol type="1">
+<li>A clear <strong>temporal precedence</strong> of the cause before the effect is necessary for a causal relationship:</li>
+</ol>
+<p><span class="math display">\[effect_t \leftarrow cause_{t-1}\]</span></p>
+<ol start="2" type="1">
+<li>The role of the dependent variable and the independent variable may <strong>switch</strong> depending on the <strong>perspective</strong>. E.g., the parent’s income influences the children’s education, but also a person’s education level influences her/his income potential:</li>
+</ol>
+<p><span class="math display">\[income \leftarrow education \quad \text{or} \quad education \leftarrow income\]</span></p>
+<p>Note: the parent’s income precedes the child’s education and a person’s education precedes her/his income potential.</p>
+<ol start="3" type="1">
+<li>Correlation may be caused by plain <strong>random coincidences</strong>. Statistical significance tests will help quantify the potential impact of these random effects.</li>
+</ol>
+<p><span class="math display">\[effect \xleftarrow{random} cause\]</span></p>
+<ol start="4" type="1">
+<li>A <strong>lurking third variable</strong>, jointly influencing the two variables under investigation, may induce a relationship. This is known as <strong>spurious</strong> correlation or <strong>confounding</strong> effect.</li>
+</ol>
+<p><span class="math display">\[\begin{array}{c}
+effect \leftarrow cause \\
+\nwarrow \quad \nearrow \\
+confounding\ variable
+\end{array}\]</span></p>
+<hr>
+</section>
+<section id="covariation-relationships" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Covariation Relationships</h1>
+<ul>
+<li><p>This lecture discusses bivariate <strong>covariation</strong> between pairs of variables. In contrast, regression analysis assumes a directed cause-effect relationship.</p></li>
+<li><p>The focus of bivariate analysis is to explore how values taken by one variable <strong>co-vary</strong> with values taken by another variable.</p></li>
+<li><p>Relationships are <strong>not directed</strong>, thus, one cannot say <span class="math inline">\(X_1\)</span> influences <span class="math inline">\(X_2\)</span>, i.e., <span class="math inline">\(X_1 \rightarrow X_2\)</span> or <em>vice versa</em> <span class="math inline">\(X_1 \leftarrow X_2\)</span>. Both variables are just mutually co-vary, i.e., <span class="math inline">\(X_1 \leftrightarrow X_2\)</span></p></li>
+<li><p>These bivariate co-variations can be explored:</p>
+<ul>
+<li>For <strong>nominal and ordinal</strong> scaled variables by nested bar charts (recall the spinogram) and quantified in contingency tables</li>
+<li>For <strong>quantitative</strong> variables we can scatterplot both variables and quantify their linear relationship with the <strong>Pearson correlation coefficient</strong> and non-linear but monotonic relationships by the <strong>Spearman rank correlation coefficient</strong></li>
+<li>For <strong>mixed</strong> qualitative and quantitative variables, the co-variation of a quantitative variable can be investigated by <strong>stratifying</strong> it by the qualitative variable. <strong>Conditional</strong> statistics and distributions by the <strong>categories</strong> of the qualitative variable (recall the mean bar plot and parallel box-plots) are used to evaluate possible relationships.</li>
+</ul></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Def. Statistical Dependence:</strong> When the probability of a variable taking a particular value is influenced by a <strong>given value</strong> of another variable, then these two variables are statistically dependent.</p>
+</blockquote>
+<hr>
+</section>
+<section id="correlation-analysis" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Correlation Analysis</h1>
+<ul>
+<li>Correlation between two metric variables measures their <strong>linear</strong> relationship:
+<ul>
+<li><em>Positive</em> linear relationship means that as variable <span class="math inline">\(X_1\)</span> increases so does the variable <span class="math inline">\(X_2\)</span></li>
+<li><em>Negative</em> linear relationship means that as <span class="math inline">\(X_1\)</span> increases variable <span class="math inline">\(X_2\)</span> does decrease</li>
+<li><em>Zero correlation</em> means that there is no systematic <strong>linear</strong> relationship between both variables</li>
+<li>This bivariate relationship must hold over the <strong>full support</strong> of <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>, i.e., it cannot be piecewise for specific subsets of intervals</li>
+</ul></li>
+</ul>
+<p>Unless, however, a qualitative variable allows <strong>stratifying</strong> the relationship for subgroups of observation pairs.</p>
+<ul>
+<li>The relationship between two metric variables is best displayed in a scatterplot. This is also an important <strong>exploratory tool</strong></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w08_Chapt04Relationships/page4_img3.png" class="img-fluid figure-img"></p>
+<figcaption>Scatterplot examples showing different correlation values</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="meaningfulness-of-the-correlation-coefficient" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Meaningfulness of the Correlation Coefficient</h1>
+<ul>
+<li>A statistical relationship <em>per se</em> does not need to be meaningful.</li>
+</ul>
+<section id="example-confounding-variable" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="example-confounding-variable"><span class="header-section-number">4.1</span> Example: Confounding Variable</h2>
+<p>Birth rates and the density of storks in a rural German province over several decades in the last century:</p>
+<p><img src="images/w08_Chapt04Relationships/page4_img1.jpeg" class="img-fluid" style="width:40.0%" alt="Baby announcement with stork"> <img src="images/w08_Chapt04Relationships/page4_img2.jpeg" class="img-fluid" style="width:40.0%" alt="Storks in field"></p>
+<section id="birth-rate-analysis" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="birth-rate-analysis"><span class="header-section-number">4.1.1</span> Birth Rate Analysis</h3>
+<p><img src="images/w08_Chapt04Relationships/page5_img1.png" class="img-fluid" style="width:32.0%" alt="Birth Rate by Stork Density"> <img src="images/w08_Chapt04Relationships/page5_img2.png" class="img-fluid" style="width:32.0%" alt="Birth Rate by Decade"> <img src="images/w08_Chapt04Relationships/page5_img3.png" class="img-fluid" style="width:32.0%" alt="Stork Density by Decade"></p>
+<p>Both the stork density and the birth rate vary over time (i.e., decades). With time industrialization increases, this reduces the marshy habitat of storks, and it changes the reproductive behavior of the now increasingly urban population.</p>
+<hr>
+</section>
+</section>
+<section id="example-induced-correlation" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="example-induced-correlation"><span class="header-section-number">4.2</span> Example: Induced Correlation</h2>
+<p><img src="images/w08_Chapt04Relationships/page5_img4.png" class="img-fluid" style="width:30.0%" alt="Male Female Population Data"> <img src="images/w08_Chapt04Relationships/page5_img5.png" class="img-fluid" style="width:32.0%" alt="Absolute Population Counts by Sex"> <img src="images/w08_Chapt04Relationships/page5_img6.png" class="img-fluid" style="width:32.0%" alt="Percent Males by Percent Females"></p>
+<p><em>Left: Absolute Population Counts by Sex | Right: %Males by %Females</em></p>
+<hr>
+</section>
+<section id="example-spurious-correlation" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="example-spurious-correlation"><span class="header-section-number">4.3</span> Example: Spurious Correlation</h2>
+<p>The variable “Size of Area” induces correlation. <strong>Normalization</strong> by the size of the area corrects for the absolute size effects.</p>
+<p><img src="images/w08_Chapt04Relationships/page6_img1.png" class="img-fluid" style="width:25.0%" alt="Population and Building Data"> <img src="images/w08_Chapt04Relationships/page6_img2.png" class="img-fluid" style="width:35.0%" alt="Absolute numbers scatterplot"> <img src="images/w08_Chapt04Relationships/page6_img3.png" class="img-fluid" style="width:35.0%" alt="Relative Density Numbers scatterplot"></p>
+<p><em>Left: Absolute numbers | Right: Relative Density Numbers</em></p>
+<hr>
+</section>
+<section id="example-aggregation-effects" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="example-aggregation-effects"><span class="header-section-number">4.4</span> Example: Aggregation Effects</h2>
+<p>Correlation of individual observations (e.g., individuals living within regions) visualized by dots versus correlation of aggregated observations (e.g., averaged individual data in regions) visualized by squares. =&gt; This is known as the <strong>modifiable areal unit problem (MAUP)</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w08_Chapt04Relationships/page6_img4.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Aggregation effects on correlation</figcaption>
+</figure>
+</div>
+<p><em>Individual Correlation: 0.457 vs Aggregate Correlation: 0.822</em></p>
+<hr>
+</section>
+</section>
+<section id="structure-of-pearsons-product-moment-correlation-coefficient" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Structure of Pearson’s Product-Moment Correlation Coefficient</h1>
+<section id="covariance" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="covariance"><span class="header-section-number">5.1</span> Covariance</h2>
+<p>Empirically the joint variation between two variables is expressed by their measure of <strong>covariance</strong>:</p>
+<p><span class="math display">\[s_{x_1, x_2} = \frac{\sum_{i=1}^{n} (x_{i1} - \bar{x}_1) \cdot (x_{i2} - \bar{x}_2)}{n - 1}\]</span></p>
+<p>Note that the denominator remains <span class="math inline">\((n - 1)\)</span>.</p>
+</section>
+<section id="geometric-interpretation" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="geometric-interpretation"><span class="header-section-number">5.2</span> Geometric Interpretation</h2>
+<p>Point pairs <span class="math inline">\([x_1, x_2]\)</span> in quadrant defined by their variation <span class="math inline">\([(x_{i1} - \bar{x}_1), (x_{i2} - \bar{x}_2)]\)</span> around their means <span class="math inline">\(\bar{x}_1\)</span> and <span class="math inline">\(\bar{x}_2\)</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w08_Chapt04Relationships/page7.png" class="img-fluid figure-img"></p>
+<figcaption>Left: Strong positive correlation <span class="math inline">\(\rho = 0.9\)</span> | Center: No correlation <span class="math inline">\(\rho = 0.0\)</span> | Right: Moderate negative correlation <span class="math inline">\(\rho = -0.4\)</span></figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="standardization-to-correlation-coefficient" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="standardization-to-correlation-coefficient"><span class="header-section-number">5.3</span> Standardization to Correlation Coefficient</h2>
+<ul>
+<li><p>The covariance is <strong>not standardized</strong> to a comparable value range. It, therefore, becomes difficult to compare the covariance for different pairs of variables. This is because the scale of its parent variables <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> may differ.</p></li>
+<li><p>For these reasons the covariance is <strong>standardized</strong> by the standard deviations <span class="math inline">\(s_{x_1}\)</span> and <span class="math inline">\(s_{x_2}\)</span> of its parent variables.</p></li>
+</ul>
+<p>This gives the <strong>correlation coefficient</strong>:</p>
+<p><span class="math display">\[r = \frac{s_{x_1, x_2}}{s_{x_1} \cdot s_{x_2}} = \frac{\sum_{i=1}^{n} (x_{i1} - \bar{x}_1) \cdot (x_{i2} - \bar{x}_2)}{\sqrt{\sum_{i=1}^{n} (x_{i1} - \bar{x}_1)^2 \cdot \sum_{i=1}^{n} (x_{i2} - \bar{x}_2)^2}}\]</span></p>
+<section id="notes" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="notes"><span class="header-section-number">5.3.1</span> Notes</h3>
+<ul>
+<li><p>The value range of the correlation coefficient is restricted within the interval <span class="math inline">\(r \in [-1, 1]\)</span>. Negative values measure a negative <strong>linear</strong> relationship in the data cloud, a value of zero implies no linear relationship and positive value implies a positive <strong>linear</strong> relationship.</p></li>
+<li><p>The denominator <span class="math inline">\(n - 1\)</span> in the covariance and both standard deviations denominators cancel out.</p></li>
+<li><p>BBR give an equivalent computational equation on p 168. One is definitional and the other is computational.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="the-spearmans-rank-correlation-coefficient" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> The Spearman’s Rank Correlation Coefficient</h1>
+<ul>
+<li><p>The distribution of a variable does not need to be symmetric or without outliers. <strong>Ranks are not affected by skewness or outliers</strong>.</p></li>
+<li><p><strong>Replacing</strong> the observational values of each variable by their associated ranks and then calculating the correlation between these ranks leads to the Spearman’s rank correlation coefficient.</p></li>
+<li><p>Spearman’s rank correlation coefficient is <strong>robust</strong> against skewness and outliers.</p></li>
+<li><p>It measures <strong>monotonically</strong> increasing or decreasing relationships, which do not necessarily need to follow a straight line. However, it cannot measure complex non-linear relationships properly.</p></li>
+</ul>
+<hr>
+</section>
+<section id="scatterplot-matrix" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Scatterplot Matrix</h1>
+<p>There is <em>a priori</em> no reason to believe that the protein consumption of different food groups in 25 European countries before the fall of the iron curtain exhibits directional influence.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w08_Chapt04Relationships/page9_img1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>European Protein Data</figcaption>
+</figure>
+</div>
+<p><img src="images/w08_Chapt04Relationships/page10_img1.png" class="img-fluid" style="width:48.0%" alt="Scatterplot Matrix"> <img src="images/w08_Chapt04Relationships/page10_img2.png" class="img-fluid" style="width:48.0%" alt="Correlation Matrix Visualization"></p>
+<hr>
+</section>
+<section id="modifiable-areal-unit-problem" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Modifiable Areal Unit Problem</h1>
+<ul>
+<li><p>In spatial analysis the <strong>aggregation bias</strong> becomes equivalent to <strong>scaling effect</strong> in modifiable areal unit studies (MAUP); whereas the <strong>specification bias</strong> becomes equivalent to the <strong>zoning effect</strong>.</p></li>
+<li><p>See Waller and Gotway, 2004. <em>Applied Spatial Statistics for Public Health</em>. Wiley. pp 104-108</p></li>
+</ul>
+<p><img src="images/w08_Chapt04Relationships/page11_img1.png" class="img-fluid" style="width:45.0%" alt="Zoning and Aggregation Effects"> <img src="images/w08_Chapt04Relationships/page11_img2.png" class="img-fluid" style="width:50.0%" alt="Impact of Aggregation"></p>
+<p><em>FIG. 4.23 Aggregation and zoning issues in the modifiable areal unit problem. [Adapted from Wong (1996).]</em></p>
+<p><em>FIG. 4.22 Impact of aggregation of spatial data. The top number in each cell of configurations B–F is the aggregated value of X obtained by averaging the original values comprising the larger cell; the lower number is the corresponding aggregated value of Y. Areal weighting follows formulas in Robinson (1956).</em></p>
+<section id="maup-statistics-table" class="level3" data-number="8.0.1">
+<h3 data-number="8.0.1" class="anchored" data-anchor-id="maup-statistics-table"><span class="header-section-number">8.0.1</span> MAUP Statistics Table</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Configuration</th>
+<th><span class="math inline">\(\bar{X}\)</span></th>
+<th><span class="math inline">\(\bar{Y}\)</span></th>
+<th><span class="math inline">\(s_X^2\)</span></th>
+<th><span class="math inline">\(s_Y^2\)</span></th>
+<th><span class="math inline">\(r_{XY}\)</span></th>
+<th><span class="math inline">\(\bar{X}\)</span></th>
+<th><span class="math inline">\(\bar{Y}\)</span></th>
+<th><span class="math inline">\(s_X^2\)</span></th>
+<th><span class="math inline">\(s_Y^2\)</span></th>
+<th><span class="math inline">\(r_{XY}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td><strong>Unweighted</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><strong>Weighted</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>A</td>
+<td>3.88</td>
+<td>3.44</td>
+<td>2.36</td>
+<td>2.37</td>
+<td>0.66</td>
+<td>3.88</td>
+<td>3.44</td>
+<td>2.36</td>
+<td>2.37</td>
+<td>0.66</td>
+</tr>
+<tr class="odd">
+<td>B</td>
+<td>3.88</td>
+<td>3.44</td>
+<td>0.30</td>
+<td>0.40</td>
+<td>0.88</td>
+<td>3.88</td>
+<td>3.44</td>
+<td>0.30</td>
+<td>0.40</td>
+<td>0.88</td>
+</tr>
+<tr class="even">
+<td>C</td>
+<td>3.88</td>
+<td>3.44</td>
+<td>0.14</td>
+<td>0.26</td>
+<td>0.94</td>
+<td>3.88</td>
+<td>3.44</td>
+<td>0.14</td>
+<td>0.26</td>
+<td>0.94</td>
+</tr>
+<tr class="odd">
+<td>D</td>
+<td>3.88</td>
+<td>3.44</td>
+<td>1.55</td>
+<td>1.34</td>
+<td>0.95</td>
+<td>3.88</td>
+<td>3.44</td>
+<td>1.55</td>
+<td>1.34</td>
+<td>0.95</td>
+</tr>
+<tr class="even">
+<td>E</td>
+<td>3.88</td>
+<td>3.44</td>
+<td>1.17</td>
+<td>0.98</td>
+<td>0.98</td>
+<td>3.88</td>
+<td>3.44</td>
+<td>1.17</td>
+<td>0.98</td>
+<td>0.98</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>4.06</td>
+<td>3.36</td>
+<td>0.16</td>
+<td>0.93</td>
+<td>0.64</td>
+<td>3.88</td>
+<td>3.44</td>
+<td>0.18</td>
+<td>0.48</td>
+<td>0.80</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="ecological-fallacy" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Ecological Fallacy</h1>
+<p>See <a href="https://www.youtube.com/watch?v=ecological_fallacy">Ecological fallacy (youtube.com)</a></p>
+<hr>
+</section>
+<section id="confounding" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Confounding</h1>
+<p><em>Source: Kaplan, Daniel T, 2009. Statistical Modeling. A Fresh Approach. Self-published. p 151f</em></p>
+<p>According to a nautical tale, a new research assistant was asked to explore for the U.S. Coast Guard whether life vests are saving lives?</p>
+<p>The research assistant randomly sampled 500 records of man-over-board accidents on large vessels with the following result:</p>
+<section id="rescue-vest-crosstabulation-overall" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="rescue-vest-crosstabulation-overall"><span class="header-section-number">10.1</span> Rescue × Vest Crosstabulation (Overall)</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Rescue</th>
+<th>Wearing Vest</th>
+<th>No Vest</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Survived</strong></td>
+<td>Count: 100</td>
+<td>Count: 71</td>
+<td>171</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>% within Vest: 25.0%</td>
+<td>% within Vest: 71.0%</td>
+<td>34.2%</td>
+</tr>
+<tr class="odd">
+<td><strong>Drowned</strong></td>
+<td>Count: 300</td>
+<td>Count: 29</td>
+<td>329</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>% within Vest: 75.0%</td>
+<td>% within Vest: 29.0%</td>
+<td>65.8%</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td>400</td>
+<td>100</td>
+<td>500</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>100.0%</td>
+<td>100.0%</td>
+<td>100.0%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conclusions:</strong> Apparently wearing a vest is increasing the likelihood of drowning.</p>
+<hr>
+<p>The supervisor felt extremely uncomfortable with these findings and asked the research assistant to investigate if weather conditions may influence the survival chances.</p>
+<p>The partial results broken down by the weather conditions tell a totally different story, more in tune with common sense:</p>
+</section>
+<section id="rescue-vest-weather-crosstabulation" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="rescue-vest-weather-crosstabulation"><span class="header-section-number">10.2</span> Rescue × Vest × Weather Crosstabulation</h2>
+<section id="fair-weather" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="fair-weather"><span class="header-section-number">10.2.1</span> Fair Weather</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Rescue</th>
+<th>Wearing Vest</th>
+<th>No Vest</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Survived</strong></td>
+<td>Count: 19</td>
+<td>Count: 70</td>
+<td>89</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>% within Vest: 95.0%</td>
+<td>% within Vest: 87.5%</td>
+<td>89.0%</td>
+</tr>
+<tr class="odd">
+<td><strong>Drowned</strong></td>
+<td>Count: 1</td>
+<td>Count: 10</td>
+<td>11</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>% within Vest: 5.0%</td>
+<td>% within Vest: 12.5%</td>
+<td>11.0%</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td>20</td>
+<td>80</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="foul-weather" class="level3" data-number="10.2.2">
+<h3 data-number="10.2.2" class="anchored" data-anchor-id="foul-weather"><span class="header-section-number">10.2.2</span> Foul Weather</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Rescue</th>
+<th>Wearing Vest</th>
+<th>No Vest</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Survived</strong></td>
+<td>Count: 81</td>
+<td>Count: 1</td>
+<td>82</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>% within Vest: 21.3%</td>
+<td>% within Vest: 5.0%</td>
+<td>20.5%</td>
+</tr>
+<tr class="odd">
+<td><strong>Drowned</strong></td>
+<td>Count: 299</td>
+<td>Count: 19</td>
+<td>318</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>% within Vest: 78.7%</td>
+<td>% within Vest: 95.0%</td>
+<td>79.5%</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td>380</td>
+<td>20</td>
+<td>400</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conclusions:</strong> Under both weather conditions wearing a vest increases the likelihood of survival.</p>
+<hr>
+</section>
+</section>
+<section id="explanation" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="explanation"><span class="header-section-number">10.3</span> Explanation</h2>
+<ul>
+<li><p>In foul weather, sailors have the habit of putting their life vests on, whereas in fair weather they mostly do not bother doing so.</p></li>
+<li><p>Furthermore, falling overboard in foul weather diminishes the likelihood of survival irrespectively of wearing a vest or not (see red numbers).</p></li>
+<li><p>Apparently, the weather conditions are correlated with the status of wearing a vest and, therefore, the survival likelihood.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="summary" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Summary</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Causality</strong></td>
+<td>Requires temporal precedence; correlation ≠ causation</td>
+</tr>
+<tr class="even">
+<td><strong>Covariance</strong></td>
+<td><span class="math inline">\(s_{x_1,x_2} = \frac{\sum(x_{i1}-\bar{x}_1)(x_{i2}-\bar{x}_2)}{n-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Pearson’s r</strong></td>
+<td>Standardized covariance; range <span class="math inline">\([-1, 1]\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Spearman’s ρ</strong></td>
+<td>Rank-based; robust to outliers and skewness</td>
+</tr>
+<tr class="odd">
+<td><strong>Confounding</strong></td>
+<td>Third variable creates spurious correlation</td>
+</tr>
+<tr class="even">
+<td><strong>MAUP</strong></td>
+<td>Aggregation and zoning effects in spatial data</td>
+</tr>
+<tr class="odd">
+<td><strong>Ecological Fallacy</strong></td>
+<td>Inferring individual behavior from aggregate data</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

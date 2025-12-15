@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tiefelsdorf">
+<meta name="dcterms.date" content="2025-10-06">
+
+<title>Chapter 03: Measures of Central Tendency and Variation – final_exam_quarto</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./icon02.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-bce83624dd429190d13db9bf62533269.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">final_exam_quarto</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w00_IntroToScriptsAndData.html">GISC6301</a></li><li class="breadcrumb-item"><a href="./w07_Chapter03_MeanVar.html">Wk07-ch3.Measures of Central Tendency and Variation</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">GISC6301</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w00_IntroToScriptsAndData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk00-Introduction to Scripts in the RStudio-Environment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w05_Chapter01_Data_and_Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk05-ch1.Data &amp; Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w06_DisplayingData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk06-ch2.Data Visualization Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w07_Chapter03_MeanVar.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Wk07-ch3.Measures of Central Tendency and Variation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w08_Chapt04Relationships.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk08-ch4.Bivariate Relationships</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w08_MotivationDataStory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk08-Motivation Data Story</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w09_Chapt04BivariateRegression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk09-ch4.Bivariate Regression Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w10_Chapt13MultipleRegression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk10-ch13.Multiple Regression Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w11_Chapter05A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk11-ch5A.Probabilities and Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w11_Chapter05B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk11-ch5B.Probabilities and Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w12_Chapter06Sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk12-ch6.Sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w13_Chapter07Estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk13-ch7.Point and Interval Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w14_Chapter08SingleTests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk14-ch8.One-Sample Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w15_Chapter09TwoSampleMeanTest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk15-ch9.Two-Sample Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w16_Chapter10NonParStats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk16-ch10.Non-Parametric Statistics and Chi-Square Tests</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">To be continued...</span></span>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#measures-of-central-tendency" id="toc-measures-of-central-tendency" class="nav-link active" data-scroll-target="#measures-of-central-tendency"><span class="header-section-number">1</span> Measures of Central Tendency</a>
+  <ul class="collapse">
+  <li><a href="#the-mid-range" id="toc-the-mid-range" class="nav-link" data-scroll-target="#the-mid-range"><span class="header-section-number">1.1</span> The Mid-Range</a></li>
+  <li><a href="#the-mode" id="toc-the-mode" class="nav-link" data-scroll-target="#the-mode"><span class="header-section-number">1.2</span> The Mode</a></li>
+  <li><a href="#the-median" id="toc-the-median" class="nav-link" data-scroll-target="#the-median"><span class="header-section-number">1.3</span> The Median</a>
+  <ul class="collapse">
+  <li><a href="#odd-number-of-sample-observations-n" id="toc-odd-number-of-sample-observations-n" class="nav-link" data-scroll-target="#odd-number-of-sample-observations-n"><span class="header-section-number">1.3.1</span> Odd Number of Sample Observations <span class="math inline">\(n\)</span></a></li>
+  <li><a href="#even-number-of-observations-n" id="toc-even-number-of-observations-n" class="nav-link" data-scroll-target="#even-number-of-observations-n"><span class="header-section-number">1.3.2</span> Even Number of Observations <span class="math inline">\(N\)</span></a></li>
+  <li><a href="#optimality-property-of-the-median" id="toc-optimality-property-of-the-median" class="nav-link" data-scroll-target="#optimality-property-of-the-median"><span class="header-section-number">1.3.3</span> Optimality Property of the Median</a></li>
+  </ul></li>
+  <li><a href="#the-arithmetic-mean" id="toc-the-arithmetic-mean" class="nav-link" data-scroll-target="#the-arithmetic-mean"><span class="header-section-number">1.4</span> The Arithmetic Mean</a>
+  <ul class="collapse">
+  <li><a href="#properties-of-the-mean" id="toc-properties-of-the-mean" class="nav-link" data-scroll-target="#properties-of-the-mean"><span class="header-section-number">1.4.1</span> Properties of the Mean</a></li>
+  </ul></li>
+  <li><a href="#comparison-of-properties-of-measures-of-central-tendency" id="toc-comparison-of-properties-of-measures-of-central-tendency" class="nav-link" data-scroll-target="#comparison-of-properties-of-measures-of-central-tendency"><span class="header-section-number">1.5</span> Comparison of Properties of Measures of Central Tendency</a>
+  <ul class="collapse">
+  <li><a href="#advantages-of-the-mode" id="toc-advantages-of-the-mode" class="nav-link" data-scroll-target="#advantages-of-the-mode"><span class="header-section-number">1.5.1</span> Advantages of the Mode</a></li>
+  <li><a href="#disadvantages-of-the-mode" id="toc-disadvantages-of-the-mode" class="nav-link" data-scroll-target="#disadvantages-of-the-mode"><span class="header-section-number">1.5.2</span> Disadvantages of the Mode</a></li>
+  <li><a href="#advantages-of-the-median" id="toc-advantages-of-the-median" class="nav-link" data-scroll-target="#advantages-of-the-median"><span class="header-section-number">1.5.3</span> Advantages of the Median</a></li>
+  <li><a href="#disadvantages-of-the-median" id="toc-disadvantages-of-the-median" class="nav-link" data-scroll-target="#disadvantages-of-the-median"><span class="header-section-number">1.5.4</span> Disadvantages of the Median</a></li>
+  <li><a href="#advantages-of-the-mean" id="toc-advantages-of-the-mean" class="nav-link" data-scroll-target="#advantages-of-the-mean"><span class="header-section-number">1.5.5</span> Advantages of the Mean</a></li>
+  <li><a href="#disadvantages-of-the-mean" id="toc-disadvantages-of-the-mean" class="nav-link" data-scroll-target="#disadvantages-of-the-mean"><span class="header-section-number">1.5.6</span> Disadvantages of the Mean</a></li>
+  </ul></li>
+  <li><a href="#weighted-mean" id="toc-weighted-mean" class="nav-link" data-scroll-target="#weighted-mean"><span class="header-section-number">1.6</span> Weighted Mean</a></li>
+  <li><a href="#trimmed-mean-and-winsorized-mean" id="toc-trimmed-mean-and-winsorized-mean" class="nav-link" data-scroll-target="#trimmed-mean-and-winsorized-mean"><span class="header-section-number">1.7</span> Trimmed Mean and Winsorized Mean</a>
+  <ul class="collapse">
+  <li><a href="#advantages-of-the-trimmed-mean" id="toc-advantages-of-the-trimmed-mean" class="nav-link" data-scroll-target="#advantages-of-the-trimmed-mean"><span class="header-section-number">1.7.1</span> Advantages of the Trimmed Mean</a></li>
+  <li><a href="#disadvantages-of-the-trimmed-mean" id="toc-disadvantages-of-the-trimmed-mean" class="nav-link" data-scroll-target="#disadvantages-of-the-trimmed-mean"><span class="header-section-number">1.7.2</span> Disadvantages of the Trimmed Mean</a></li>
+  <li><a href="#winsorized-mean" id="toc-winsorized-mean" class="nav-link" data-scroll-target="#winsorized-mean"><span class="header-section-number">1.7.3</span> Winsorized Mean</a></li>
+  <li><a href="#example-for-trimming-and-winsorizing-with-tau-0.2" id="toc-example-for-trimming-and-winsorizing-with-tau-0.2" class="nav-link" data-scroll-target="#example-for-trimming-and-winsorizing-with-tau-0.2"><span class="header-section-number">1.7.4</span> Example for Trimming and Winsorizing with <span class="math inline">\(\tau = 0.2\)</span></a></li>
+  </ul></li>
+  <li><a href="#the-geometric-mean" id="toc-the-geometric-mean" class="nav-link" data-scroll-target="#the-geometric-mean"><span class="header-section-number">1.8</span> The Geometric Mean</a>
+  <ul class="collapse">
+  <li><a href="#example-savings-account-with-variable-interest" id="toc-example-savings-account-with-variable-interest" class="nav-link" data-scroll-target="#example-savings-account-with-variable-interest"><span class="header-section-number">1.8.1</span> Example: Savings Account with Variable Interest</a></li>
+  </ul></li>
+  <li><a href="#the-harmonic-mean" id="toc-the-harmonic-mean" class="nav-link" data-scroll-target="#the-harmonic-mean"><span class="header-section-number">1.9</span> The Harmonic Mean</a>
+  <ul class="collapse">
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">1.9.1</span> Examples</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#measures-of-variability" id="toc-measures-of-variability" class="nav-link" data-scroll-target="#measures-of-variability"><span class="header-section-number">2</span> Measures of Variability</a>
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">2.1</span> Introduction</a>
+  <ul class="collapse">
+  <li><a href="#climate-change-example" id="toc-climate-change-example" class="nav-link" data-scroll-target="#climate-change-example"><span class="header-section-number">2.1.1</span> Climate Change Example</a></li>
+  </ul></li>
+  <li><a href="#overall-range" id="toc-overall-range" class="nav-link" data-scroll-target="#overall-range"><span class="header-section-number">2.2</span> Overall Range</a></li>
+  <li><a href="#interquartile-range" id="toc-interquartile-range" class="nav-link" data-scroll-target="#interquartile-range"><span class="header-section-number">2.3</span> Interquartile Range</a></li>
+  <li><a href="#variation-around-the-mean-variance-and-standard-deviation" id="toc-variation-around-the-mean-variance-and-standard-deviation" class="nav-link" data-scroll-target="#variation-around-the-mean-variance-and-standard-deviation"><span class="header-section-number">2.4</span> Variation around the Mean: Variance and Standard Deviation</a>
+  <ul class="collapse">
+  <li><a href="#population-perspective" id="toc-population-perspective" class="nav-link" data-scroll-target="#population-perspective"><span class="header-section-number">2.4.1</span> Population Perspective</a></li>
+  <li><a href="#sample-perspective" id="toc-sample-perspective" class="nav-link" data-scroll-target="#sample-perspective"><span class="header-section-number">2.4.2</span> Sample Perspective</a></li>
+  <li><a href="#degrees-of-freedom" id="toc-degrees-of-freedom" class="nav-link" data-scroll-target="#degrees-of-freedom"><span class="header-section-number">2.4.3</span> Degrees of Freedom</a></li>
+  <li><a href="#standard-deviation" id="toc-standard-deviation" class="nav-link" data-scroll-target="#standard-deviation"><span class="header-section-number">2.4.4</span> Standard Deviation</a></li>
+  <li><a href="#the-23-rule" id="toc-the-23-rule" class="nav-link" data-scroll-target="#the-23-rule"><span class="header-section-number">2.4.5</span> The 2/3 Rule</a></li>
+  </ul></li>
+  <li><a href="#variation-around-the-mean-mean-absolute-deviation" id="toc-variation-around-the-mean-mean-absolute-deviation" class="nav-link" data-scroll-target="#variation-around-the-mean-mean-absolute-deviation"><span class="header-section-number">2.5</span> Variation around the Mean: Mean Absolute Deviation</a></li>
+  <li><a href="#properties-of-the-mean-and-variance-estimation-rules" id="toc-properties-of-the-mean-and-variance-estimation-rules" class="nav-link" data-scroll-target="#properties-of-the-mean-and-variance-estimation-rules"><span class="header-section-number">2.6</span> Properties of the Mean and Variance Estimation Rules</a>
+  <ul class="collapse">
+  <li><a href="#expected-value-and-bias" id="toc-expected-value-and-bias" class="nav-link" data-scroll-target="#expected-value-and-bias"><span class="header-section-number">2.6.1</span> Expected Value and Bias</a></li>
+  <li><a href="#heuristic-explanations-for-using-n-1" id="toc-heuristic-explanations-for-using-n-1" class="nav-link" data-scroll-target="#heuristic-explanations-for-using-n-1"><span class="header-section-number">2.6.2</span> Heuristic Explanations for Using <span class="math inline">\(n-1\)</span></a></li>
+  </ul></li>
+  <li><a href="#problem-of-the-trimmed-variance-estimator" id="toc-problem-of-the-trimmed-variance-estimator" class="nav-link" data-scroll-target="#problem-of-the-trimmed-variance-estimator"><span class="header-section-number">2.7</span> Problem of the Trimmed Variance Estimator</a></li>
+  <li><a href="#other-measures-of-spread-and-shape-of-distributions" id="toc-other-measures-of-spread-and-shape-of-distributions" class="nav-link" data-scroll-target="#other-measures-of-spread-and-shape-of-distributions"><span class="header-section-number">2.8</span> Other Measures of Spread and Shape of Distributions</a>
+  <ul class="collapse">
+  <li><a href="#skewness-third-moment-measure" id="toc-skewness-third-moment-measure" class="nav-link" data-scroll-target="#skewness-third-moment-measure"><span class="header-section-number">2.8.1</span> Skewness (Third Moment Measure)</a></li>
+  <li><a href="#kurtosis-fourth-moment-measure" id="toc-kurtosis-fourth-moment-measure" class="nav-link" data-scroll-target="#kurtosis-fourth-moment-measure"><span class="header-section-number">2.8.2</span> Kurtosis (Fourth Moment Measure)</a></li>
+  </ul></li>
+  <li><a href="#the-bimodality-index" id="toc-the-bimodality-index" class="nav-link" data-scroll-target="#the-bimodality-index"><span class="header-section-number">2.9</span> The Bimodality Index</a>
+  <ul class="collapse">
+  <li><a href="#examples-using-a-beta-distribution" id="toc-examples-using-a-beta-distribution" class="nav-link" data-scroll-target="#examples-using-a-beta-distribution"><span class="header-section-number">2.9.1</span> Examples Using a Beta-Distribution</a></li>
+  </ul></li>
+  <li><a href="#coefficient-of-variation" id="toc-coefficient-of-variation" class="nav-link" data-scroll-target="#coefficient-of-variation"><span class="header-section-number">2.10</span> Coefficient of Variation</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">3</span> Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w00_IntroToScriptsAndData.html">GISC6301</a></li><li class="breadcrumb-item"><a href="./w07_Chapter03_MeanVar.html">Wk07-ch3.Measures of Central Tendency and Variation</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Chapter 03: Measures of Central Tendency and Variation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Tiefelsdorf </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 6, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="measures-of-central-tendency" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Measures of Central Tendency</h1>
+<ul>
+<li><p>The center of a distribution can be measured by several statistics: arithmetic mean, median, mode and others.</p></li>
+<li><p>The center of a distribution provides us with the summary information about that location around which the data predominately vary. It can be considered as the most representative data value.</p></li>
+<li><p>Each of the central tendency measures have advantages and disadvantages depending on properties of the underlying data distribution and the problem at hand.</p></li>
+<li><p>In general, using just a locational summary measure for a full-fledged distribution of the sample is accompanied by substantial loss of information (e.g., shape of the distribution)</p></li>
+</ul>
+<hr>
+<section id="the-mid-range" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="the-mid-range"><span class="header-section-number">1.1</span> The Mid-Range</h2>
+<ul>
+<li>For metric variables the value halfway point between <span class="math inline">\(x_{min}\)</span> and <span class="math inline">\(x_{max}\)</span>:</li>
+</ul>
+<p><span class="math display">\[x_{mid} = \frac{x_{max} + x_{min}}{2}\]</span></p>
+<ul>
+<li><p>Does not work well for skewed distributions.</p></li>
+<li><p>It depends on just two observations, which are also the most extreme ones. Therefore, it ignores all the other sample data.</p></li>
+<li><p>It is highly influenced by sampling variability.</p></li>
+</ul>
+<hr>
+</section>
+<section id="the-mode" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="the-mode"><span class="header-section-number">1.2</span> The Mode</h2>
+<ul>
+<li><p>The most frequently observed data value (or histogram bar mid-point) is described by the <strong>mode</strong>.</p>
+<p>In essence, it is the value that has the highest likelihood of being observed in our data.</p></li>
+<li><p>The mode is a valid statistic for categorical and metric variables.</p></li>
+<li><p>The mode is influenced by the definition of the bins in a histogram.</p></li>
+<li><p>For multi-modal distributions the definition needs to be modified:</p>
+<ul>
+<li>If several modes are in close vicinity of each other, then we pick a representative value from this ensemble of modes.</li>
+<li>For a small number of outstanding modes, we could report locations of all modes as a set of representative values.</li>
+<li>Recall, multimodality usually hints at the fact that distinct underlying mechanisms have generated a heterogeneous set of data.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="the-median" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="the-median"><span class="header-section-number">1.3</span> The Median</h2>
+<ul>
+<li><p>The median is the middle number with 50% of the observations larger than the median and 50% of the observations less than the median.</p></li>
+<li><p>The median is only valid for metric data.</p></li>
+<li><p>The median is closely related to the order statistic. Data in the order statistic are sorted ascending.</p></li>
+</ul>
+<section id="odd-number-of-sample-observations-n" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="odd-number-of-sample-observations-n"><span class="header-section-number">1.3.1</span> Odd Number of Sample Observations <span class="math inline">\(n\)</span></h3>
+<p><span class="math display">\[x_{[1]}, x_{[2]}, \ldots, \underbrace{x_{\left[\frac{N+1}{2} - 1\right]}}_{50\% \text{ observations} \leq x_{\left[\frac{N+1}{2}\right]}}, \overbrace{x_{\left[\frac{N+1}{2}\right]}}^{Median}, \underbrace{x_{\left[\frac{N+1}{2} + 1\right]}, \ldots, x_{[N-1]}, x_{[N]}}_{50\% \text{ observations} \geq x_{\left[\frac{N+1}{2}\right]}}\]</span></p>
+</section>
+<section id="even-number-of-observations-n" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="even-number-of-observations-n"><span class="header-section-number">1.3.2</span> Even Number of Observations <span class="math inline">\(N\)</span></h3>
+<p><span class="math display">\[x_{[1]}, x_{[2]}, \ldots, \underbrace{x_{\left[\frac{N}{2}\right]}}_{50\% \text{ observations} \leq x_{\left[\frac{N}{2}\right]}}, \overbrace{\frac{x_{\left[\frac{N}{2}\right]} + x_{\left[\frac{N}{2} + 1\right]}}{2}}^{Artificial\ Median}, \underbrace{x_{\left[\frac{N}{2} + 1\right]}, \ldots, x_{[N-1]}, x_{[N]}}_{50\% \text{ observations} \geq x_{\left[\frac{N}{2} + 1\right]}}\]</span></p>
+<ul>
+<li><p>Some software packages offer alternative definitions for the mid-point of an order sequence of data values. Recall the <code>quantile()</code> function in R.</p></li>
+<li><p>The median is also called the <strong>50% quantile</strong>, i.e., second quartile.</p></li>
+</ul>
+</section>
+<section id="optimality-property-of-the-median" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="optimality-property-of-the-median"><span class="header-section-number">1.3.3</span> Optimality Property of the Median</h3>
+<p>The median minimizes the absolute distances to all data values:</p>
+<p><span class="math display">\[\sum_{i=1}^{n} |x_i - X_{median}| &lt; \sum_{i=1}^{n} |x_i - \theta| \quad \text{for any } \theta \neq X_{median}\]</span></p>
+<p>with <span class="math inline">\(|x_i - X_{median}| \equiv \sqrt{(x_i - X_{median})^2}\)</span></p>
+<p>This can be used to find, for instance, the optimal location (on a line) to which the overall distance is the smallest (see Euclidian median definition in BBR, p.&nbsp;136)</p>
+<hr>
+</section>
+</section>
+<section id="the-arithmetic-mean" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="the-arithmetic-mean"><span class="header-section-number">1.4</span> The Arithmetic Mean</h2>
+<ul>
+<li><p>The arithmetic mean is commonly known as just the <strong>mean</strong>.</p></li>
+<li><p>This statistic denoted by <span class="math inline">\(\bar{X}\)</span> and calculated by:</p></li>
+</ul>
+<p><span class="math display">\[\bar{X} = \frac{1}{n} \cdot \sum_{i=1}^{n} x_i\]</span></p>
+<p>where <span class="math inline">\(n\)</span> is the number of sample observations.</p>
+<ul>
+<li><p>The mean is only valid for metric data.</p></li>
+<li><p>Assume that we place the data at their proper location on a scale. Data points have identical weights. Then the mean is the pivot point where the scale is in balance (center of gravity):</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w07_Chapter03_MeanVar/page4_img1.png" class="img-fluid figure-img"></p>
+<figcaption>Measures of Central Tendency using DO data</figcaption>
+</figure>
+</div>
+<p><em>FIGURE 3-2. Measures of central tendency using the DO data.</em></p>
+<section id="properties-of-the-mean" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="properties-of-the-mean"><span class="header-section-number">1.4.1</span> Properties of the Mean</h3>
+<ol type="1">
+<li><strong>Zero-sum property:</strong> The sum of the differences around the mean is zero:</li>
+</ol>
+<p><span class="math display">\[\sum_{i=1}^{n} (x_i - \bar{X}) = 0\]</span></p>
+<p>To see this property note:</p>
+<p><span class="math display">\[\sum_{i=1}^{n} (x_i - \bar{X}) = \sum_{i=1}^{n} x_i - n \cdot \bar{X} = \sum_{i=1}^{n} x_i - n \cdot \frac{\sum_{i=1}^{n} x_i}{n} = 0\]</span></p>
+<p>Therefore, it is the <strong>center of gravity</strong> of the data, i.e., the pivot at which the scale is balanced.</p>
+<ol start="2" type="1">
+<li><p><strong>Loss of degrees of freedom:</strong> A consequence of the zero-sum property is that once the mean has been calculated from the sample observations only <span class="math inline">\(n - 1\)</span> observations can vary freely (loss of one degree of freedom).</p></li>
+<li><p><strong>Minimum squared deviations:</strong> The squared deviations of the data around the mean is smaller than for any other central tendency statistic (see the math review and animation <code>OUTLIERANIMATION.MP4</code>):</p></li>
+</ol>
+<p><span class="math display">\[\sum_{i=1}^{n} (x_i - \bar{X})^2 &lt; \sum_{i=1}^{n} (x_i - \theta)^2 \quad \text{for any } \theta \neq \bar{X}\]</span></p>
+<p>See the R-script <code>OptimizeMeanMedian.R</code> to see the minimizing properties of both the mean and median.</p>
+<hr>
+</section>
+</section>
+<section id="comparison-of-properties-of-measures-of-central-tendency" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="comparison-of-properties-of-measures-of-central-tendency"><span class="header-section-number">1.5</span> Comparison of Properties of Measures of Central Tendency</h2>
+<ul>
+<li>If a metric distribution is both <strong>symmetric</strong> and <strong>uni-modal</strong>, then the mode, median and mean are all identical.</li>
+</ul>
+<p>This property can be used to test for skewness:</p>
+<ul>
+<li>For <strong>positively skewed</strong> uni-modal distributions: <span class="math inline">\(x_{mode} &lt; x_{median} &lt; \bar{x}\)</span></li>
+<li>For <strong>negatively skewed</strong> uni-modal distributions: <span class="math inline">\(\bar{x} &lt; x_{median} &lt; x_{mode}\)</span></li>
+</ul>
+<section id="advantages-of-the-mode" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="advantages-of-the-mode"><span class="header-section-number">1.5.1</span> Advantages of the Mode</h3>
+<ul>
+<li>Easy to calculate</li>
+<li>Can be used for categorical data</li>
+</ul>
+</section>
+<section id="disadvantages-of-the-mode" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="disadvantages-of-the-mode"><span class="header-section-number">1.5.2</span> Disadvantages of the Mode</h3>
+<ul>
+<li>The mode may not be representative for the central tendency in the data if it is located in one tail.</li>
+<li>For multimodal data its definition is somewhat arbitrary, and all relevant peaks should be reported</li>
+</ul>
+</section>
+<section id="advantages-of-the-median" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="advantages-of-the-median"><span class="header-section-number">1.5.3</span> Advantages of the Median</h3>
+<ul>
+<li>Unaffected by extreme observation or skewed data distributions. It is more informative in these cases than the mean. Therefore, you frequently find the median in reports.</li>
+<li>Fixed distance units of the measurement scale are not required.</li>
+</ul>
+</section>
+<section id="disadvantages-of-the-median" class="level3" data-number="1.5.4">
+<h3 data-number="1.5.4" class="anchored" data-anchor-id="disadvantages-of-the-median"><span class="header-section-number">1.5.4</span> Disadvantages of the Median</h3>
+<ul>
+<li>Not as stable from sample to sample because it depends on just one data value (for odd sample sizes) or two data values (for even sample sizes).</li>
+<li>Has disadvantages in mathematical derivations because it is based on an optimization function with a discontinuous pole.</li>
+<li>Computationally it requires that the data are first sorted first, which takes extra time.</li>
+</ul>
+</section>
+<section id="advantages-of-the-mean" class="level3" data-number="1.5.5">
+<h3 data-number="1.5.5" class="anchored" data-anchor-id="advantages-of-the-mean"><span class="header-section-number">1.5.5</span> Advantages of the Mean</h3>
+<ul>
+<li>Easy to calculate with several useful properties in mathematical statistics.</li>
+<li>Relates well to many parameters of underlying theoretical population distributions.</li>
+<li>It provides a stable estimate from sample to sample</li>
+</ul>
+</section>
+<section id="disadvantages-of-the-mean" class="level3" data-number="1.5.6">
+<h3 data-number="1.5.6" class="anchored" data-anchor-id="disadvantages-of-the-mean"><span class="header-section-number">1.5.6</span> Disadvantages of the Mean</h3>
+<ul>
+<li>Sensitive to skewed distributions and outliers</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="weighted-mean" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="weighted-mean"><span class="header-section-number">1.6</span> Weighted Mean</h2>
+<ul>
+<li>The weighted mean is used for data which are first aggregated into <span class="math inline">\(G\)</span> homogenous groups. Each representative group value <span class="math inline">\(x_g\)</span> has a weight <span class="math inline">\(w_g \geq 0\)</span> equal to the size of the group:</li>
+</ul>
+<p><span class="math display">\[\bar{x}_{weig} = \frac{1}{\sum_{g=1}^{G} w_g} \cdot \sum_{g=1}^{G} w_g \cdot x_g\]</span></p>
+<ul>
+<li>The arithmetic mean is a special case of the weighted mean by setting <span class="math inline">\(w_g = 1\)</span> and <span class="math inline">\(G = n\)</span>.</li>
+</ul>
+<hr>
+</section>
+<section id="trimmed-mean-and-winsorized-mean" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="trimmed-mean-and-winsorized-mean"><span class="header-section-number">1.7</span> Trimmed Mean and Winsorized Mean</h2>
+<ul>
+<li><p>The <strong>trimmed mean</strong> discards an equal proportion of data (say 5%, 10%, or 20%) from both tails of the distribution. Subsequently, the mean is calculated from the remaining observations.</p></li>
+<li><p>If <span class="math inline">\(x_{[1]} \leq x_{[2]} \leq \cdots \leq x_{[n]}\)</span> represents the ordered sample values, then the trimmed mean is given by:</p></li>
+</ul>
+<p><span class="math display">\[\bar{x}_{\tau} = \frac{1}{n - 2 \cdot k} \cdot \sum_{i=k+1}^{n-k} x_{[i]}\]</span></p>
+<p>where <span class="math inline">\(k\)</span> is the smallest integer greater than or equal to <span class="math inline">\(n \cdot \tau\)</span> with <span class="math inline">\(0 \leq \tau \leq 0.5\)</span>.</p>
+<section id="advantages-of-the-trimmed-mean" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="advantages-of-the-trimmed-mean"><span class="header-section-number">1.7.1</span> Advantages of the Trimmed Mean</h3>
+<ul>
+<li>It becomes robust against the effects of outliers and skewed distribution while still focusing on the most representative data point.</li>
+<li>For <span class="math inline">\(\tau = 0\)</span> we get the arithmetic mean <span class="math inline">\(\bar{x}\)</span> and for <span class="math inline">\(\tau \cong 0.5\)</span> we get the median <span class="math inline">\(x_{median}\)</span>.</li>
+</ul>
+</section>
+<section id="disadvantages-of-the-trimmed-mean" class="level3" data-number="1.7.2">
+<h3 data-number="1.7.2" class="anchored" data-anchor-id="disadvantages-of-the-trimmed-mean"><span class="header-section-number">1.7.2</span> Disadvantages of the Trimmed Mean</h3>
+<ul>
+<li>We disregard a certain percentage of observation from both tails of our sample and, therefore, loses information.</li>
+<li>The data must be sorted to calculate the trimmed mean.</li>
+<li>There are no fixed rules on how many observations we would need to trim away from either end of the distribution. Therefore, it is important to first visually inspect the distribution and to experiment with different <span class="math inline">\(\tau\)</span> values.</li>
+</ul>
+</section>
+<section id="winsorized-mean" class="level3" data-number="1.7.3">
+<h3 data-number="1.7.3" class="anchored" data-anchor-id="winsorized-mean"><span class="header-section-number">1.7.3</span> Winsorized Mean</h3>
+<p>Like the trimmed mean, however, each of the smallest dropped observations are replaced by <span class="math inline">\(x_{[k+1]}\)</span> and vice versa for the largest dropped observations by <span class="math inline">\(x_{[n-k]}\)</span>:</p>
+<p><span class="math display">\[\bar{x}_{\tau}^{W} = \frac{1}{n} \cdot \left( k \cdot (x_{[k+1]} + x_{[n-k]}) + \sum_{i=k+1}^{n-k} x_{[i]} \right)\]</span></p>
+<p>This has the advantage that the sample size is not reduced. The winsorized mean is calculated with the <code>trim</code> option in the R function <code>mean(x, trim = 0, na.rm = FALSE)</code>.</p>
+</section>
+<section id="example-for-trimming-and-winsorizing-with-tau-0.2" class="level3" data-number="1.7.4">
+<h3 data-number="1.7.4" class="anchored" data-anchor-id="example-for-trimming-and-winsorizing-with-tau-0.2"><span class="header-section-number">1.7.4</span> Example for Trimming and Winsorizing with <span class="math inline">\(\tau = 0.2\)</span></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Rank</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Observations</strong></td>
+<td>12</td>
+<td>14</td>
+<td>15</td>
+<td>17</td>
+<td>20</td>
+<td>21</td>
+<td>23</td>
+<td>24</td>
+<td>27</td>
+<td>29</td>
+</tr>
+<tr class="even">
+<td><strong>Trimmed</strong></td>
+<td>–</td>
+<td>–</td>
+<td>15</td>
+<td>17</td>
+<td>20</td>
+<td>21</td>
+<td>23</td>
+<td>24</td>
+<td>–</td>
+<td>–</td>
+</tr>
+<tr class="odd">
+<td><strong>Winsorized</strong></td>
+<td><strong>15</strong></td>
+<td><strong>15</strong></td>
+<td>15</td>
+<td>17</td>
+<td>20</td>
+<td>21</td>
+<td>23</td>
+<td>24</td>
+<td><strong>24</strong></td>
+<td><strong>24</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="the-geometric-mean" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="the-geometric-mean"><span class="header-section-number">1.8</span> The Geometric Mean</h2>
+<ul>
+<li>The <strong>average rate</strong> of change <span class="math inline">\(r_i\)</span> per time period is calculated over several successive time period change rates as the <strong>geometric mean</strong>:</li>
+</ul>
+<p><span class="math display">\[\bar{r} = \sqrt[n]{r_1 \cdot r_2 \cdot \cdots \cdot r_n} = \left( \prod_{i=1}^{n} r_i \right)^{\frac{1}{n}} = \exp\left( \frac{\sum_{i=1}^{n} \ln(r_i)}{n} \right)\]</span></p>
+<p>Note, all rates must be positive, i.e., <span class="math inline">\(r_i &gt; 0\)</span> where <span class="math inline">\(r_i = y_i / y_{i-1}\)</span>.</p>
+<section id="example-savings-account-with-variable-interest" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="example-savings-account-with-variable-interest"><span class="header-section-number">1.8.1</span> Example: Savings Account with Variable Interest</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Account Beginning of Year</th>
+<th>Account End of Year</th>
+<th>Annual Growth Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>$ 100</td>
+<td>$ 115</td>
+<td><span class="math inline">\(\frac{115}{100} = 1.15\%\)</span></td>
+</tr>
+<tr class="even">
+<td>$ 115</td>
+<td>$ 110</td>
+<td><span class="math inline">\(\frac{110}{115} \cong 0.96\%\)</span></td>
+</tr>
+<tr class="odd">
+<td>$ 110</td>
+<td>$ 120</td>
+<td><span class="math inline">\(\frac{120}{110} \cong 1.09\%\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The average annual growth rate is:</p>
+<p><span class="math display">\[\sqrt[3]{\frac{120}{100}} \cong 1.063\% \quad \text{or} \quad \sqrt[3]{1.15\% \cdot 0.96\% \cdot 1.09\%} \cong 1.063\%\]</span></p>
+<hr>
+</section>
+</section>
+<section id="the-harmonic-mean" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="the-harmonic-mean"><span class="header-section-number">1.9</span> The Harmonic Mean</h2>
+<ul>
+<li><p>The harmonic mean is used to calculate the average for ratio variables with a fixed common denominator, that is, <span class="math inline">\(x_i\)</span> miles/one hour or <span class="math inline">\(x_i\)</span> miles/one gallon, where each measured value refers to the same distance segment travelled.</p></li>
+<li><p>The harmonic mean is:</p></li>
+</ul>
+<p><span class="math display">\[\bar{x}_{harm} = \frac{n}{\sum_{i=1}^{n} \frac{1}{x_i}}\]</span></p>
+<section id="examples" class="level3" data-number="1.9.1">
+<h3 data-number="1.9.1" class="anchored" data-anchor-id="examples"><span class="header-section-number">1.9.1</span> Examples</h3>
+<p>[a] If a vehicle travels the first distance at <span class="math inline">\(60\)</span> miles/h and an identical second distance at <span class="math inline">\(40\)</span> miles/h, then it would have covered both equal distances on average at:</p>
+<p><span class="math display">\[\frac{2}{\frac{1}{60} + \frac{1}{40}} = 48 \text{ miles/h}\]</span></p>
+<p>[b] On the other hand, if a vehicle would have travelled two equal time intervals at <span class="math inline">\(60\)</span> miles/h and at <span class="math inline">\(40\)</span> miles/h, respectively, then the average speed of <span class="math inline">\(50\)</span> miles/h would have covered the same distance.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="measures-of-variability" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Measures of Variability</h1>
+<section id="introduction" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">2.1</span> Introduction</h2>
+<ul>
+<li><p>The central tendency gives us information about the approximate location of a distribution. However, it does not provide any information about its <strong>spread</strong>.</p></li>
+<li><p>All measures of spread discussed here assume that we have a variable on the <strong>metric measurement scale</strong>.</p></li>
+<li><p>The spread (also called <strong>dispersion</strong> or <strong>variability</strong>) is the degree to which all individual data points are jointly distributed around the central tendency. It provides an additional summary measure of the underlying distribution of our data.</p></li>
+<li><p>The spread can range from anywhere between highly clustered around the central tendency to extremely dispersed around the central tendency.</p></li>
+<li><p>The smaller the spread the more representative the central tendency is for observed data points.</p></li>
+<li><p>Small spread translated into <strong>high accuracy</strong> as long as the central tendency is unbiased (lacks a systematic error). Recall BBR pp.&nbsp;29-31. In Bayesian statistics reference is frequently made to <strong>precision</strong> which is simply the inverse to the spread:</p></li>
+</ul>
+<p><span class="math display">\[precision = \frac{1}{variance}\]</span></p>
+<section id="climate-change-example" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="climate-change-example"><span class="header-section-number">2.1.1</span> Climate Change Example</h3>
+<p>The climate change debate is not only concerned with an overall increase in temperature, but also apprehensive about an increase in the variability of the temperature. This implies that a small shift in temperature in combination with a higher variability will increase the <strong>risk for extreme weather events</strong>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w07_Chapter03_MeanVar/page13_img1.png" class="img-fluid figure-img"></p>
+<figcaption>Climate Change and Variability</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="overall-range" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="overall-range"><span class="header-section-number">2.2</span> Overall Range</h2>
+<ul>
+<li>The range just depends just on the <strong>two most extreme</strong> observations:</li>
+</ul>
+<p><span class="math display">\[\text{range}(X) = \max(X) - \min(x) = x_{[n]} - x_{[1]}\]</span></p>
+<ul>
+<li>It is, therefore, highly sensitive to <strong>sample variations</strong> and <strong>outliers</strong>.</li>
+</ul>
+<hr>
+</section>
+<section id="interquartile-range" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="interquartile-range"><span class="header-section-number">2.3</span> Interquartile Range</h2>
+<ul>
+<li><p>To calculate the interquartile range, 25% of the observations at the bottom and the top of a distribution are discarded.</p></li>
+<li><p>The range of the remaining <strong>50% of the inner observations</strong> defines the interquartile range:</p></li>
+</ul>
+<p><span class="math display">\[IQR = x_{[75\%]} - x_{[25\%]}\]</span></p>
+<ul>
+<li><strong>Trimming away</strong> 25% of the data in each of the distribution’s tails may discard much information and, therefore, may not represent the variability well. It has been suggested to work with statistics with less than 25% trim.</li>
+</ul>
+<hr>
+</section>
+<section id="variation-around-the-mean-variance-and-standard-deviation" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="variation-around-the-mean-variance-and-standard-deviation"><span class="header-section-number">2.4</span> Variation around the Mean: Variance and Standard Deviation</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w07_Chapter03_MeanVar/page14_img1.jpeg" class="img-fluid figure-img"></p>
+<figcaption>Diagrammatic representation of mean and variance calculation</figcaption>
+</figure>
+</div>
+<p><em>FIGURE 2.29 Diagrammatic representation of the calculation of mean and variance from five observations. Mean X is calculated from all five observations. Variance is calculated from differences between observations and the mean. When four differences have been found, the fifth difference is known.</em></p>
+<section id="population-perspective" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="population-perspective"><span class="header-section-number">2.4.1</span> Population Perspective</h3>
+<p>If we would have all <span class="math inline">\(N\)</span> observations from an underlying population of a random variable <span class="math inline">\(X\)</span> with the population mean <span class="math inline">\(\mu_X\)</span> then the <strong>population variance</strong> <span class="math inline">\(\sigma_X^2\)</span> is calculated by:</p>
+<p><span class="math display">\[\sigma_X^2 = \frac{1}{N} \cdot \sum_{i=1}^{N} (x_i - \mu)^2\]</span></p>
+</section>
+<section id="sample-perspective" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="sample-perspective"><span class="header-section-number">2.4.2</span> Sample Perspective</h3>
+<p>In contrast, for a given sample with an estimated mean <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(n\)</span> sample observations the <strong>estimated variance</strong> <span class="math inline">\(s_X^2\)</span> is calculated by:</p>
+<p><span class="math display">\[s_X^2 = \frac{1}{n-1} \cdot \sum_{i=1}^{n} (x_i - \bar{x})^2\]</span></p>
+<p>Note the use of <span class="math inline">\(n - 1\)</span> in the denominator and the estimated mean <span class="math inline">\(\bar{x}\)</span> in the squared deviations.</p>
+</section>
+<section id="degrees-of-freedom" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="degrees-of-freedom"><span class="header-section-number">2.4.3</span> Degrees of Freedom</h3>
+<p>Once we know the mean <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(n - 1\)</span> observations, the last observation can be calculated due to the <strong>zero-sum restriction</strong>:</p>
+<p><span class="math display">\[x_n = \sum_{i=1}^{n-1} x_i - n \cdot \bar{x}\]</span></p>
+<p>This is known as a <strong>loss of degrees of freedom</strong>.</p>
+</section>
+<section id="standard-deviation" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="standard-deviation"><span class="header-section-number">2.4.4</span> Standard Deviation</h3>
+<p>The measurement unit of the variance is in terms of <strong>squared units</strong> of the original variable <span class="math inline">\(X\)</span>. Squared units are difficult to interpret; therefore, by taking the square root of the variance we get a measurement unit that matches that of our original variable.</p>
+<p>The square root of the variance is called <strong>standard deviation</strong>:</p>
+<p><span class="math display">\[\sigma_X = \sqrt{\sigma_X^2} \text{ for the population and } s_X = \sqrt{s_X^2} \text{ for the sample, respectively.}\]</span></p>
+</section>
+<section id="the-23-rule" class="level3" data-number="2.4.5">
+<h3 data-number="2.4.5" class="anchored" data-anchor-id="the-23-rule"><span class="header-section-number">2.4.5</span> The 2/3 Rule</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w07_Chapter03_MeanVar/page15_img1.png" class="img-fluid figure-img"></p>
+<figcaption>Smooth Histogram with 2/3 Rule</figcaption>
+</figure>
+</div>
+<p>For approximately <strong>symmetric</strong> distributions with a noticeable tendency to <strong>cluster around their mean</strong>, roughly <span class="math inline">\(2/3\)</span> of the observations will be not more than one standard deviation to the left and right away from the mean.</p>
+<p>However, this rule of thumb will not hold for highly skewed distributions or multimodal distributions.</p>
+<hr>
+</section>
+</section>
+<section id="variation-around-the-mean-mean-absolute-deviation" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="variation-around-the-mean-mean-absolute-deviation"><span class="header-section-number">2.5</span> Variation around the Mean: Mean Absolute Deviation</h2>
+<ul>
+<li><p>Recall, we have seen for the mean that <span class="math inline">\(\sum_{i=1}^{n} (x_i - \bar{x}) = 0\)</span>.</p></li>
+<li><p>Consequently, positive and negative variations around the mean <strong>cancel out</strong>.</p></li>
+<li><p>To overcome this problem the <strong>mean of absolute differences</strong> could be used:</p></li>
+</ul>
+<p><span class="math display">\[MAD = \frac{1}{n} \cdot \sum_{i=1}^{n} |x_i - \bar{x}|\]</span></p>
+<ul>
+<li><p><span class="math inline">\(MAD\)</span> is in the same <strong>measurement unit</strong> as the original variable <span class="math inline">\(X\)</span>.</p></li>
+<li><p>Remember, if the median <span class="math inline">\(x_{median}\)</span> is used instead of the mean <span class="math inline">\(\bar{x}\)</span> then <span class="math inline">\(\sum_{i=1}^{n} |x_i - x_{median}|\)</span> minimizes the sum of the absolute distances between all <span class="math inline">\(x_i\)</span>s and the median.</p></li>
+</ul>
+<hr>
+</section>
+<section id="properties-of-the-mean-and-variance-estimation-rules" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="properties-of-the-mean-and-variance-estimation-rules"><span class="header-section-number">2.6</span> Properties of the Mean and Variance Estimation Rules</h2>
+<ul>
+<li><p><strong>Estimation rules</strong> are briefly called <strong>estimators</strong> in the statistical literature.</p></li>
+<li><p>The sample mean <span class="math inline">\(\bar{x}\)</span> is an estimator for the population mean <span class="math inline">\(\mu\)</span> and the sample variance <span class="math inline">\(s_X^2\)</span> is an estimator for the population variance <span class="math inline">\(\sigma_X^2\)</span>.</p></li>
+<li><p>An estimator preferably should satisfy specific criteria:</p>
+<ul>
+<li><strong>Unbiased:</strong> On average over many different samples from the same population, estimation rule should give values equal to their associated true population parameter.</li>
+<li><strong>Efficient:</strong> Average deviation of a sample estimator around the true population parameter should be as small as possible (will be addressed in a later chapter).</li>
+</ul></li>
+<li><p>The concept of biasedness is somewhat academic because, in order to assess a potential bias of an estimator, we would need to know the true population parameter.</p></li>
+<li><p>However, one can show with mathematical arguments that some estimation rules will lead to biased estimates, whereas another estimation rule will not be biased.</p></li>
+</ul>
+<section id="expected-value-and-bias" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="expected-value-and-bias"><span class="header-section-number">2.6.1</span> Expected Value and Bias</h3>
+<p>The average of an estimator over many different independent samples of the same length from a population is called in statistical terms the <strong>expected value</strong> <span class="math inline">\(E[\cdot]\)</span>.</p>
+<p>The expected value for the estimation rule <span class="math inline">\(\frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n}\)</span> for the spread is:</p>
+<p><span class="math display">\[E\left[ \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n} \right] = \underbrace{\frac{(n-1)}{n}}_{&lt; 1} \cdot \sigma_X^2 \quad \text{whereas} \quad E\left[ \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1} \right] = \sigma_X^2\]</span></p>
+<p>Therefore, <span class="math inline">\(\frac{1}{n-1} \cdot \sum_{i=1}^{n} (x_i - \bar{x})^2\)</span> is an <strong>unbiased</strong> estimation rule for <span class="math inline">\(\sigma_X^2\)</span> whereas <span class="math inline">\(\frac{1}{n} \cdot \sum_{i=1}^{n} (x_i - \bar{x})^2\)</span> slightly <strong>under-estimates</strong> the variance.</p>
+</section>
+<section id="heuristic-explanations-for-using-n-1" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="heuristic-explanations-for-using-n-1"><span class="header-section-number">2.6.2</span> Heuristic Explanations for Using <span class="math inline">\(n-1\)</span></h3>
+<p><strong>(i)</strong> Because the estimator <span class="math inline">\(\bar{x}\)</span> minimizes the sum of the squared deviations, that is, <span class="math inline">\(\min_{\theta} \sum_{i=1}^{n} (x_i - \theta)^2\)</span>, for the sample observations, we always have:</p>
+<p><span class="math display">\[\sum_{i=1}^{n} (x_i - \bar{x})^2 \leq \sum_{i=1}^{n} (x_i - \mu_X)^2\]</span></p>
+<p>(compared to the true population expectation <span class="math inline">\(\mu_X\)</span>).</p>
+<p>To correct for this shrinkage in the numerator of the sample variance estimator, the denominator must also be slightly reduced from <span class="math inline">\(n\)</span> to <span class="math inline">\(n - 1\)</span> in order to avoid an under-estimation of the variance.</p>
+<p><strong>(ii)</strong> Due to zero-sum restriction in <span class="math inline">\(\sum_{i=1}^{n} (x_i - \bar{x}) = 0\)</span> one observation cannot vary freely anymore. We therefore lose one degree of freedom.</p>
+<ul>
+<li>For a large number of sample observations the bias becomes negligibly small because <span class="math inline">\(n \approx n - 1\)</span> and therefore <span class="math inline">\(\lim_{n \to \infty} \frac{n-1}{n} \approx 1\)</span>.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="problem-of-the-trimmed-variance-estimator" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="problem-of-the-trimmed-variance-estimator"><span class="header-section-number">2.7</span> Problem of the Trimmed Variance Estimator</h2>
+<ul>
+<li><p>While the trimmed mean <span class="math inline">\(\bar{x}_{\tau}\)</span> and the winsorized mean <span class="math inline">\(\bar{x}_{\tau}^{W}\)</span> will not differ much, the <strong>trimmed variance substantially underestimates</strong> the spread, because it ignores any tail observations.</p></li>
+<li><p>A winsorized statistic, however, accounts for the number of dropped observations at the bottom and the top of the distribution by padding the trimmed dataset with the smallest and largest remaining observations in the sample.</p></li>
+<li><p>The padding with smallest and largest feasible values in the winsorized variance adjusts for this underestimation by including valid but extreme observations.</p></li>
+</ul>
+<hr>
+</section>
+<section id="other-measures-of-spread-and-shape-of-distributions" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="other-measures-of-spread-and-shape-of-distributions"><span class="header-section-number">2.8</span> Other Measures of Spread and Shape of Distributions</h2>
+<section id="skewness-third-moment-measure" class="level3" data-number="2.8.1">
+<h3 data-number="2.8.1" class="anchored" data-anchor-id="skewness-third-moment-measure"><span class="header-section-number">2.8.1</span> Skewness (Third Moment Measure)</h3>
+<p>A measure for the skewness is:</p>
+<p><span class="math display">\[\text{skew}(X) = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^3}{\left( \sum_{i=1}^{n} (x_i - \bar{x})^2 \right)^{\frac{3}{2}}}\]</span></p>
+<p>which is zero for symmetric distributions and positive or negative for positively or negatively skewed distributions, respectively.</p>
+<p><strong>Underlying structure of the equation:</strong></p>
+<ul>
+<li>The third power (and any odd power) in the numerator preserves the sign of the deviation around the mean. Therefore, the sign of overall sum determines the direction of skewness.</li>
+<li>Outlying observations substantially inflate the numerator due to the third power.</li>
+<li>The denominator expression <span class="math inline">\(\left( \sum_{i=1}^{n} (x_i - \bar{x})^2 \right)^{\frac{3}{2}}\)</span> standardizes the numerator so that the skewness estimator becomes independent of the variance. In essence, this is the numerator of the variance estimator taken to the power of <span class="math inline">\(3/2\)</span>.</li>
+</ul>
+<p><strong>Alternative measure:</strong> Pearson’s <span class="math inline">\(\gamma = \frac{3 \cdot (\bar{x} - x_{median})}{s}\)</span></p>
+</section>
+<section id="kurtosis-fourth-moment-measure" class="level3" data-number="2.8.2">
+<h3 data-number="2.8.2" class="anchored" data-anchor-id="kurtosis-fourth-moment-measure"><span class="header-section-number">2.8.2</span> Kurtosis (Fourth Moment Measure)</h3>
+<p>A measure for the kurtosis is:</p>
+<p><span class="math display">\[\text{kurt}(X) = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^4}{\left( \sum_{i=1}^{n} (x_i - \bar{x})^2 \right)^{\frac{4}{2}}} - 3\]</span></p>
+<p>It follows the same construction principle as the skewness, however, it uses the fourth power.</p>
+<p><strong>Properties:</strong></p>
+<ul>
+<li>In order to make the kurtosis for the <strong>normal distribution</strong>, which is used frequently as reference distribution, equal to zero the value 3 is subtracted.</li>
+<li>For an even power of 4 all deviations around the mean are always positive.</li>
+<li>Compared to a normal distribution:
+<ul>
+<li>If a distribution has <strong>more mass in the tails</strong> than in the center, then the kurtosis becomes <strong>larger than 0</strong></li>
+<li>If it has <strong>more mass in the center</strong> relative to the tails, then it becomes <strong>less than 0</strong></li>
+</ul></li>
+<li>The denominator <span class="math inline">\(\left( \sum_{i=1}^{n} (x_i - \bar{x})^2 \right)^{\frac{4}{2}}\)</span> again standardizes the numerator, however, now the power <span class="math inline">\(4/2\)</span> is used.</li>
+<li>The kurtosis becomes <strong>difficult to interpret for skewed distributions</strong>, because one tail of the distribution is long whereas the other is short.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> There are different software implementations for the skewness and kurtosis estimators. See the online help for the functions <code>e1071::skewness()</code> and <code>e1071::kurtosis()</code> in the library <code>e1071</code> and their options.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="the-bimodality-index" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="the-bimodality-index"><span class="header-section-number">2.9</span> The Bimodality Index</h2>
+<ul>
+<li>The bimodality index is defined as:</li>
+</ul>
+<p><span class="math display">\[BM = \frac{(\text{skewness}^2 + 1)}{\text{kurtosis} + \frac{3 \cdot (n-1)^2}{(n-2) \cdot (n-3)}}\]</span></p>
+<ul>
+<li><p>This is implemented in the user-specified function <code>BiModalityIndex()</code> in the R-code <code>Chapter03SampleCode.r</code>.</p></li>
+<li><p>It works best for <strong>nearly symmetric</strong> but potentially multimodal distributions.</p>
+<ul>
+<li>For a <strong>uniform</strong> distribution its value is <span class="math inline">\(\approx 0.55\)</span></li>
+<li>For <strong>bimodal</strong> or multimodal distributions this index will be <strong>larger than 0.55</strong></li>
+<li>For a <strong>unimodal</strong> distribution this index is <strong>less than 0.55</strong></li>
+</ul></li>
+</ul>
+<section id="examples-using-a-beta-distribution" class="level3" data-number="2.9.1">
+<h3 data-number="2.9.1" class="anchored" data-anchor-id="examples-using-a-beta-distribution"><span class="header-section-number">2.9.1</span> Examples Using a Beta-Distribution</h3>
+<p><img src="images/w07_Chapter03_MeanVar/page20_img1.png" class="img-fluid" style="width:30.0%" alt="Beta(1,1) with BM=0.553"> <img src="images/w07_Chapter03_MeanVar/page20_img2.png" class="img-fluid" style="width:30.0%" alt="Beta(0.5,0.5) with BM=0.669"> <img src="images/w07_Chapter03_MeanVar/page20_img3.png" class="img-fluid" style="width:30.0%" alt="Beta(10,10) with BM=0.359"></p>
+<hr>
+</section>
+</section>
+<section id="coefficient-of-variation" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="coefficient-of-variation"><span class="header-section-number">2.10</span> Coefficient of Variation</h2>
+<p><strong>Variation relative to the mean:</strong></p>
+<p>If two distributions have different means and a positive support (all observations <span class="math inline">\(x_i\)</span> must be for theoretical reasons <span class="math inline">\(x_i \geq 0\)</span>) then their standard deviations may not be directly comparable:</p>
+<ul>
+<li>A larger mean allows for more spread toward the zero-origin point of the distribution.</li>
+<li>To adjust for the induced potential extra variability, the <strong>coefficient of variation</strong> is used:</li>
+</ul>
+<p><span class="math display">\[CV = \frac{s}{\bar{x}} \quad \forall x_i \geq 0\]</span></p>
+<hr>
+</section>
+</section>
+<section id="summary" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Summary</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 27%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Measure</th>
+<th>Formula</th>
+<th>Best Used For</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mid-Range</td>
+<td><span class="math inline">\(\frac{x_{max} + x_{min}}{2}\)</span></td>
+<td>Quick estimate, symmetric data</td>
+</tr>
+<tr class="even">
+<td>Mode</td>
+<td>Most frequent value</td>
+<td>Categorical data, multimodal detection</td>
+</tr>
+<tr class="odd">
+<td>Median</td>
+<td>Middle value (50th percentile)</td>
+<td>Skewed data, outlier resistance</td>
+</tr>
+<tr class="even">
+<td>Mean</td>
+<td><span class="math inline">\(\frac{1}{n} \sum x_i\)</span></td>
+<td>Symmetric data, mathematical properties</td>
+</tr>
+<tr class="odd">
+<td>Variance</td>
+<td><span class="math inline">\(\frac{1}{n-1} \sum (x_i - \bar{x})^2\)</span></td>
+<td>Spread measurement</td>
+</tr>
+<tr class="even">
+<td>Standard Deviation</td>
+<td><span class="math inline">\(\sqrt{s^2}\)</span></td>
+<td>Same units as original data</td>
+</tr>
+<tr class="odd">
+<td>IQR</td>
+<td><span class="math inline">\(Q_3 - Q_1\)</span></td>
+<td>Robust spread measure</td>
+</tr>
+<tr class="even">
+<td>CV</td>
+<td><span class="math inline">\(\frac{s}{\bar{x}}\)</span></td>
+<td>Comparing variability across different means</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

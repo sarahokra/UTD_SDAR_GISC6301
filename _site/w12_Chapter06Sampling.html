@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tiefelsdorf">
+<meta name="dcterms.date" content="2025-11-10">
+
+<title>Chapter 06: Sampling – final_exam_quarto</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./icon02.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-bce83624dd429190d13db9bf62533269.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">final_exam_quarto</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w00_IntroToScriptsAndData.html">GISC6301</a></li><li class="breadcrumb-item"><a href="./w12_Chapter06Sampling.html">Wk12-ch6.Sampling</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">GISC6301</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w00_IntroToScriptsAndData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk00-Introduction to Scripts in the RStudio-Environment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w05_Chapter01_Data_and_Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk05-ch1.Data &amp; Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w06_DisplayingData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk06-ch2.Data Visualization Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w07_Chapter03_MeanVar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk07-ch3.Measures of Central Tendency and Variation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w08_Chapt04Relationships.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk08-ch4.Bivariate Relationships</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w08_MotivationDataStory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk08-Motivation Data Story</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w09_Chapt04BivariateRegression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk09-ch4.Bivariate Regression Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w10_Chapt13MultipleRegression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk10-ch13.Multiple Regression Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w11_Chapter05A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk11-ch5A.Probabilities and Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w11_Chapter05B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk11-ch5B.Probabilities and Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w12_Chapter06Sampling.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Wk12-ch6.Sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w13_Chapter07Estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk13-ch7.Point and Interval Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w14_Chapter08SingleTests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk14-ch8.One-Sample Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w15_Chapter09TwoSampleMeanTest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk15-ch9.Two-Sample Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w16_Chapter10NonParStats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk16-ch10.Non-Parametric Statistics and Chi-Square Tests</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">To be continued...</span></span>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
+  <ul class="collapse">
+  <li><a href="#sampling-objectives" id="toc-sampling-objectives" class="nav-link" data-scroll-target="#sampling-objectives"><span class="header-section-number">1.1</span> Sampling Objectives</a></li>
+  <li><a href="#impact-of-sample-size" id="toc-impact-of-sample-size" class="nav-link" data-scroll-target="#impact-of-sample-size"><span class="header-section-number">1.2</span> Impact of Sample Size</a></li>
+  <li><a href="#key-definitions" id="toc-key-definitions" class="nav-link" data-scroll-target="#key-definitions"><span class="header-section-number">1.3</span> Key Definitions</a>
+  <ul class="collapse">
+  <li><a href="#sampling-error" id="toc-sampling-error" class="nav-link" data-scroll-target="#sampling-error"><span class="header-section-number">1.3.1</span> Sampling Error</a></li>
+  <li><a href="#sampling-bias" id="toc-sampling-bias" class="nav-link" data-scroll-target="#sampling-bias"><span class="header-section-number">1.3.2</span> Sampling Bias</a></li>
+  <li><a href="#how-to-avoid-sampling-bias" id="toc-how-to-avoid-sampling-bias" class="nav-link" data-scroll-target="#how-to-avoid-sampling-bias"><span class="header-section-number">1.3.3</span> How to Avoid Sampling Bias</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#the-relevant-population-under-investigation" id="toc-the-relevant-population-under-investigation" class="nav-link" data-scroll-target="#the-relevant-population-under-investigation"><span class="header-section-number">2</span> The Relevant Population Under Investigation</a></li>
+  <li><a href="#sampling-design" id="toc-sampling-design" class="nav-link" data-scroll-target="#sampling-design"><span class="header-section-number">3</span> Sampling Design</a></li>
+  <li><a href="#simple-random-sampling" id="toc-simple-random-sampling" class="nav-link" data-scroll-target="#simple-random-sampling"><span class="header-section-number">4</span> Simple Random Sampling</a>
+  <ul class="collapse">
+  <li><a href="#probability-sample" id="toc-probability-sample" class="nav-link" data-scroll-target="#probability-sample"><span class="header-section-number">4.1</span> Probability Sample</a></li>
+  <li><a href="#simple-random-sample-from-a-finite-population" id="toc-simple-random-sample-from-a-finite-population" class="nav-link" data-scroll-target="#simple-random-sample-from-a-finite-population"><span class="header-section-number">4.2</span> Simple Random Sample from a Finite Population</a>
+  <ul class="collapse">
+  <li><a href="#example-enumeration-of-sample-combinations" id="toc-example-enumeration-of-sample-combinations" class="nav-link" data-scroll-target="#example-enumeration-of-sample-combinations"><span class="header-section-number">4.2.1</span> Example: Enumeration of Sample Combinations</a></li>
+  <li><a href="#problem-dependent-draws" id="toc-problem-dependent-draws" class="nav-link" data-scroll-target="#problem-dependent-draws"><span class="header-section-number">4.2.2</span> Problem: Dependent Draws</a></li>
+  <li><a href="#independence-approximation" id="toc-independence-approximation" class="nav-link" data-scroll-target="#independence-approximation"><span class="header-section-number">4.2.3</span> Independence Approximation</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#sampling-distributions-of-a-statistic" id="toc-sampling-distributions-of-a-statistic" class="nav-link" data-scroll-target="#sampling-distributions-of-a-statistic"><span class="header-section-number">5</span> Sampling Distributions of a Statistic</a>
+  <ul class="collapse">
+  <li><a href="#population-parameters-vs-sample-statistics" id="toc-population-parameters-vs-sample-statistics" class="nav-link" data-scroll-target="#population-parameters-vs-sample-statistics"><span class="header-section-number">5.1</span> Population Parameters vs Sample Statistics</a></li>
+  <li><a href="#definition-sample-statistic" id="toc-definition-sample-statistic" class="nav-link" data-scroll-target="#definition-sample-statistic"><span class="header-section-number">5.2</span> Definition: Sample Statistic</a></li>
+  </ul></li>
+  <li><a href="#sampling-distributions" id="toc-sampling-distributions" class="nav-link" data-scroll-target="#sampling-distributions"><span class="header-section-number">6</span> Sampling Distributions</a>
+  <ul class="collapse">
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition"><span class="header-section-number">6.1</span> Definition</a></li>
+  <li><a href="#developing-the-sampling-distribution" id="toc-developing-the-sampling-distribution" class="nav-link" data-scroll-target="#developing-the-sampling-distribution"><span class="header-section-number">6.2</span> Developing the Sampling Distribution</a></li>
+  <li><a href="#example-distribution-of-the-sample-mean" id="toc-example-distribution-of-the-sample-mean" class="nav-link" data-scroll-target="#example-distribution-of-the-sample-mean"><span class="header-section-number">6.3</span> Example: Distribution of the Sample Mean</a>
+  <ul class="collapse">
+  <li><a href="#expected-value-of-the-sampling-distribution" id="toc-expected-value-of-the-sampling-distribution" class="nav-link" data-scroll-target="#expected-value-of-the-sampling-distribution"><span class="header-section-number">6.3.1</span> Expected Value of the Sampling Distribution</a></li>
+  <li><a href="#variance-of-the-sampling-distribution" id="toc-variance-of-the-sampling-distribution" class="nav-link" data-scroll-target="#variance-of-the-sampling-distribution"><span class="header-section-number">6.3.2</span> Variance of the Sampling Distribution</a></li>
+  </ul></li>
+  <li><a href="#unbiasedness" id="toc-unbiasedness" class="nav-link" data-scroll-target="#unbiasedness"><span class="header-section-number">6.4</span> Unbiasedness</a></li>
+  <li><a href="#standard-error" id="toc-standard-error" class="nav-link" data-scroll-target="#standard-error"><span class="header-section-number">6.5</span> Standard Error</a></li>
+  </ul></li>
+  <li><a href="#central-limit-theorem" id="toc-central-limit-theorem" class="nav-link" data-scroll-target="#central-limit-theorem"><span class="header-section-number">7</span> Central Limit Theorem</a>
+  <ul class="collapse">
+  <li><a href="#definition-1" id="toc-definition-1" class="nav-link" data-scroll-target="#definition-1"><span class="header-section-number">7.1</span> Definition</a></li>
+  <li><a href="#two-parts-of-the-theorem" id="toc-two-parts-of-the-theorem" class="nav-link" data-scroll-target="#two-parts-of-the-theorem"><span class="header-section-number">7.2</span> Two Parts of the Theorem</a>
+  <ul class="collapse">
+  <li><a href="#part-1-expected-value-and-variance" id="toc-part-1-expected-value-and-variance" class="nav-link" data-scroll-target="#part-1-expected-value-and-variance"><span class="header-section-number">7.2.1</span> Part 1: Expected Value and Variance</a></li>
+  <li><a href="#part-2-asymptotic-normality" id="toc-part-2-asymptotic-normality" class="nav-link" data-scroll-target="#part-2-asymptotic-normality"><span class="header-section-number">7.2.2</span> Part 2: Asymptotic Normality</a></li>
+  <li><a href="#proof-for-independent-sample-objects" id="toc-proof-for-independent-sample-objects" class="nav-link" data-scroll-target="#proof-for-independent-sample-objects"><span class="header-section-number">7.2.3</span> Proof for Independent Sample Objects</a></li>
+  </ul></li>
+  <li><a href="#example-central-limit-theorem-simulation" id="toc-example-central-limit-theorem-simulation" class="nav-link" data-scroll-target="#example-central-limit-theorem-simulation"><span class="header-section-number">7.3</span> Example: Central Limit Theorem Simulation</a></li>
+  </ul></li>
+  <li><a href="#random-sampling-designs" id="toc-random-sampling-designs" class="nav-link" data-scroll-target="#random-sampling-designs"><span class="header-section-number">8</span> Random Sampling Designs</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives"><span class="header-section-number">8.1</span> Objectives</a></li>
+  <li><a href="#weighting-to-control-for-biases" id="toc-weighting-to-control-for-biases" class="nav-link" data-scroll-target="#weighting-to-control-for-biases"><span class="header-section-number">8.2</span> Weighting to Control for Biases</a></li>
+  </ul></li>
+  <li><a href="#stratified-random-sampling" id="toc-stratified-random-sampling" class="nav-link" data-scroll-target="#stratified-random-sampling"><span class="header-section-number">9</span> Stratified Random Sampling</a>
+  <ul class="collapse">
+  <li><a href="#definition-2" id="toc-definition-2" class="nav-link" data-scroll-target="#definition-2"><span class="header-section-number">9.1</span> Definition</a></li>
+  <li><a href="#homogeneity-assumption" id="toc-homogeneity-assumption" class="nav-link" data-scroll-target="#homogeneity-assumption"><span class="header-section-number">9.2</span> Homogeneity Assumption</a></li>
+  <li><a href="#advantage" id="toc-advantage" class="nav-link" data-scroll-target="#advantage"><span class="header-section-number">9.3</span> Advantage</a></li>
+  <li><a href="#strata-specific-data-structure" id="toc-strata-specific-data-structure" class="nav-link" data-scroll-target="#strata-specific-data-structure"><span class="header-section-number">9.4</span> Strata-Specific Data Structure</a></li>
+  <li><a href="#challenges-of-stratification" id="toc-challenges-of-stratification" class="nav-link" data-scroll-target="#challenges-of-stratification"><span class="header-section-number">9.5</span> Challenges of Stratification</a></li>
+  <li><a href="#estimates" id="toc-estimates" class="nav-link" data-scroll-target="#estimates"><span class="header-section-number">9.6</span> Estimates</a>
+  <ul class="collapse">
+  <li><a href="#strata-means" id="toc-strata-means" class="nav-link" data-scroll-target="#strata-means"><span class="header-section-number">9.6.1</span> Strata Means</a></li>
+  <li><a href="#strata-variance" id="toc-strata-variance" class="nav-link" data-scroll-target="#strata-variance"><span class="header-section-number">9.6.2</span> Strata Variance</a></li>
+  </ul></li>
+  <li><a href="#overall-estimated-mean-and-variance" id="toc-overall-estimated-mean-and-variance" class="nav-link" data-scroll-target="#overall-estimated-mean-and-variance"><span class="header-section-number">9.7</span> Overall Estimated Mean and Variance</a>
+  <ul class="collapse">
+  <li><a href="#overall-mean" id="toc-overall-mean" class="nav-link" data-scroll-target="#overall-mean"><span class="header-section-number">9.7.1</span> Overall Mean</a></li>
+  <li><a href="#overall-variance" id="toc-overall-variance" class="nav-link" data-scroll-target="#overall-variance"><span class="header-section-number">9.7.2</span> Overall Variance</a></li>
+  </ul></li>
+  <li><a href="#population-and-sample-size-constraints" id="toc-population-and-sample-size-constraints" class="nav-link" data-scroll-target="#population-and-sample-size-constraints"><span class="header-section-number">9.8</span> Population and Sample Size Constraints</a></li>
+  <li><a href="#optimization-problem" id="toc-optimization-problem" class="nav-link" data-scroll-target="#optimization-problem"><span class="header-section-number">9.9</span> Optimization Problem</a>
+  <ul class="collapse">
+  <li><a href="#objective-function" id="toc-objective-function" class="nav-link" data-scroll-target="#objective-function"><span class="header-section-number">9.9.1</span> Objective Function</a></li>
+  <li><a href="#cost-constraint" id="toc-cost-constraint" class="nav-link" data-scroll-target="#cost-constraint"><span class="header-section-number">9.9.2</span> Cost Constraint</a></li>
+  <li><a href="#solution-lagrange-multiplier-optimization" id="toc-solution-lagrange-multiplier-optimization" class="nav-link" data-scroll-target="#solution-lagrange-multiplier-optimization"><span class="header-section-number">9.9.3</span> Solution: Lagrange Multiplier Optimization</a></li>
+  </ul></li>
+  <li><a href="#general-rules-for-sample-size-selection" id="toc-general-rules-for-sample-size-selection" class="nav-link" data-scroll-target="#general-rules-for-sample-size-selection"><span class="header-section-number">9.10</span> General Rules for Sample Size Selection</a></li>
+  </ul></li>
+  <li><a href="#cluster-random-sampling" id="toc-cluster-random-sampling" class="nav-link" data-scroll-target="#cluster-random-sampling"><span class="header-section-number">10</span> Cluster Random Sampling</a>
+  <ul class="collapse">
+  <li><a href="#definition-3" id="toc-definition-3" class="nav-link" data-scroll-target="#definition-3"><span class="header-section-number">10.1</span> Definition</a></li>
+  <li><a href="#heterogeneity-assumption" id="toc-heterogeneity-assumption" class="nav-link" data-scroll-target="#heterogeneity-assumption"><span class="header-section-number">10.2</span> Heterogeneity Assumption</a></li>
+  <li><a href="#overall-mean-and-variance-estimates" id="toc-overall-mean-and-variance-estimates" class="nav-link" data-scroll-target="#overall-mean-and-variance-estimates"><span class="header-section-number">10.3</span> Overall Mean and Variance Estimates</a></li>
+  <li><a href="#advantages-and-risks" id="toc-advantages-and-risks" class="nav-link" data-scroll-target="#advantages-and-risks"><span class="header-section-number">10.4</span> Advantages and Risks</a></li>
+  </ul></li>
+  <li><a href="#discussion-comparison-of-sampling-methods" id="toc-discussion-comparison-of-sampling-methods" class="nav-link" data-scroll-target="#discussion-comparison-of-sampling-methods"><span class="header-section-number">11</span> Discussion: Comparison of Sampling Methods</a></li>
+  <li><a href="#spatial-sampling" id="toc-spatial-sampling" class="nav-link" data-scroll-target="#spatial-sampling"><span class="header-section-number">12</span> Spatial Sampling</a>
+  <ul class="collapse">
+  <li><a href="#spatial-point-sampling-approaches" id="toc-spatial-point-sampling-approaches" class="nav-link" data-scroll-target="#spatial-point-sampling-approaches"><span class="header-section-number">12.1</span> Spatial Point Sampling Approaches</a>
+  <ul class="collapse">
+  <li><a href="#generating-random-points-from-a-square-study-area" id="toc-generating-random-points-from-a-square-study-area" class="nav-link" data-scroll-target="#generating-random-points-from-a-square-study-area"><span class="header-section-number">12.1.1</span> Generating Random Points from a Square Study Area</a></li>
+  <li><a href="#reference-frames-for-spatial-sampling" id="toc-reference-frames-for-spatial-sampling" class="nav-link" data-scroll-target="#reference-frames-for-spatial-sampling"><span class="header-section-number">12.1.2</span> Reference Frames for Spatial Sampling</a></li>
+  <li><a href="#properties-of-hexagons-vs-grid-cells" id="toc-properties-of-hexagons-vs-grid-cells" class="nav-link" data-scroll-target="#properties-of-hexagons-vs-grid-cells"><span class="header-section-number">12.1.3</span> Properties of Hexagons vs Grid Cells</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#quadrate-sampling" id="toc-quadrate-sampling" class="nav-link" data-scroll-target="#quadrate-sampling"><span class="header-section-number">13</span> Quadrate Sampling</a></li>
+  <li><a href="#traverse-sampling" id="toc-traverse-sampling" class="nav-link" data-scroll-target="#traverse-sampling"><span class="header-section-number">14</span> Traverse Sampling</a>
+  <ul class="collapse">
+  <li><a href="#example-estimating-woodland-proportion" id="toc-example-estimating-woodland-proportion" class="nav-link" data-scroll-target="#example-estimating-woodland-proportion"><span class="header-section-number">14.1</span> Example: Estimating Woodland Proportion</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">15</span> Summary</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">16</span> References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w00_IntroToScriptsAndData.html">GISC6301</a></li><li class="breadcrumb-item"><a href="./w12_Chapter06Sampling.html">Wk12-ch6.Sampling</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Chapter 06: Sampling</h1>
+<p class="subtitle lead">Sampling Theory and Random Sampling Designs</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Tiefelsdorf </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 10, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<section id="sampling-objectives" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="sampling-objectives"><span class="header-section-number">1.1</span> Sampling Objectives</h2>
+<ul>
+<li>Sampling ultimately aims to gain <strong>information about the underlying population</strong> by using a sample of observations from the population. The information could be used to:
+<ul>
+<li>approximate the distribution of the underlying population, or</li>
+<li>to estimate some of its distributional parameters (e.g., central tendency, variability, regression coefficients etc.)</li>
+</ul></li>
+<li>General questions to be addressed before proceeding with sampling:
+<ul>
+<li>How do we obtain a <strong>representative sample</strong> from the underlying population?</li>
+<li>Which objects and how many objects must be included into the sample to provide on average from sample to sample an <strong>accurate snapshot</strong> of the total underlying population?</li>
+</ul></li>
+<li><strong>Lack of representativeness</strong> leads to a <strong>biased sample</strong>.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Example:</strong> Industrious students are more likely to be on campus. Random interviews on campus have the tendency to oversample this group.</p>
+</blockquote>
+<ul>
+<li>Due to the nature of random sampling (one sample will be different from any other sample), the information obtained from sampled observations always will <strong>deviate to some degree</strong> from the underlying population → we just should aim at making these deviations small and well balanced.</li>
+</ul>
+<hr>
+</section>
+<section id="impact-of-sample-size" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="impact-of-sample-size"><span class="header-section-number">1.2</span> Impact of Sample Size</h2>
+<ul>
+<li><p>The likelihood of obtaining a representative sample increases as we sample a <strong>larger representative cross-section</strong> of the population. Again: avoid biases.</p></li>
+<li><p><strong>Representative cross-section</strong> means that no particular sub-group of the population should be favored to be included into or excluded from the sample.</p></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Counterexample:</strong> Estimation of election outcomes in the “big data” article. The Literary Digest only sampled affluent people (i.e., their subscribers) about their presidential election attitudes.</p>
+</blockquote>
+<ul>
+<li><strong>Uncertainty</strong> is the price we pay for not fully enumerating every object of the underlying population.</li>
+</ul>
+<hr>
+</section>
+<section id="key-definitions" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="key-definitions"><span class="header-section-number">1.3</span> Key Definitions</h2>
+<section id="sampling-error" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="sampling-error"><span class="header-section-number">1.3.1</span> Sampling Error</h3>
+<p><strong>Definition:</strong> Sampling error is the uncertainty that arises by working with a (random) sample rather than with the entire population.</p>
+</section>
+<section id="sampling-bias" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="sampling-bias"><span class="header-section-number">1.3.2</span> Sampling Bias</h3>
+<p><strong>Definition:</strong> Sampling bias occurs when the procedure used to draw sample observations selectively favors the inclusion and/or suppression of specific population members. This sample is not representative of the underlying population.</p>
+</section>
+<section id="how-to-avoid-sampling-bias" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="how-to-avoid-sampling-bias"><span class="header-section-number">1.3.3</span> How to Avoid Sampling Bias</h3>
+<p>Sampling bias can be avoided by implementing:</p>
+<p>[a] a general understanding of the underlying population</p>
+<p>[b] an appropriate sampling plan</p>
+<p>[c] check for recording errors of the sampled data</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="the-relevant-population-under-investigation" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> The Relevant Population Under Investigation</h1>
+<p><strong>Key question:</strong> For exactly which population do we want to make inferential statements?</p>
+<p>This is a decision of inclusion and exclusion of objects into the sampling frame that becomes the basis for the sampling procedure.</p>
+<ul>
+<li><p>A <strong>strict and operationally useful definition</strong> of the population for which we want to make a statement is required.</p></li>
+<li><p>Each member in the population must have an <strong>equal chance</strong> (or calculable chance) of entering the sample. Or at least we need to know its probability of being included into the sample to adjust for biases by weighting.</p></li>
+<li><p>Also consider the <strong>costs, time and geographical limitations</strong> to draw a sample.</p></li>
+</ul>
+<hr>
+</section>
+<section id="sampling-design" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Sampling Design</h1>
+<p><strong>Definition: Sample Design:</strong> A sample design describes the specific procedure used to select objects from the sampling frame.</p>
+<ul>
+<li><strong>Randomness</strong> will control with high likelihood for any biases by balancing the over- and under-representativeness of specific sub-groups.</li>
+</ul>
+<hr>
+</section>
+<section id="simple-random-sampling" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Simple Random Sampling</h1>
+<section id="probability-sample" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="probability-sample"><span class="header-section-number">4.1</span> Probability Sample</h2>
+<p><strong>Definition:</strong> The probability of any individual member of the population being selected into the sample can be determined.</p>
+</section>
+<section id="simple-random-sample-from-a-finite-population" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="simple-random-sample-from-a-finite-population"><span class="header-section-number">4.2</span> Simple Random Sample from a Finite Population</h2>
+<p><strong>Definition:</strong> A simple random sample from a finite population of size <span class="math inline">\(N\)</span> is one in which each possible sample object has an <strong>equal selection probability</strong>.</p>
+<ul>
+<li><p>Simple random sampling does not rule out the <strong>chance of obtaining a set of extreme sample observations</strong>. However, since we know the selection probability, we can calculate the <strong>probability of obtaining such an extreme sample</strong>.</p></li>
+<li><p>With increasing unbiased sample size, the probability of obtaining an extreme sample is decreasing.</p></li>
+</ul>
+<section id="example-enumeration-of-sample-combinations" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="example-enumeration-of-sample-combinations"><span class="header-section-number">4.2.1</span> Example: Enumeration of Sample Combinations</h3>
+<p>Full enumeration of all combinations of 2 sample objects out of a population of 4 without repetition:</p>
+<p><span class="math display">\[\binom{4}{2} = \frac{4!}{(4-2)! \cdot 2!} = 6\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w12_Chapter06Sampling/fig6-3_samples.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>FIGURE 6-3: Samples of size n = 2 from Population N = 4</figcaption>
+</figure>
+</div>
+</section>
+<section id="problem-dependent-draws" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="problem-dependent-draws"><span class="header-section-number">4.2.2</span> Problem: Dependent Draws</h3>
+<p>Sampling without replacement leads to <strong>statistically dependent draws</strong>. The probability of selecting the second observation changes after the first observation has been selected.</p>
+</section>
+<section id="independence-approximation" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="independence-approximation"><span class="header-section-number">4.2.3</span> Independence Approximation</h3>
+<p>Rather than enumerating all possible combinations as in Figure 6-3:</p>
+<ul>
+<li><p>We can assume for <strong>large enough populations</strong> in which each member in the population has an equal probability of being selected into the sample.</p></li>
+<li><p>Therefore, the individual draws of sample members become <strong>approximately statistically independent</strong> among each other.</p></li>
+</ul>
+<p>Thus, the probability of any <strong>set of sampled members</strong> can be approximated by the individual probabilities:</p>
+<p><span class="math display">\[\Pr(\omega_1 \cap \omega_2 \cap \cdots \cap \omega_n) = \Pr(\omega_1) \cdot \Pr(\omega_2) \cdots \Pr(\omega_n) = \pi^n\]</span></p>
+<p>which assumes independence of each object <span class="math inline">\(\omega_i\)</span> being drawn into the sample with probability <span class="math inline">\(\pi = \frac{1}{n}\)</span>.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="sampling-distributions-of-a-statistic" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Sampling Distributions of a Statistic</h1>
+<section id="population-parameters-vs-sample-statistics" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="population-parameters-vs-sample-statistics"><span class="header-section-number">5.1</span> Population Parameters vs Sample Statistics</h2>
+<ul>
+<li>Recall: the <strong>population parameters</strong> are denoted by Greek characters, e.g., <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span>, and the <strong>sample statistics</strong> are denoted by Latin letters or have a hat on top, e.g., means <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(s^2\)</span> or by the population parameter with a hat on top, i.e., <span class="math inline">\(\hat{\mu}\)</span> and <span class="math inline">\(\hat{\sigma}^2\)</span>, respectively.</li>
+</ul>
+</section>
+<section id="definition-sample-statistic" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="definition-sample-statistic"><span class="header-section-number">5.2</span> Definition: Sample Statistic</h2>
+<p>A sample statistic is itself a <strong>random variable</strong> – because it is based on the random set of variables <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> in the sample – that ties these individual random variables together through some <strong>functional expression</strong>.</p>
+<p><strong>Example:</strong> The sample statistic function is:</p>
+<p><span class="math display">\[\bar{X} = \frac{1}{n} \cdot \sum_{i=1}^{n} X_i\]</span></p>
+<p>(notice use of random variables, i.e., large caps letters) and its random outcome for a <strong>particular sample</strong> becomes:</p>
+<p><span class="math display">\[\bar{x} = \frac{1}{n} \cdot \sum_{i=1}^{n} x_i\]</span></p>
+<hr>
+</section>
+</section>
+<section id="sampling-distributions" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Sampling Distributions</h1>
+<section id="definition" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="definition"><span class="header-section-number">6.1</span> Definition</h2>
+<p><strong>Definition: Sampling Distribution of a Statistic:</strong> A sampling distribution is a probability distribution of a sample statistic.</p>
+<p>That is, the sample statistic must have a distribution because it is calculated from a set of random variables.</p>
+</section>
+<section id="developing-the-sampling-distribution" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="developing-the-sampling-distribution"><span class="header-section-number">6.2</span> Developing the Sampling Distribution</h2>
+<p>The sampling distribution of a statistic can be, in theory, developed:</p>
+<p>[1] by taking <strong>all possible samples</strong> of size <span class="math inline">\(n\)</span> from a population,</p>
+<p>[2] calculating the values of the sample statistic for each of these sampling outcomes, and</p>
+<p>[3] drawing the distribution of the values of the observed sample statistic.</p>
+</section>
+<section id="example-distribution-of-the-sample-mean" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="example-distribution-of-the-sample-mean"><span class="header-section-number">6.3</span> Example: Distribution of the Sample Mean</h2>
+<p>Evaluate the <strong>distribution of the sample mean</strong> based on <span class="math inline">\(n = 3\)</span> random draws without replacement and irrespectively of their order from a population of size <span class="math inline">\(N = 5\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w12_Chapter06Sampling/table_population_values.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Population Values Table</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w12_Chapter06Sampling/table7-2_samples.jpg" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>TABLE 7-2: Possible Samples of Size n = 3 from Population N = 5</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w12_Chapter06Sampling/fig7-6_sampling_dist.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>FIGURE 7-6: Sampling distribution of the sample mean</figcaption>
+</figure>
+</div>
+<section id="expected-value-of-the-sampling-distribution" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="expected-value-of-the-sampling-distribution"><span class="header-section-number">6.3.1</span> Expected Value of the Sampling Distribution</h3>
+<p>This distribution can be characterized by its expected value:</p>
+<p><span class="math display">\[E(\bar{X} \mid n = 3, N = 5) = \frac{1}{10} \cdot 4.3 + \frac{2}{10} \cdot 4.7 + \frac{4}{10} \cdot 5.0 + \frac{2}{10} \cdot 5.3 + \frac{1}{10} \cdot 5.7 = 5.0\]</span></p>
+</section>
+<section id="variance-of-the-sampling-distribution" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="variance-of-the-sampling-distribution"><span class="header-section-number">6.3.2</span> Variance of the Sampling Distribution</h3>
+<p><span class="math display">\[Var(\bar{X} \mid n = 3, N = 5) = \frac{1}{10} \cdot (4.3 - 5.0)^2 + \frac{2}{10} \cdot (4.7 - 5.0)^2 + \frac{4}{10} \cdot (5.0 - 5.0)^2 + \frac{2}{10} \cdot (5.3 - 5.0)^2 + \frac{1}{10} \cdot (5.7 - 5.0)^2 = 0.134\]</span></p>
+<p>with <span class="math inline">\(\sqrt{Var(\bar{X} \mid n = 3, N = 5)} = 0.366\)</span></p>
+<hr>
+</section>
+</section>
+<section id="unbiasedness" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="unbiasedness"><span class="header-section-number">6.4</span> Unbiasedness</h2>
+<p>If the expected value of the sample statistic is <strong>equal</strong> to the expected value in the population, then the sampling statistic is said to be <strong>unbiased</strong>.</p>
+<p>We usually prefer statistical estimation rules that are unbiased.</p>
+</section>
+<section id="standard-error" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="standard-error"><span class="header-section-number">6.5</span> Standard Error</h2>
+<p>The standard deviation of the sampling statistics is called the <strong>standard error</strong>. For the mean statistic its standard error is denoted by <span class="math inline">\(s_{\bar{X}}\)</span>.</p>
+<p>The standard error measures the <strong>degree of uncertainty</strong> that the sample statistic will deviate from its expected population value.</p>
+<p>We prefer statistical estimation rules that lead to <strong>small standard errors</strong> (i.e., small uncertainty).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w12_Chapter06Sampling/fig7-7_clt.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>FIGURE 7-7: Central limit theorem and the distribution of sample means</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="central-limit-theorem" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Central Limit Theorem</h1>
+<section id="definition-1" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="definition-1"><span class="header-section-number">7.1</span> Definition</h2>
+<p><strong>Definition: Central Limit Theorem:</strong> Let <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> be a <strong>random independent</strong> sample of size <span class="math inline">\(n\)</span> drawn from an <strong>arbitrarily</strong> distributed population with expectation <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>. Then for large enough sample sizes <span class="math inline">\(n\)</span>, the sampling distribution of the mean <span class="math inline">\(\bar{X}\)</span> is <strong>asymptotically</strong> (i.e., as <span class="math inline">\(n \to \infty\)</span>) <strong>normal distributed</strong> with:</p>
+<p><span class="math display">\[\bar{X} \sim \mathcal{N}(\mu, \sigma^2/n)\]</span></p>
+</section>
+<section id="two-parts-of-the-theorem" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="two-parts-of-the-theorem"><span class="header-section-number">7.2</span> Two Parts of the Theorem</h2>
+<section id="part-1-expected-value-and-variance" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="part-1-expected-value-and-variance"><span class="header-section-number">7.2.1</span> Part 1: Expected Value and Variance</h3>
+<p>Irrespectively of the sample size the expected value of the mean <span class="math inline">\(\bar{X}\)</span> is:</p>
+<p><span class="math display">\[E(\bar{X}) = \mu\]</span></p>
+<p>and its variance is:</p>
+<p><span class="math display">\[Var(\bar{X}) = \sigma^2/n\]</span></p>
+<p>Note, <span class="math inline">\(n\)</span> in the denominator. Therefore, as the sample size <span class="math inline">\(n\)</span> increases the standard error (or variance) <span class="math inline">\(s_{\bar{X}} = \sqrt{\sigma^2/n} = \frac{\sigma}{\sqrt{n}}\)</span> of the mean will <strong>shrink</strong>.</p>
+</section>
+<section id="part-2-asymptotic-normality" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="part-2-asymptotic-normality"><span class="header-section-number">7.2.2</span> Part 2: Asymptotic Normality</h3>
+<p>Asymptotically the sample mean will follow a <strong>normal distribution</strong> irrespective of the underlying distribution of the population.</p>
+</section>
+<section id="proof-for-independent-sample-objects" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="proof-for-independent-sample-objects"><span class="header-section-number">7.2.3</span> Proof for Independent Sample Objects</h3>
+<p><span class="math display">\[Var\left(\frac{1}{n} \cdot \sum_{i=1}^{n} X_i\right) = \frac{1}{n^2} \cdot \sum_{i=1}^{n} Var(X_i) = \frac{1}{n^2} \cdot \underbrace{n \cdot \sigma^2}_{=\sigma^2} = \frac{\sigma^2}{n}\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w12_Chapter06Sampling/fig2-24_ushaped.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>FIGURE 2.24: Three samples of five observations drawn randomly from U-shaped distribution. Means of samples are shown by X-bar.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="example-central-limit-theorem-simulation" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="example-central-limit-theorem-simulation"><span class="header-section-number">7.3</span> Example: Central Limit Theorem Simulation</h2>
+<p>Example: Central limit theorem with the R-script <code>CENTRALLIMIT.R</code>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w12_Chapter06Sampling/clt_simulation.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Central Limit Theorem Simulation: Three different population distributions (Population 1, 2, 3) with sampling distributions at n=4, n=16, and n=256</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="random-sampling-designs" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Random Sampling Designs</h1>
+<section id="objectives" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="objectives"><span class="header-section-number">8.1</span> Objectives</h2>
+<p>The objective of sampling theory is to develop sampling plans and statistics that lead to the <strong>most precise estimators of population properties</strong> that we are interested in, i.e., estimators with low uncertainty (standard error) and control for any biases.</p>
+<p>This is an <strong>optimization problem</strong>, perhaps, under <strong>constraints</strong>.</p>
+</section>
+<section id="weighting-to-control-for-biases" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="weighting-to-control-for-biases"><span class="header-section-number">8.2</span> Weighting to Control for Biases</h2>
+<p><strong>Weighting</strong> can control for biases:</p>
+<ul>
+<li><p>The impact of observations with a <strong>higher probability</strong> of being selected into the sample need to be <strong>weighted down</strong>, and</p></li>
+<li><p>The impact of observations with <strong>lower selection probability</strong> needs to be <strong>weighted upwards</strong>.</p></li>
+</ul>
+<p>This may achieve representativeness.</p>
+<hr>
+</section>
+</section>
+<section id="stratified-random-sampling" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Stratified Random Sampling</h1>
+<p><em>(Statistical details are not test relevant)</em></p>
+<section id="definition-2" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="definition-2"><span class="header-section-number">9.1</span> Definition</h2>
+<p><strong>Definition: Stratified Random Sampling:</strong> A stratified random sample is obtained by:</p>
+<p>[1] splitting the population into <span class="math inline">\(k\)</span> preferably <strong>homogeneous</strong> groups – also called <strong>strata</strong> – and</p>
+<p>[2] selecting a simple random samples of a predetermined size <span class="math inline">\(n_j\)</span> from each stratum <span class="math inline">\(j\)</span>.</p>
+<p>The observed sample statistics from these strata-specific samples are then combined into the global sample statistic. Each stratum will have a <strong>stratum-specific weight</strong>.</p>
+</section>
+<section id="homogeneity-assumption" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="homogeneity-assumption"><span class="header-section-number">9.2</span> Homogeneity Assumption</h2>
+<ul>
+<li><p><strong>External knowledge</strong> is required to split the population into <span class="math inline">\(k\)</span> preferably <strong>homogenous</strong> strata (the objects in each strata are similar with respect to desired attributes).</p></li>
+<li><p>External <strong>proxy variables</strong> that are <strong>closely correlated</strong> with the measure attributes can be used as surrogates to define the strata.</p></li>
+<li><p>Homogeneity means that the <strong>variances of the sub-populations</strong> within each stratum are <strong>less</strong> than the overall population variance.</p></li>
+</ul>
+</section>
+<section id="advantage" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="advantage"><span class="header-section-number">9.3</span> Advantage</h2>
+<p>The additional control leads to a <strong>reduction in the overall sampling error</strong> while maintaining unbiasedness.</p>
+</section>
+<section id="strata-specific-data-structure" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="strata-specific-data-structure"><span class="header-section-number">9.4</span> Strata-Specific Data Structure</h2>
+<p>The underlying strata-specific data structure for <span class="math inline">\(k\)</span> strata becomes:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Strata</strong></th>
+<th>1</th>
+<th>2</th>
+<th><span class="math inline">\(\cdots\)</span></th>
+<th><span class="math inline">\(k\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Size</strong></td>
+<td><span class="math inline">\(N_1\)</span></td>
+<td><span class="math inline">\(N_2\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(N_k\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Variance</strong></td>
+<td><span class="math inline">\(\sigma_1^2\)</span></td>
+<td><span class="math inline">\(\sigma_2^2\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\sigma_k^2\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Sampling cost per unit</strong></td>
+<td><span class="math inline">\(c_1\)</span></td>
+<td><span class="math inline">\(c_2\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(c_k\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Population</strong></td>
+<td><span class="math inline">\(\{X_{1,1}, X_{2,1}, \ldots, X_{N_1,1}\}\)</span></td>
+<td><span class="math inline">\(\{X_{1,2}, X_{2,2}, \ldots, X_{N_2,2}\}\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(\{X_{1,k}, X_{2,k}, \ldots, X_{N_k,k}\}\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Outcome: Strata-specific sample size</strong></td>
+<td><span class="math inline">\(n_1\)</span></td>
+<td><span class="math inline">\(n_2\)</span></td>
+<td><span class="math inline">\(\cdots\)</span></td>
+<td><span class="math inline">\(n_k\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="challenges-of-stratification" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="challenges-of-stratification"><span class="header-section-number">9.5</span> Challenges of Stratification</h2>
+<ul>
+<li><p>We must have some <strong>external knowledge</strong> about the population characteristics to stratify it properly so that the internal strata variances become small.</p></li>
+<li><p>The strata membership for each object in the population must be known.</p></li>
+<li><p>The sub-population size in each stratum must be known.</p></li>
+<li><p>We should have a rough idea of the costs of obtaining a sample observation from each stratum. These costs may vary from stratum to stratum.</p></li>
+</ul>
+</section>
+<section id="estimates" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="estimates"><span class="header-section-number">9.6</span> Estimates</h2>
+<section id="strata-means" class="level3" data-number="9.6.1">
+<h3 data-number="9.6.1" class="anchored" data-anchor-id="strata-means"><span class="header-section-number">9.6.1</span> Strata Means</h3>
+<p><span class="math display">\[\bar{x}_j = \frac{1}{n_j} \cdot \sum_{i=1}^{n_j} x_{i,j}\]</span></p>
+</section>
+<section id="strata-variance" class="level3" data-number="9.6.2">
+<h3 data-number="9.6.2" class="anchored" data-anchor-id="strata-variance"><span class="header-section-number">9.6.2</span> Strata Variance</h3>
+<p><span class="math display">\[s_j^2 = \frac{1}{n_j - 1} \cdot \sum_{i=1}^{n_j} \left(x_{i,j} - \bar{x}_j\right)^2\]</span></p>
+</section>
+</section>
+<section id="overall-estimated-mean-and-variance" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="overall-estimated-mean-and-variance"><span class="header-section-number">9.7</span> Overall Estimated Mean and Variance</h2>
+<p>The <strong>overall</strong> estimated mean and variance become <strong>weighted estimates</strong> of the strata statistics:</p>
+<section id="overall-mean" class="level3" data-number="9.7.1">
+<h3 data-number="9.7.1" class="anchored" data-anchor-id="overall-mean"><span class="header-section-number">9.7.1</span> Overall Mean</h3>
+<p><span class="math display">\[\bar{x}_{overall} = \frac{1}{N} \cdot \sum_{j=1}^{k} N_j \cdot \bar{x}_j\]</span></p>
+</section>
+<section id="overall-variance" class="level3" data-number="9.7.2">
+<h3 data-number="9.7.2" class="anchored" data-anchor-id="overall-variance"><span class="header-section-number">9.7.2</span> Overall Variance</h3>
+<p><span class="math display">\[s_{overall}^2 = \underbrace{\frac{1}{N} \cdot \sum_{j=1}^{k} N_j \cdot s_j^2}_{\text{within strata variation}} + \underbrace{\frac{1}{N} \cdot \sum_{j=1}^{k} N_j \cdot \left(\bar{x}_j - \bar{x}_{overall}\right)^2}_{\text{between strata variation}}\]</span></p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> <strong>Not weighting</strong> the strata statistics leads to <strong>biased</strong> overall estimates.</p>
+</blockquote>
+</section>
+</section>
+<section id="population-and-sample-size-constraints" class="level2" data-number="9.8">
+<h2 data-number="9.8" class="anchored" data-anchor-id="population-and-sample-size-constraints"><span class="header-section-number">9.8</span> Population and Sample Size Constraints</h2>
+<ul>
+<li><p>The total population size is <span class="math inline">\(N = N_1 + N_2 + \cdots + N_k\)</span> and for each sub-population <span class="math inline">\(N_j \geq 2\)</span>.</p></li>
+<li><p>The stratum-specific sample size <span class="math inline">\(n_j\)</span> needs to satisfy the constraints:</p>
+<ul>
+<li><span class="math inline">\(0 \leq n_j \leq N_j \quad \forall j \in \{1, 2, \ldots, k\}\)</span></li>
+<li><span class="math inline">\(n_j\)</span> needs to be <strong>integer numbers</strong></li>
+<li>For large <span class="math inline">\(N_j\)</span> usually sampling <strong>with replacement</strong> is assumed to make calculations easier.</li>
+</ul></li>
+</ul>
+</section>
+<section id="optimization-problem" class="level2" data-number="9.9">
+<h2 data-number="9.9" class="anchored" data-anchor-id="optimization-problem"><span class="header-section-number">9.9</span> Optimization Problem</h2>
+<p>The optimization problem to determine the best strata sample sizes <span class="math inline">\(\{n_1^*, n_2^*, \ldots, n_k^*\}\)</span> becomes:</p>
+<section id="objective-function" class="level3" data-number="9.9.1">
+<h3 data-number="9.9.1" class="anchored" data-anchor-id="objective-function"><span class="header-section-number">9.9.1</span> Objective Function</h3>
+<p>The optimal sampling plan <span class="math inline">\(\{n_1^*, n_2^*, \ldots, n_k^*\}\)</span> for <span class="math inline">\(\bar{x}_{overall} = \frac{1}{N} \cdot \sum_{j=1}^{k} N_j \cdot \bar{x}_j\)</span> can be analytically determined by <strong>minimizing the standard error of the global estimator</strong> (objective function):</p>
+<p><span class="math display">\[\min_{n_1, n_2, \ldots, n_k} Var\left(\underbrace{\frac{1}{N} \cdot \sum_{j=1}^{k} N_j \cdot \bar{x}_j}_{\bar{x}_{global}}\right) = \sum_{j=1}^{k} \left(N_j / N\right)^2 \cdot \frac{\sigma_j^2}{n_j}\]</span></p>
+</section>
+<section id="cost-constraint" class="level3" data-number="9.9.2">
+<h3 data-number="9.9.2" class="anchored" data-anchor-id="cost-constraint"><span class="header-section-number">9.9.2</span> Cost Constraint</h3>
+<p>subject to the cost constraint:</p>
+<p><span class="math display">\[c_{total} \equiv c_0 + \sum_{j=1}^{k} c_j \cdot n_j^*\]</span></p>
+</section>
+<section id="solution-lagrange-multiplier-optimization" class="level3" data-number="9.9.3">
+<h3 data-number="9.9.3" class="anchored" data-anchor-id="solution-lagrange-multiplier-optimization"><span class="header-section-number">9.9.3</span> Solution: Lagrange Multiplier Optimization</h3>
+<p>The solution to this optimization problem under constraints can be approximated with the <strong>Lagrange Multiplier Optimization</strong> technique:</p>
+<p><span class="math display">\[n_j^* = (c_{total} - c_0) \cdot \frac{N_j \cdot \sigma_j / \sqrt{c_j}}{\sum_{j=1}^{k} N_j \cdot \sigma_j \cdot \sqrt{c_j}}\]</span></p>
+<p>However, the <span class="math inline">\(n_j^*\)</span> must be rounded to the closest integer value with <span class="math inline">\(n_j^* \geq 2\)</span>.</p>
+<p>Another optimization technique called <strong>Integer Programming</strong> would give exact results, but it does not provide an <strong>analytical solution</strong>.</p>
+</section>
+</section>
+<section id="general-rules-for-sample-size-selection" class="level2" data-number="9.10">
+<h2 data-number="9.10" class="anchored" data-anchor-id="general-rules-for-sample-size-selection"><span class="header-section-number">9.10</span> General Rules for Sample Size Selection</h2>
+<p>Select a larger sample size <span class="math inline">\(n_j^*\)</span> in strata <span class="math inline">\(j\)</span>:</p>
+<ul>
+<li><p><span class="math inline">\(n_j^* \uparrow\)</span> if <span class="math inline">\(N_j \uparrow\)</span>: if strata <span class="math inline">\(j\)</span> consists of a larger proportion <span class="math inline">\(N_j / N\)</span> of the population</p></li>
+<li><p><span class="math inline">\(n_j^* \uparrow\)</span> if <span class="math inline">\(\sigma_j \uparrow\)</span>: if strata <span class="math inline">\(j\)</span> is more heterogeneous (larger internal variance <span class="math inline">\(\sigma_j^2\)</span>)</p></li>
+<li><p><span class="math inline">\(n_j^* \uparrow\)</span> if <span class="math inline">\(c_j \downarrow\)</span>: if it is less expensive to sample in stratum <span class="math inline">\(j\)</span> (small <span class="math inline">\(c_j\)</span>)</p></li>
+</ul>
+<p>Stratification can also be used to <strong>oversample</strong> otherwise underrepresented groups.</p>
+<hr>
+</section>
+</section>
+<section id="cluster-random-sampling" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Cluster Random Sampling</h1>
+<p><em>(Statistical details are not test relevant)</em></p>
+<section id="definition-3" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="definition-3"><span class="header-section-number">10.1</span> Definition</h2>
+<p><strong>Definition: Cluster Random Sampling:</strong> In clustered random sampling the population is divided by convenience into mutually exclusive strata (i.e., clusters) in a <strong>two-steps</strong> procedure:</p>
+<p>[1] randomly a <strong>subset of clusters</strong> is picked.</p>
+<p>[2] a specific number of <strong>observations are sampled</strong> from within the selected clusters.</p>
+</section>
+<section id="heterogeneity-assumption" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="heterogeneity-assumption"><span class="header-section-number">10.2</span> Heterogeneity Assumption</h2>
+<p>Opposite to stratified sampling, clusters are supposed to be as <strong>heterogeneous</strong> as possible (strong mixing of attribute values) with regards to the attributes under investigation.</p>
+<p>This means we expect that each <strong>cluster is representative</strong> of the whole population.</p>
+</section>
+<section id="overall-mean-and-variance-estimates" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="overall-mean-and-variance-estimates"><span class="header-section-number">10.3</span> Overall Mean and Variance Estimates</h2>
+<p>The overall mean and variance estimate in clustered sampling again become:</p>
+<p><span class="math display">\[\bar{x}_{overall} = \frac{1}{N} \cdot \sum_{j=1}^{k} N_j \cdot \bar{x}_j\]</span></p>
+<p><span class="math display">\[s_{overall}^2 = \frac{1}{N} \cdot \sum_{j=1}^{k} N_j \cdot s_j^2 + \frac{1}{N} \cdot \sum_{j=1}^{k} N_j \cdot \left(\bar{x}_j - \bar{x}_{overall}\right)^2\]</span></p>
+<p>Therefore, we need to know at least the cluster sizes <span class="math inline">\(N_j\)</span> of the randomly selected clusters.</p>
+</section>
+<section id="advantages-and-risks" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="advantages-and-risks"><span class="header-section-number">10.4</span> Advantages and Risks</h2>
+<p>Clustered sampling can save sampling costs but bears the potential risks of <strong>high sampling error</strong> and <strong>sampling bias</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="discussion-comparison-of-sampling-methods" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Discussion: Comparison of Sampling Methods</h1>
+<ul>
+<li><p>With regards to the <strong>sampling error</strong> stratified sampling is the <strong>most efficient</strong> and clustered sampling the <strong>least efficient</strong>.</p></li>
+<li><p>The sampling error of <strong>random sampling</strong> lies <strong>in-between</strong> stratified and clustered sampling.</p></li>
+<li><p>Requirements for <strong>a priori knowledge</strong> of the <strong>sampling frame</strong> are the <strong>highest</strong> for stratified sampling.</p></li>
+</ul>
+<hr>
+</section>
+<section id="spatial-sampling" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Spatial Sampling</h1>
+<p>Spatial sampling issues are explicitly discussed in the course <strong>GISC7360: Pattern Analysis</strong>.</p>
+<section id="spatial-point-sampling-approaches" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="spatial-point-sampling-approaches"><span class="header-section-number">12.1</span> Spatial Point Sampling Approaches</h2>
+<ul>
+<li><p>For a <strong>countable number</strong> of given spatial objects (such as a finite set of points) standard sampling procedures can be applied by randomly picking objects from an object’s list.</p></li>
+<li><p>For <strong>spatially continuous surfaces</strong> random locations need to be generated:</p></li>
+</ul>
+<section id="generating-random-points-from-a-square-study-area" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="generating-random-points-from-a-square-study-area"><span class="header-section-number">12.1.1</span> Generating Random Points from a Square Study Area</h3>
+<p>How to pick a random point from a square study area <span class="math inline">\(\mathbb{R}\)</span>?</p>
+<p>Select the x-coordinate from a uniform distribution <span class="math inline">\(X_i \sim \mathcal{U}(x_{min}, x_{max})\)</span> and the y-coordinate from <span class="math inline">\(Y_i \sim \mathcal{U}(y_{min}, y_{max})\)</span>, respectively.</p>
+<ul>
+<li><p>The resulting local densities of the sample points are approximately <strong>uniform</strong> (i.e., constant).</p></li>
+<li><p>This sampling procedure leads to <strong>complete spatial randomness</strong>.</p></li>
+<li><p><strong>Example:</strong> Use complete spatial randomness to estimate areas (areal integrals) with the script <code>EstimateAreaBySampling.r</code>.</p></li>
+<li><p>For <strong>non-rectangular study areas</strong> <span class="math inline">\(\mathbb{R}\)</span>, points outside the study area are rejected and the procedure is repeated until the target sample size is obtained.</p></li>
+</ul>
+</section>
+<section id="reference-frames-for-spatial-sampling" class="level3" data-number="12.1.2">
+<h3 data-number="12.1.2" class="anchored" data-anchor-id="reference-frames-for-spatial-sampling"><span class="header-section-number">12.1.2</span> Reference Frames for Spatial Sampling</h3>
+<p>For systematic, stratified, or clustered sampling the reference frame can either be:</p>
+<ul>
+<li><strong>square raster cells</strong>, or</li>
+<li>a <strong>hexagonal grid</strong></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w12_Chapter06Sampling/fig7-17_spatial_patterns.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>FIGURE 7-17: (a) A simple random point sample; (b) a systematic areal sample; (c) an areally stratified random sample; (d) a cluster sample; (e) a stratified, systematic, unaligned areal sample.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w12_Chapter06Sampling/fig6-2_hexagonal.jpg" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Fig. 6.2: Hexagonal points (left) and polygons (right)</figcaption>
+</figure>
+</div>
+</section>
+<section id="properties-of-hexagons-vs-grid-cells" class="level3" data-number="12.1.3">
+<h3 data-number="12.1.3" class="anchored" data-anchor-id="properties-of-hexagons-vs-grid-cells"><span class="header-section-number">12.1.3</span> Properties of Hexagons vs Grid Cells</h3>
+<ul>
+<li><p><strong>Hexagons</strong> have the advantage that the <strong>nearest neighbor points</strong> are all <strong>equidistant</strong>.</p></li>
+<li><p>This is <strong>not the case</strong> for grid cells where <strong>diagonal cell</strong> centers are further apart than <strong>horizontal and vertical cell</strong> centers.</p></li>
+<li><p><strong>Problem with systematic spatial sampling:</strong> If the objects under investigation are regularly spaced the systematic sampling procedures may <strong>skip over them</strong>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="quadrate-sampling" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Quadrate Sampling</h1>
+<p>Quadrates of a given size are randomly distributed over the map.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w12_Chapter06Sampling/fig7-14_quadrat.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>FIGURE 7-14: Sampling designs for quadrat sampling. (a) Random; (b) Random, random orientation; (c) Systematic; (d) Systematic, random orientation; (e) Stratified, regular; (f) Stratified, irregular, random orientation</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="traverse-sampling" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Traverse Sampling</h1>
+<p>We want to sample along line segments with a total length of <span class="math inline">\(L\)</span> (replaces the sample size <span class="math inline">\(n\)</span>).</p>
+<ul>
+<li><p>These segments are defined by <strong>random starting and ending points</strong> along the study area’s boundary.</p></li>
+<li><p>Then randomly sample a <strong>sub-length</strong> <span class="math inline">\(l_i\)</span> along the traverse.</p></li>
+<li><p>Repeat process until <span class="math inline">\(L = \sum_{i=1}^{n} l_i\)</span>.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w12_Chapter06Sampling/fig7-15_traverse.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>FIGURE 7-15: Sampling designs for traverse sampling. (a) Random; (b) Systematic; (c) Stratified systematic within stratum; (d) Stratified, random orientation</figcaption>
+</figure>
+</div>
+<section id="example-estimating-woodland-proportion" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="example-estimating-woodland-proportion"><span class="header-section-number">14.1</span> Example: Estimating Woodland Proportion</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w12_Chapter06Sampling/fig7-16_woodland.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>FIGURE 7-16: Estimating the proportion of woodland on a map by using traverses</figcaption>
+</figure>
+</div>
+<p><span class="math display">\[\text{Proportion of woodland} = \frac{78}{200} = 0.39\]</span></p>
+<hr>
+</section>
+</section>
+<section id="summary" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Summary</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Aspect</strong></th>
+<th><strong>Simple Random</strong></th>
+<th><strong>Stratified</strong></th>
+<th><strong>Clustered</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Sampling Error</strong></td>
+<td>Medium</td>
+<td>Lowest (most efficient)</td>
+<td>Highest (least efficient)</td>
+</tr>
+<tr class="even">
+<td><strong>A Priori Knowledge Required</strong></td>
+<td>Low</td>
+<td>Highest</td>
+<td>Medium</td>
+</tr>
+<tr class="odd">
+<td><strong>Cost Efficiency</strong></td>
+<td>Medium</td>
+<td>Varies</td>
+<td>Can save costs</td>
+</tr>
+<tr class="even">
+<td><strong>Representativeness</strong></td>
+<td>Balanced by randomness</td>
+<td>Controlled by strata</td>
+<td>Risk of bias</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="references" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> References</h1>
+<ul>
+<li>BBR (Burt, Barber, and Rigby) textbook Chapter 7</li>
+<li>R scripts: <code>CENTRALLIMIT.R</code>, <code>EstimateAreaBySampling.r</code></li>
+<li>Course GISC7360: Pattern Analysis for detailed spatial sampling</li>
+</ul>
+<hr>
+<p><em>Document generated for GISC6301, Fall 2025</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

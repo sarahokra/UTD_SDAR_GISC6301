@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tiefelsdorf">
+<meta name="dcterms.date" content="2025-12-01">
+
+<title>Chapter 08: One-Sample Hypothesis Tests – final_exam_quarto</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./icon02.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-bce83624dd429190d13db9bf62533269.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">final_exam_quarto</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w00_IntroToScriptsAndData.html">GISC6301</a></li><li class="breadcrumb-item"><a href="./w14_Chapter08SingleTests.html">Wk14-ch8.One-Sample Hypothesis Tests</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">GISC6301</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w00_IntroToScriptsAndData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk00-Introduction to Scripts in the RStudio-Environment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w05_Chapter01_Data_and_Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk05-ch1.Data &amp; Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w06_DisplayingData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk06-ch2.Data Visualization Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w07_Chapter03_MeanVar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk07-ch3.Measures of Central Tendency and Variation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w08_Chapt04Relationships.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk08-ch4.Bivariate Relationships</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w08_MotivationDataStory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk08-Motivation Data Story</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w09_Chapt04BivariateRegression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk09-ch4.Bivariate Regression Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w10_Chapt13MultipleRegression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk10-ch13.Multiple Regression Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w11_Chapter05A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk11-ch5A.Probabilities and Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w11_Chapter05B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk11-ch5B.Probabilities and Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w12_Chapter06Sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk12-ch6.Sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w13_Chapter07Estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk13-ch7.Point and Interval Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w14_Chapter08SingleTests.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Wk14-ch8.One-Sample Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w15_Chapter09TwoSampleMeanTest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk15-ch9.Two-Sample Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./w16_Chapter10NonParStats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wk16-ch10.Non-Parametric Statistics and Chi-Square Tests</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">To be continued...</span></span>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link active" data-scroll-target="#hypothesis-testing"><span class="header-section-number">1</span> Hypothesis Testing</a>
+  <ul class="collapse">
+  <li><a href="#overview-hypothesis-testing" id="toc-overview-hypothesis-testing" class="nav-link" data-scroll-target="#overview-hypothesis-testing"><span class="header-section-number">1.1</span> Overview: Hypothesis Testing</a></li>
+  <li><a href="#conceptional-components-of-statistical-hypothesis-testing" id="toc-conceptional-components-of-statistical-hypothesis-testing" class="nav-link" data-scroll-target="#conceptional-components-of-statistical-hypothesis-testing"><span class="header-section-number">1.2</span> Conceptional Components of Statistical Hypothesis Testing</a></li>
+  <li><a href="#steps-of-hypothesis-testing" id="toc-steps-of-hypothesis-testing" class="nav-link" data-scroll-target="#steps-of-hypothesis-testing"><span class="header-section-number">1.3</span> Steps of Hypothesis Testing</a>
+  <ul class="collapse">
+  <li><a href="#example-alpha-and-beta-error" id="toc-example-alpha-and-beta-error" class="nav-link" data-scroll-target="#example-alpha-and-beta-error"><span class="header-section-number">1.3.1</span> Example: Alpha and Beta Error</a></li>
+  </ul></li>
+  <li><a href="#general-decision-errors" id="toc-general-decision-errors" class="nav-link" data-scroll-target="#general-decision-errors"><span class="header-section-number">1.4</span> General Decision Errors</a></li>
+  </ul></li>
+  <li><a href="#statistical-inference-one-population-hypothesis-testing" id="toc-statistical-inference-one-population-hypothesis-testing" class="nav-link" data-scroll-target="#statistical-inference-one-population-hypothesis-testing"><span class="header-section-number">2</span> Statistical Inference: One Population Hypothesis Testing</a>
+  <ul class="collapse">
+  <li><a href="#general-steps-of-classical-hypothesis-testing" id="toc-general-steps-of-classical-hypothesis-testing" class="nav-link" data-scroll-target="#general-steps-of-classical-hypothesis-testing"><span class="header-section-number">2.1</span> General Steps of Classical Hypothesis Testing</a></li>
+  </ul></li>
+  <li><a href="#formulation-of-the-hypotheses" id="toc-formulation-of-the-hypotheses" class="nav-link" data-scroll-target="#formulation-of-the-hypotheses"><span class="header-section-number">3</span> Formulation of the Hypotheses</a>
+  <ul class="collapse">
+  <li><a href="#two-sided-test" id="toc-two-sided-test" class="nav-link" data-scroll-target="#two-sided-test"><span class="header-section-number">3.1</span> Two-sided Test</a></li>
+  <li><a href="#one-sided-tests" id="toc-one-sided-tests" class="nav-link" data-scroll-target="#one-sided-tests"><span class="header-section-number">3.2</span> One-sided Tests</a></li>
+  <li><a href="#important-notes-on-hypothesis-formulation" id="toc-important-notes-on-hypothesis-formulation" class="nav-link" data-scroll-target="#important-notes-on-hypothesis-formulation"><span class="header-section-number">3.3</span> Important Notes on Hypothesis Formulation</a></li>
+  </ul></li>
+  <li><a href="#example-hypothesis-testing-for-the-population-proportion" id="toc-example-hypothesis-testing-for-the-population-proportion" class="nav-link" data-scroll-target="#example-hypothesis-testing-for-the-population-proportion"><span class="header-section-number">4</span> Example: Hypothesis Testing for the Population Proportion</a>
+  <ul class="collapse">
+  <li><a href="#a-selection-of-a-sample-statistic-and-its-sampling-distribution" id="toc-a-selection-of-a-sample-statistic-and-its-sampling-distribution" class="nav-link" data-scroll-target="#a-selection-of-a-sample-statistic-and-its-sampling-distribution"><span class="header-section-number">4.1</span> [a] Selection of a Sample Statistic and Its Sampling Distribution</a>
+  <ul class="collapse">
+  <li><a href="#excursion-exact-binomial-test" id="toc-excursion-exact-binomial-test" class="nav-link" data-scroll-target="#excursion-exact-binomial-test"><span class="header-section-number">4.1.1</span> Excursion: Exact Binomial Test</a></li>
+  </ul></li>
+  <li><a href="#b-selection-of-the-level-of-significance" id="toc-b-selection-of-the-level-of-significance" class="nav-link" data-scroll-target="#b-selection-of-the-level-of-significance"><span class="header-section-number">4.2</span> [b] Selection of the Level of Significance</a></li>
+  <li><a href="#c-construct-the-decision-rule" id="toc-c-construct-the-decision-rule" class="nav-link" data-scroll-target="#c-construct-the-decision-rule"><span class="header-section-number">4.3</span> [c] Construct the Decision Rule</a></li>
+  <li><a href="#d-example-residential-mobility" id="toc-d-example-residential-mobility" class="nav-link" data-scroll-target="#d-example-residential-mobility"><span class="header-section-number">4.4</span> [d] Example: Residential Mobility</a></li>
+  </ul></li>
+  <li><a href="#testing-for-population-expectations" id="toc-testing-for-population-expectations" class="nav-link" data-scroll-target="#testing-for-population-expectations"><span class="header-section-number">5</span> Testing for Population Expectations</a></li>
+  <li><a href="#sampling-distribution-of-mean-with-unknown-population-standard-deviation" id="toc-sampling-distribution-of-mean-with-unknown-population-standard-deviation" class="nav-link" data-scroll-target="#sampling-distribution-of-mean-with-unknown-population-standard-deviation"><span class="header-section-number">6</span> Sampling Distribution of Mean with Unknown Population Standard Deviation</a>
+  <ul class="collapse">
+  <li><a href="#the-t-distribution" id="toc-the-t-distribution" class="nav-link" data-scroll-target="#the-t-distribution"><span class="header-section-number">6.1</span> The t-Distribution</a></li>
+  </ul></li>
+  <li><a href="#relationship-between-hypothesis-testing-and-confidence-intervals" id="toc-relationship-between-hypothesis-testing-and-confidence-intervals" class="nav-link" data-scroll-target="#relationship-between-hypothesis-testing-and-confidence-intervals"><span class="header-section-number">7</span> Relationship between Hypothesis Testing and Confidence Intervals</a></li>
+  <li><a href="#problems-of-significance-tests" id="toc-problems-of-significance-tests" class="nav-link" data-scroll-target="#problems-of-significance-tests"><span class="header-section-number">8</span> Problems of Significance Tests</a>
+  <ul class="collapse">
+  <li><a href="#practical-relevance" id="toc-practical-relevance" class="nav-link" data-scroll-target="#practical-relevance"><span class="header-section-number">8.1</span> Practical Relevance</a></li>
+  <li><a href="#deductive-reasoning" id="toc-deductive-reasoning" class="nav-link" data-scroll-target="#deductive-reasoning"><span class="header-section-number">8.2</span> Deductive Reasoning</a></li>
+  <li><a href="#large-sample-problem" id="toc-large-sample-problem" class="nav-link" data-scroll-target="#large-sample-problem"><span class="header-section-number">8.3</span> Large Sample Problem</a></li>
+  <li><a href="#multiple-testing" id="toc-multiple-testing" class="nav-link" data-scroll-target="#multiple-testing"><span class="header-section-number">8.4</span> Multiple Testing</a></li>
+  </ul></li>
+  <li><a href="#significance-test-for-the-correlation-coefficient" id="toc-significance-test-for-the-correlation-coefficient" class="nav-link" data-scroll-target="#significance-test-for-the-correlation-coefficient"><span class="header-section-number">9</span> Significance Test for the Correlation Coefficient</a>
+  <ul class="collapse">
+  <li><a href="#test-under-the-null-hypothesis-of-independence-see-bbr-p486-487" id="toc-test-under-the-null-hypothesis-of-independence-see-bbr-p486-487" class="nav-link" data-scroll-target="#test-under-the-null-hypothesis-of-independence-see-bbr-p486-487"><span class="header-section-number">9.1</span> Test Under the Null Hypothesis of Independence (see BBR p486-487)</a></li>
+  <li><a href="#test-statistic-for-correlation" id="toc-test-statistic-for-correlation" class="nav-link" data-scroll-target="#test-statistic-for-correlation"><span class="header-section-number">9.2</span> Test Statistic for Correlation</a></li>
+  </ul></li>
+  <li><a href="#distribution-of-rho-under-alternative-hypotheses" id="toc-distribution-of-rho-under-alternative-hypotheses" class="nav-link" data-scroll-target="#distribution-of-rho-under-alternative-hypotheses"><span class="header-section-number">10</span> Distribution of <span class="math inline">\(\rho\)</span> under Alternative Hypotheses</a>
+  <ul class="collapse">
+  <li><a href="#fisher-z-transformation" id="toc-fisher-z-transformation" class="nav-link" data-scroll-target="#fisher-z-transformation"><span class="header-section-number">10.1</span> Fisher z-Transformation</a></li>
+  </ul></li>
+  <li><a href="#r-code-examples" id="toc-r-code-examples" class="nav-link" data-scroll-target="#r-code-examples"><span class="header-section-number">11</span> R Code Examples</a>
+  <ul class="collapse">
+  <li><a href="#one-sample-t-test" id="toc-one-sample-t-test" class="nav-link" data-scroll-target="#one-sample-t-test"><span class="header-section-number">11.1</span> One-Sample t-Test</a></li>
+  <li><a href="#one-sample-proportion-test" id="toc-one-sample-proportion-test" class="nav-link" data-scroll-target="#one-sample-proportion-test"><span class="header-section-number">11.2</span> One-Sample Proportion Test</a></li>
+  <li><a href="#correlation-test" id="toc-correlation-test" class="nav-link" data-scroll-target="#correlation-test"><span class="header-section-number">11.3</span> Correlation Test</a></li>
+  <li><a href="#fisher-z-transformation-1" id="toc-fisher-z-transformation-1" class="nav-link" data-scroll-target="#fisher-z-transformation-1"><span class="header-section-number">11.4</span> Fisher z-Transformation</a></li>
+  <li><a href="#visualizing-hypothesis-testing" id="toc-visualizing-hypothesis-testing" class="nav-link" data-scroll-target="#visualizing-hypothesis-testing"><span class="header-section-number">11.5</span> Visualizing Hypothesis Testing</a></li>
+  <li><a href="#power-analysis" id="toc-power-analysis" class="nav-link" data-scroll-target="#power-analysis"><span class="header-section-number">11.6</span> Power Analysis</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./w00_IntroToScriptsAndData.html">GISC6301</a></li><li class="breadcrumb-item"><a href="./w14_Chapter08SingleTests.html">Wk14-ch8.One-Sample Hypothesis Tests</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Chapter 08: One-Sample Hypothesis Tests</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Tiefelsdorf </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 1, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="hypothesis-testing" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Hypothesis Testing</h1>
+<section id="overview-hypothesis-testing" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="overview-hypothesis-testing"><span class="header-section-number">1.1</span> Overview: Hypothesis Testing</h2>
+<ul>
+<li><p>The concepts of randomness of a sample and the sampling distribution provide the link between a sample statistic and the underlying parameter of its parent population.</p></li>
+<li><p>The sample gives us a glance at the otherwise invisible and unknown parent population.</p></li>
+<li><p>Inferential statistics allows us to assess the likelihood whether a sample statistic deviates</p>
+<p>[a] due to random sampling chance from an assumed value of a hypothetical reference population parameter, or</p>
+<p>[b] more due to some substantial differences from the assumed value of the hypothetical reference population parameter.</p></li>
+</ul>
+</section>
+<section id="conceptional-components-of-statistical-hypothesis-testing" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="conceptional-components-of-statistical-hypothesis-testing"><span class="header-section-number">1.2</span> Conceptional Components of Statistical Hypothesis Testing</h2>
+<p>The flow chart below displays the general components of hypothesis testing. Each block starts with a particular, perhaps hypothetical, underlying population:</p>
+<ul>
+<li><p>We assume a hypothetical reference distribution for the unknown underlying parent population, i.e., given the null hypothesis would be true the hypothetical reference distribution is equal to the parent distribution.</p></li>
+<li><p>We would like to make a statement about a parameter of the unknown parent population based on the drawn sample.</p></li>
+<li><p>A set of hypothetical populations <strong>assume a set of possible population parameters</strong> and allow us to make <strong>what-if</strong> statements.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w14_Chapter08SingleTests/flowchart_hypothesis_testing.png" class="img-fluid figure-img"></p>
+<figcaption>Conceptional components of statistical hypothesis testing</figcaption>
+</figure>
+</div>
+</section>
+<section id="steps-of-hypothesis-testing" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="steps-of-hypothesis-testing"><span class="header-section-number">1.3</span> Steps of Hypothesis Testing</h2>
+<ol type="1">
+<li><p>We develop the sampling distribution of the test statistics assuming the sample was drawn from the hypothetical reference distribution.</p></li>
+<li><p>We draw a sample from the unknown parent population and calculate its associate test statistic.</p></li>
+<li><p>We evaluate how likely this test statistic comes from the assumed reference distribution.</p>
+<p><span class="math inline">\(\Rightarrow\)</span> Extreme test statistics (in either tail of the hypothetical reference distribution) are <strong>less likely</strong> to have been drawn from the hypothetical reference distribution. Thus they lead with error probability <span class="math inline">\(\alpha\)</span> to a rejection of the null hypothesis <span class="math inline">\(H_0\)</span>.</p></li>
+</ol>
+<section id="example-alpha-and-beta-error" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="example-alpha-and-beta-error"><span class="header-section-number">1.3.1</span> Example: Alpha and Beta Error</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w14_Chapter08SingleTests/alpha_beta_error_animation.png" class="img-fluid figure-img"></p>
+<figcaption>α and β Error Animation</figcaption>
+</figure>
+</div>
+<ul>
+<li><p><strong>Example:</strong> The <em>blue</em> sampling distribution assumes the <span class="math inline">\(H_0: \mu \leq 74.6\)</span> is true. A test statistic beyond the critical value is <em>less likely</em> to have been drawn for this hypothetical reference population.</p>
+<p>If the true parent population has an expectation of <span class="math inline">\(\mu_{H_1} = 77.0\)</span> then the distribution of the test statistic would be the one shown in <em>red</em>. (try the Shiny script <code>HypothesesApp.R</code> on your computer)</p></li>
+<li><p><strong>Only the <span class="math inline">\(\alpha\)</span>-error can be controlled</strong> because it depends on the hypothetical reference distribution.</p></li>
+<li><p>However, the <span class="math inline">\(\beta\)</span>-error <strong>cannot be controlled</strong> because it depends on the status of an unknown population distributions, which is unknown to us.</p></li>
+</ul>
+</section>
+</section>
+<section id="general-decision-errors" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="general-decision-errors"><span class="header-section-number">1.4</span> General Decision Errors</h2>
+<p>Possible outcomes of the decision-making process about the true state of the parent population, given the observed sample is drawn from it, are:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 40%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Decision</th>
+<th><span class="math inline">\(H_0\)</span> is true (unknown)</th>
+<th><span class="math inline">\(H_0\)</span> is false (unknown)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Reject <span class="math inline">\(H_0\)</span></strong> (based on sample)</td>
+<td><strong>Type I error:</strong> Small error with probability <span class="math inline">\(\alpha\)</span> assumes that the hypothetical reference distribution is true but we got an extreme sample. This leads to a rejection.</td>
+<td><strong>Correct Decision:</strong> With probability <span class="math inline">\(1 - \beta\)</span> depending on the state of the unknown parent population. This is also known as the <strong>Power</strong> at a given effect size <span class="math inline">\(|\mu_{H_0} - \mu_{H_1}|\)</span>.</td>
+</tr>
+<tr class="even">
+<td><strong>Fail to reject <span class="math inline">\(H_0\)</span></strong> (based on sample)</td>
+<td><strong>Correct Decision:</strong> Tentatively <span class="math inline">\(H_0\)</span> cannot be rejected. However, there is always the possibility that <span class="math inline">\(H_1\)</span> is true, and we do not reject <span class="math inline">\(H_0\)</span> due to sampling variation.</td>
+<td><strong>Type II error:</strong> Probability <span class="math inline">\(\beta\)</span> depending on a given state <span class="math inline">\(\mu_{H_1}\)</span> of the unknown population, the sample statistic falls into in non-rejection region due to sampling variation from the parent population.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="statistical-inference-one-population-hypothesis-testing" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Statistical Inference: One Population Hypothesis Testing</h1>
+<section id="general-steps-of-classical-hypothesis-testing" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="general-steps-of-classical-hypothesis-testing"><span class="header-section-number">2.1</span> General Steps of Classical Hypothesis Testing</h2>
+<p>The steps are:</p>
+<ol type="1">
+<li><p>Formulation of the null and the alternative hypotheses and other assumptions.</p></li>
+<li><p>Specification of the test statistic and its statistical distribution under the assumed reference distribution.</p></li>
+<li><p>Selection of a level of significance (willingness to reject the null hypothesis even though it is correct due to having obtained an extreme sample).</p></li>
+<li><p>Construction of a decision rule (i.e., critical values).</p></li>
+<li><p>Collection of a sample and computation of the value of the test statistic.</p></li>
+<li><p>Deciding in favor or against the null hypothesis based on the value of the test statistic.</p></li>
+</ol>
+</section>
+</section>
+<section id="formulation-of-the-hypotheses" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Formulation of the Hypotheses</h1>
+<section id="two-sided-test" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="two-sided-test"><span class="header-section-number">3.1</span> Two-sided Test</h2>
+<ul>
+<li>Two-sided test for the point value of the <strong>hypothetical reference parameter</strong> <span class="math inline">\(\theta_0\)</span>:</li>
+</ul>
+<p><span class="math display">\[H_0: \theta = \theta_0 \quad \text{against} \quad H_A: \theta \neq \theta_0\]</span></p>
+<p>or equivalently <span class="math inline">\(H_A: \begin{cases} \text{either } \theta &gt; \theta_0 \\ \text{or } \theta &lt; \theta_0 \end{cases}\)</span></p>
+<p>(two-sided because the true parameter can be left or right from <span class="math inline">\(\theta_0\)</span>)</p>
+<p>This implies that we have two critical values, one on the left and one on the right of the sample distribution of the test statistic under the null hypothesis.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w14_Chapter08SingleTests/two_sided_hypothesis.png" class="img-fluid figure-img"></p>
+<figcaption>Two-sided Hypothesis Testing</figcaption>
+</figure>
+</div>
+</section>
+<section id="one-sided-tests" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="one-sided-tests"><span class="header-section-number">3.2</span> One-sided Tests</h2>
+<ul>
+<li>One sided for an interval of parameter values:</li>
+</ul>
+<p><span class="math display">\[H_0: \theta \leq \theta_0 \quad \text{against} \quad H_A: \theta &gt; \theta_0\]</span></p>
+<p>or</p>
+<p><span class="math display">\[H_0: \theta \geq \theta_0 \quad \text{against} \quad H_A: \theta &lt; \theta_0\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w14_Chapter08SingleTests/one_sided_left.png" class="img-fluid figure-img"></p>
+<figcaption>One-sided Hypothesis Testing (left-tailed)</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w14_Chapter08SingleTests/one_sided_right.png" class="img-fluid figure-img"></p>
+<figcaption>One-sided Hypothesis Testing (right-tailed)</figcaption>
+</figure>
+</div>
+</section>
+<section id="important-notes-on-hypothesis-formulation" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="important-notes-on-hypothesis-formulation"><span class="header-section-number">3.3</span> Important Notes on Hypothesis Formulation</h2>
+<ul>
+<li><p>In <strong>one-sided testing</strong> the null hypothesis is very <strong>specific</strong> by choosing a particular direction of deviation from the null hypothesis in favor of an alternative hypothesis.</p></li>
+<li><p>The choice of the one- or two-sided specification depends on the problem under investigation. A <strong>one-sided hypothesis</strong> assumes that the analyst is <strong>more knowledgeable</strong> about the underlying populations.</p></li>
+<li><p>In a one-sided test the <strong>critical value moves closer</strong> towards the center of the test-statistics’ distribution because all the error probability <span class="math inline">\(\alpha\)</span> is concentrated in one tail: Therefore, if the direction of the alternative hypothesis has been <strong>assumed properly</strong>, the null hypothesis will more likely be rejected.</p></li>
+<li><p>Place the <strong>issue that you aim to confirm</strong> into the alternative hypothesis, because we only can control the <span class="math inline">\(\alpha\)</span>-error:</p>
+<ul>
+<li>I.e., rejection of the null hypothesis leads to acceptance of alternative hypothesis with a small error probability.</li>
+<li>The probability <span class="math inline">\(\alpha\)</span> of erroneously rejecting the null hypothesis should be small.</li>
+<li>The alternative hypothesis is usually less specific (broad range of possible parameters).</li>
+</ul></li>
+<li><p>As a rule of thumb, <strong>choose the largest possible</strong> <span class="math inline">\(\alpha\)</span><strong>-error</strong> that you can live with.</p></li>
+<li><p>When <span class="math inline">\(H_0\)</span> is not rejected we need to say “<strong>we fail to reject <span class="math inline">\(H_0\)</span> at the error level <span class="math inline">\(\alpha\)</span></strong>” rather than saying “<del>we accept <span class="math inline">\(H_0\)</span> at the error level <span class="math inline">\(\alpha\)</span></del>” because there is always the possibility of committing a <span class="math inline">\(\beta\)</span> error (i.e., <span class="math inline">\(H_0\)</span> is false but the observed sample is extreme with regards to the unknown parent population, which leads to a <strong>failure</strong> of rejecting <span class="math inline">\(H_0\)</span>).</p></li>
+<li><p>Remember:</p>
+<ul>
+<li>[a] under the assumption that the null hypothesis is correct, then <strong>the variability of the test statistic</strong> only comes from <strong>sampling error</strong>,</li>
+<li>[b] if the alternative hypothesis is correct, then the deviation of test statistic stems from [i] a true <strong>difference to the expected value (the effect)</strong> from the value under the null hypothesis plus [ii] <strong>a general sampling error</strong>.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="example-hypothesis-testing-for-the-population-proportion" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Example: Hypothesis Testing for the Population Proportion</h1>
+<section id="a-selection-of-a-sample-statistic-and-its-sampling-distribution" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="a-selection-of-a-sample-statistic-and-its-sampling-distribution"><span class="header-section-number">4.1</span> [a] Selection of a Sample Statistic and Its Sampling Distribution</h2>
+<ul>
+<li><p>Based on the point estimator, e.g., <span class="math inline">\(P = \frac{1}{n} \cdot \sum_{i=1}^{n} X_i\)</span> and its variances, we can design a <strong>test statistics</strong>. Note that the variance must be evaluated <strong>assuming</strong> that null hypothesis correct, that is <span class="math inline">\(H_0: \pi = \pi_0\)</span>.</p>
+<p>Thus, the <strong>standard error</strong> for a binomial test scenario becomes:</p></li>
+</ul>
+<p><span class="math display">\[\sigma_P = \sqrt{\frac{\pi_0 \cdot (1 - \pi_0)}{n}}\]</span></p>
+<ul>
+<li>We also can approximate the distributions under the null hypothesis of this <strong>test statistic</strong> for a sufficiently large sample size <span class="math inline">\(n &gt; 100\)</span> by the normal distribution and <span class="math inline">\(\pi_0\)</span> is not to close at either end of its feasible range <span class="math inline">\([0,1]\)</span>:</li>
+</ul>
+<p><span class="math display">\[z(P) = \frac{P - \pi_0}{\sigma_P} \sim N(0,1)\]</span></p>
+<section id="excursion-exact-binomial-test" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="excursion-exact-binomial-test"><span class="header-section-number">4.1.1</span> Excursion: Exact Binomial Test</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w14_Chapter08SingleTests/binomial_distribution.png" class="img-fluid figure-img"></p>
+<figcaption>Binomial Distribution</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>For <strong>smaller sample sizes</strong> or extreme hypothetical parameters <span class="math inline">\(\pi_0\)</span> (leading to a skewed distribution of the test statistic) the exact binomial distribution should be used.</p>
+<p>However, one most likely <strong>will not be able to work with the exact Type I error probability <span class="math inline">\(\alpha\)</span></strong>, due to the discrete nature of the binomial distribution. See: <code>ExactBinomialTest.Rmd</code></p></li>
+</ul>
+<p><strong>Notes:</strong></p>
+<ul>
+<li><p>Rather than using the distribution of the rate estimator <span class="math inline">\(\hat{\pi} = \frac{X}{n}\)</span>, the hypothetical distribution <span class="math inline">\(X \sim Binomial(\pi_0 = 0.2, n = 100)\)</span> of the <strong>equivalent count estimator</strong> <span class="math inline">\(X = \sum_{i=1}^{n} X_i\)</span> (number of successes) is used because it is binomial distributed.</p></li>
+<li><p>The expected value under the null hypothesis is <span class="math inline">\(E(X) = n \cdot \pi_0 = 20\)</span></p></li>
+<li><p>The critical values are <span class="math inline">\(X_{lower} = 12\)</span> and <span class="math inline">\(X_{upper} = 28\)</span> with their associated error probabilities <span class="math inline">\(\alpha_{lower} = 0.02522\)</span> and <span class="math inline">\(\alpha_{upper} = 0.02002\)</span>, respectively.</p>
+<p>Note: Because the distribution is discrete the total error probability of <span class="math inline">\(\alpha = 0.05\)</span> cannot be exhausted.</p></li>
+</ul>
+</section>
+</section>
+<section id="b-selection-of-the-level-of-significance" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="b-selection-of-the-level-of-significance"><span class="header-section-number">4.2</span> [b] Selection of the Level of Significance</h2>
+<ul>
+<li>Select the significance level <span class="math inline">\(\alpha\)</span> according to the amount of <strong>risk you are willing to take</strong> to reject the <strong>correct null hypothesis by making an erroneous decision</strong> due to sampling variations.</li>
+</ul>
+</section>
+<section id="c-construct-the-decision-rule" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="c-construct-the-decision-rule"><span class="header-section-number">4.3</span> [c] Construct the Decision Rule</h2>
+<ul>
+<li>Split the parameter space of <span class="math inline">\(\pi\)</span> in dependence of the significance level into an <strong>area in accordance with the null hypothesis</strong> and tail areas (two-sided tests) or one tail area (one-sided test) <strong>indicating the alternative hypothesis is more valid</strong> because of a wrongly assumed null hypothesis.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w14_Chapter08SingleTests/fig_9-2_sampling_distribution.png" class="img-fluid figure-img"></p>
+<figcaption>FIGURE 9-2. Sampling distribution of P, centered on hypothesized value π = .2.</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>The selection of the acceptance and rejection areas depends on the specification of the null hypothesis as one- or two-sided.</p></li>
+<li><p><strong>Def. Critical region and critical values:</strong> The critical region corresponds to those values of the test statistics, for which the null hypothesis is rejected at a given error probability <span class="math inline">\(\alpha\)</span>. The limit(s) of the critical region are (is) the critical values.</p></li>
+<li><p>The two-sided null and the alternative hypotheses can be translated into:</p>
+<ul>
+<li><span class="math inline">\(H_0: T \in ]A_1, A_2[\)</span> under the null hypothesis, and</li>
+<li><span class="math inline">\(H_1: T \leq A_1 \cup T \geq A_2\)</span> under the alternative hypothesis: (these are the critical regions for a two-sided test)</li>
+</ul></li>
+</ul>
+</section>
+<section id="d-example-residential-mobility" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="d-example-residential-mobility"><span class="header-section-number">4.4</span> [d] Example: Residential Mobility</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w14_Chapter08SingleTests/table_9-4_residential_mobility.png" class="img-fluid figure-img"></p>
+<figcaption>TABLE 9-4. Summary of Test of Hypotheses for Residential Mobility Example</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w14_Chapter08SingleTests/fig_9-3_critical_region.png" class="img-fluid figure-img"></p>
+<figcaption>FIGURE 9-3. Determining critical region limits for residential mobility example, α = .05.</figcaption>
+</figure>
+</div>
+<ul>
+<li>Assume that the observed value of for the sample proportion is <span class="math inline">\(P = 0.26\)</span></li>
+</ul>
+</section>
+</section>
+<section id="testing-for-population-expectations" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Testing for Population Expectations</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w14_Chapter08SingleTests/table_9-5_single_sample_tests.png" class="img-fluid figure-img"></p>
+<figcaption>TABLE 9-5. Single-Sample Tests for μ</figcaption>
+</figure>
+</div>
+<p><strong>Background:</strong> A single random sample of size <span class="math inline">\(n\)</span> is drawn from a population, and the sample mean <span class="math inline">\(\bar{x}\)</span> is calculated. The sample value will be compared to the hypothesized value to determine if <span class="math inline">\(H_0\)</span> should be rejected. The sampling distribution of <span class="math inline">\(\bar{X}\)</span> is known exactly if <span class="math inline">\(X\)</span> is normal, which permits one to attach an exact PROB-VALUE to the sample result. If <span class="math inline">\(X\)</span> is approximately normal, the PROB-VALUE is approximate.</p>
+<p><strong>Hypotheses:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Two-tailed (A)</th>
+<th>One-tailed (B)</th>
+<th>One-tailed (C)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(H_0: \mu = \mu_0\)</span></td>
+<td><span class="math inline">\(H_0: \mu \geq \theta_0\)</span></td>
+<td><span class="math inline">\(H_0: \mu \leq \theta_0\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(H_A: \mu \neq \mu_0\)</span></td>
+<td><span class="math inline">\(H_A: \mu &lt; \mu_0\)</span></td>
+<td><span class="math inline">\(H_A: \mu &gt; \mu_0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Test statistic:</strong></p>
+<p><strong>Case 1:</strong> <span class="math inline">\(\sigma\)</span> known. The test statistic <span class="math inline">\(Z\)</span> is normally distributed. Using the sample mean <span class="math inline">\(\bar{x}\)</span>, the observed value is:</p>
+<p><span class="math display">\[Z = \frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}}\]</span></p>
+<p><strong>Case 2:</strong> <span class="math inline">\(\sigma\)</span> unknown. The test statistic <span class="math inline">\(T\)</span> is <span class="math inline">\(t\)</span>-distributed with <span class="math inline">\(n - 1\)</span> degrees of freedom. Using the sample mean and standard deviation <span class="math inline">\((\bar{x}, s)\)</span>, the observed value is:</p>
+<p><span class="math display">\[T = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}\]</span></p>
+<p><strong>PROB-VALUE (PV) and Decision Rules:</strong></p>
+<ul>
+<li>Two-tailed test (format A): <span class="math inline">\(PV = P(|Z| &gt; z) = P(Z &lt; -z) + P(Z &gt; z)\)</span> or <span class="math inline">\(PV = P(|T| &gt; t) = P(T &lt; -t) + P(T &gt; t)\)</span></li>
+<li>One-tailed test (format B): <span class="math inline">\(PV = P(Z &lt; -z)\)</span> or <span class="math inline">\(PV = P(T &lt; -t)\)</span></li>
+<li>One-tailed test (format C): <span class="math inline">\(PV = P(Z &gt; z)\)</span> or <span class="math inline">\(PV = P(T &gt; t)\)</span></li>
+</ul>
+<p><strong>Reject <span class="math inline">\(H_0\)</span> if PROB-VALUE <span class="math inline">\(&lt; \alpha\)</span></strong></p>
+</section>
+<section id="sampling-distribution-of-mean-with-unknown-population-standard-deviation" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Sampling Distribution of Mean with Unknown Population Standard Deviation</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w14_Chapter08SingleTests/fig_12-4_variance_distribution.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 12.4. Sampling distribution of <span class="math inline">\(s^2\)</span> from a normally distributed population with <span class="math inline">\(\mu = 50\)</span>, <span class="math inline">\(\sigma^2 = 138.89\)</span>, and <span class="math inline">\(N = 5\)</span></figcaption>
+</figure>
+</div>
+<ul>
+<li><p>The unknown population standard deviation <span class="math inline">\(\sigma\)</span> can be estimated by <span class="math inline">\(s_X\)</span> from the sample that we use to calculate the test statistic.</p></li>
+<li><p>The sampling distribution of the population variance is positively skewed predominately due to the lower bound being zero.</p>
+<p>Statistically speaking: the variance follows a <span class="math inline">\(\chi^2\)</span>-distribution with <span class="math inline">\(df = n - 1\)</span>.</p></li>
+<li><p><strong>Due to the skewness of this distribution more estimated sample variances will smaller than their expected values.</strong></p></li>
+<li><p>The standardized test statistics <span class="math inline">\(\bar{X}\)</span> becomes:</p></li>
+</ul>
+<p><span class="math display">\[t = \frac{\bar{X} - \mu_0}{s_X/\sqrt{n}} \quad \text{with} \quad s_X = \sqrt{\frac{\sum_{i=1}^{n}(X_i - \bar{X})^2}{n-1}}\]</span></p>
+<ul>
+<li><p>Since the denominator <span class="math inline">\(s_X/\sqrt{n}\)</span> is on average smaller the <span class="math inline">\(t\)</span>-statistic is usually <strong>inflated</strong>.</p>
+<p><span class="math inline">\(\Rightarrow\)</span> Inflation will cause a more frequent rejection than we would expect under an <span class="math inline">\(\alpha\)</span>-error.</p></li>
+</ul>
+<section id="the-t-distribution" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="the-t-distribution"><span class="header-section-number">6.1</span> The t-Distribution</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w14_Chapter08SingleTests/fig_12-5_t_distribution.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 12.5. <span class="math inline">\(t\)</span> distribution for 1, 30, and <span class="math inline">\(\infty\)</span> degrees of freedom</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>The symmetric <span class="math inline">\(t\)</span>-distribution corrects this inflation of the <span class="math inline">\(t\)</span>-statistic by being heavier in its tails.</p></li>
+<li><p>The <span class="math inline">\(t\)</span>-distribution in dependence of the sample size through the degrees of freedom <span class="math inline">\(df = n - 1\)</span> is shown above.</p></li>
+<li><p>One degree of freedom is lost because after the mean has been estimated only <span class="math inline">\(n - 1\)</span> sample observation can vary freely.</p></li>
+<li><p>The test logic remains the same as for the <span class="math inline">\(z\)</span>-values.</p>
+<p>Just the <span class="math inline">\(t\)</span>-distribution is used to calculate the critical values and evaluate the <span class="math inline">\(t\)</span>-statistic:</p>
+<ul>
+<li><span class="math inline">\(t_{\alpha/2, df}^{critical}\)</span> and <span class="math inline">\(t_{1-\alpha/2, df}^{critical}\)</span> for the two-sided hypothesis,</li>
+<li>and <span class="math inline">\(t_{\alpha, df}^{critical}\)</span> or <span class="math inline">\(t_{1-\alpha, df}^{critical}\)</span> for one-sided hypotheses testing, respectively.</li>
+</ul></li>
+<li><p>As the sample size increases, the sampling distribution of the variance will become more symmetric, thus there will be an equal number of estimated variances below and above the expected value.</p>
+<ul>
+<li>Consequently, sample sizes larger than <span class="math inline">\(n &gt; 30\)</span> the <span class="math inline">\(t\)</span>-distribution can be approximated by the standard normal distribution.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="relationship-between-hypothesis-testing-and-confidence-intervals" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Relationship between Hypothesis Testing and Confidence Intervals</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w14_Chapter08SingleTests/fig_9-9_ci_relationship.png" class="img-fluid figure-img"></p>
+<figcaption>FIGURE 9-9. Relationship between confidence interval estimation and hypothesis testing for Example 9-1.</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>The confidence interval at a given probability <span class="math inline">\(1 - \alpha\)</span> complements the classical hypothesis testing approach for <strong>two-sided</strong> hypotheses testing.</p></li>
+<li><p>The confidence interval is constructed using the <strong>observed value of the test statistic</strong>, which is based on the unknown parent distribution.</p></li>
+<li><p>If the hypothetical value <span class="math inline">\(\theta_0\)</span> under the null hypothesis falls <strong>within</strong> the confidence interval, then we are <strong>not able</strong> to reject the null hypothesis.</p></li>
+</ul>
+</section>
+<section id="problems-of-significance-tests" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Problems of Significance Tests</h1>
+<section id="practical-relevance" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="practical-relevance"><span class="header-section-number">8.1</span> Practical Relevance</h2>
+<ul>
+<li><p>A statistically significant result does not mean that it is relevant for practical purposes. Vice versa, a small but insignificant difference may be practically relevant.</p>
+<p>Statistical significance is based on the distribution of the test statistic under the null hypothesis, whereas practical significance is based on the absolute difference of the test statistic from the value assumed under the null hypothesis.</p>
+<p>This difference needs to be larger than a given threshold value to induce action.</p>
+<p><strong>Example:</strong> a homeowner has a mortgage at 5.5% interest on his/her home. Another lender offers an interest rate of 5.0% to refinance the mortgage. Will the homeowner take this offer because he/she saves substantial money after refinancing expenses?</p></li>
+</ul>
+</section>
+<section id="deductive-reasoning" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="deductive-reasoning"><span class="header-section-number">8.2</span> Deductive Reasoning</h2>
+<ul>
+<li><p>A sample must always be drawn <strong>after</strong> we have formalized the hypotheses.</p>
+<p>This leads to problems for prior exploratory data analyses, which may bias the process of hypothesis formulation.</p>
+<p>The hypothesis would become dependent on a sample, if we use the same sample to formulate the hypothesis and therefore, predetermine the outcome.</p></li>
+</ul>
+</section>
+<section id="large-sample-problem" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="large-sample-problem"><span class="header-section-number">8.3</span> Large Sample Problem</h2>
+<ul>
+<li>As the sample size <span class="math inline">\(n\)</span> becomes excessively large, virtually non-existing differences (i.e., effect sizes) of the test statistic from the hypothetical parameter become statistically significant because the standard error of the test statistics shrinks toward zero (remember the central limit theorem).</li>
+</ul>
+</section>
+<section id="multiple-testing" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="multiple-testing"><span class="header-section-number">8.4</span> Multiple Testing</h2>
+<ul>
+<li><p>The error probability increases if we perform multiple tests on the same dataset:</p>
+<p>Assume we perform two independent tests on the same data, the probability of not rejecting [NR] both null hypotheses correctly becomes:</p></li>
+</ul>
+<p><span class="math display">\[\Pr(NR \cap NR) = (1 - \alpha) \cdot (1 - \alpha) = (1 - \alpha)^2 &lt; (1 - \alpha)\]</span></p>
+<p>Therefore, the complement error probability of rejecting [R] at least one test incorrectly becomes:</p>
+<p><span class="math display">\[\Pr(R \cup R) = 1 - (1 - \alpha)^2 = \alpha_{new} \quad \text{with} \quad \alpha_{new} &gt; \alpha\]</span></p>
+<p>Consequently, the error probability <span class="math inline">\(\alpha_{new}\)</span> for each individual test must be set to something smaller, e.g., <strong>Bonferroni adjustment</strong>:</p>
+<p><span class="math display">\[\alpha_{new} = \frac{\alpha}{K}\]</span></p>
+<p>where <span class="math inline">\(K\)</span> is the number of tests performed on the same data set.</p>
+</section>
+</section>
+<section id="significance-test-for-the-correlation-coefficient" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Significance Test for the Correlation Coefficient</h1>
+<section id="test-under-the-null-hypothesis-of-independence-see-bbr-p486-487" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="test-under-the-null-hypothesis-of-independence-see-bbr-p486-487"><span class="header-section-number">9.1</span> Test Under the Null Hypothesis of Independence (see BBR p486-487)</h2>
+<ul>
+<li><p><strong>Assumption:</strong> The bivariate reference population consists of two uncorrelated variables.</p>
+<p>This leads to the null hypothesis <span class="math inline">\(H_0: \rho_0 = 0.0\)</span> and the alternative hypothesis <span class="math inline">\(H_1: \rho_0 \neq 0.0\)</span>.</p>
+<p>Assuming a correlation of zero under the null hypothesis is sensible because it is <strong>least specific</strong> and <strong>neutral</strong> with regards to a <strong>potential dependency</strong> between two variables.</p></li>
+<li><p>The <strong>population correlation parameter</strong> is denoted by <span class="math inline">\(\rho\)</span> whereas the <strong>sample statistic</strong> is denoted by <span class="math inline">\(r\)</span>.</p></li>
+<li><p>If we can assume that both variables <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are <strong>approximately jointly normal distributed and uncorrelated</strong>, then we do not need to evaluate the sampling distribution with a simulation experiment. Its distribution is known:</p>
+<ul>
+<li><p>The sample correlation coefficient <span class="math inline">\(r\)</span> follows under the <strong>null hypothesis</strong> <span class="math inline">\(H_0: \rho = 0\)</span> a <strong>t-distribution</strong> with <span class="math inline">\(df = n - 2\)</span> degrees of freedom where <span class="math inline">\(n\)</span> is the number of observations.</p></li>
+<li><p>It has an expected value of <span class="math inline">\(E(r) = 0\)</span> and a standard error of <span class="math inline">\(\sqrt{Var(r)} = \sqrt{\frac{1 - r^2}{n - 2}}\)</span>, that is:</p></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[t = \frac{r - E(r)}{\sqrt{Var(r)}} \sim t_{df=n-2}\]</span></p>
+<ul>
+<li>We are <strong>losing two degrees of freedom</strong> for the correlation coefficient because for each variable first their means need to be estimated.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w14_Chapter08SingleTests/sampling_dist_correlation_rho0.png" class="img-fluid figure-img"></p>
+<figcaption>Sampling Distribution of <span class="math inline">\(\hat{\rho}\)</span> given population <span class="math inline">\(\rho = 0\)</span> and <span class="math inline">\(n = 64\)</span></figcaption>
+</figure>
+</div>
+</section>
+<section id="test-statistic-for-correlation" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="test-statistic-for-correlation"><span class="header-section-number">9.2</span> Test Statistic for Correlation</h2>
+<ul>
+<li>The test statistic becomes:</li>
+</ul>
+<p><span class="math display">\[t = \frac{r - E(r)}{\sqrt{Var(r)}} = \frac{r \cdot \sqrt{n - 2}}{\sqrt{1 - r^2}}\]</span></p>
+<ul>
+<li><p>Extreme values <span class="math inline">\(t\)</span> indicate that the pairs of sample observations are most likely not originating from an uncorrelated bivariate parent population.</p></li>
+<li><p>For a sample sizes of more than <span class="math inline">\(n &gt; 30\)</span> observation pairs the <span class="math inline">\(t\)</span>-distribution can be approximated by the standard normal distribution.</p></li>
+</ul>
+</section>
+</section>
+<section id="distribution-of-rho-under-alternative-hypotheses" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Distribution of <span class="math inline">\(\rho\)</span> under Alternative Hypotheses</h1>
+<ul>
+<li>Under the assumption that <span class="math inline">\(\rho_0 \neq 0.0\)</span> both variables are correlated, and the true population correlation coefficient will move:
+<ul>
+<li>to either <span class="math inline">\(\rho \to +1\)</span> for positive correlation</li>
+<li>and <span class="math inline">\(\rho \to -1\)</span> for negative correlation.</li>
+</ul></li>
+<li>Now the distribution can no longer be symmetric because it is bound asymmetrically:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w14_Chapter08SingleTests/sampling_dist_rho_neg.png" class="img-fluid figure-img"></p>
+<figcaption>Sampling Distribution of <span class="math inline">\(\hat{\rho}\)</span> given population <span class="math inline">\(\rho = -0.5\)</span> and <span class="math inline">\(n = 64\)</span></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w14_Chapter08SingleTests/sampling_dist_rho_pos.png" class="img-fluid figure-img"></p>
+<figcaption>Sampling Distribution of <span class="math inline">\(\hat{\rho}\)</span> given population <span class="math inline">\(\rho = 0.8\)</span> and <span class="math inline">\(n = 64\)</span></figcaption>
+</figure>
+</div>
+<ul>
+<li>Clearly, neither a normal approximation nor the <span class="math inline">\(t\)</span>-distribution can be used to evaluate the significance of an observed correlation coefficient of the critical values.</li>
+</ul>
+<section id="fisher-z-transformation" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="fisher-z-transformation"><span class="header-section-number">10.1</span> Fisher z-Transformation</h2>
+<ul>
+<li>However, the so-called <strong>Fisher z-transformation</strong> can be used to transform the correlation coefficient <span class="math inline">\(r\)</span> to be approximately normal distributed:</li>
+</ul>
+<p><span class="math display">\[z(r) = \frac{1}{2} \cdot \ln\left(\frac{1 + r}{1 - r}\right)\]</span></p>
+<p>with</p>
+<p><span class="math display">\[E[z(r)] = \frac{1}{2} \cdot \ln\left(\frac{1 + \rho_0}{1 - \rho_0}\right)\]</span></p>
+<p>and</p>
+<p><span class="math display">\[Var[z(r)] = \frac{1}{N - 3}\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[\frac{z(r) - E[z(r)]}{\sqrt{Var[z(r)]}} \sim N(0,1)\]</span></p>
+<p>is approximately standard normal distributed and can be used to test:</p>
+<p><span class="math display">\[H_0: \rho = \rho_0 \quad \text{against} \quad H_1: \rho \neq \rho_0\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/w14_Chapter08SingleTests/fisher_z_transformed_rho08.png" class="img-fluid figure-img"></p>
+<figcaption>Fisher z-transformed Distribution of <span class="math inline">\(\hat{\rho}\)</span> given population <span class="math inline">\(\rho = 0.8\)</span> and <span class="math inline">\(n = 64\)</span></figcaption>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="r-code-examples" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> R Code Examples</h1>
+<section id="one-sample-t-test" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="one-sample-t-test"><span class="header-section-number">11.1</span> One-Sample t-Test</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Testing if population mean equals a hypothesized value</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sample_data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="at">mean =</span> <span class="dv">52</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Hypotheses: H0: mu = 50 vs H1: mu != 50</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>mu_0 <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform t-test</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>t_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(sample_data, <span class="at">mu =</span> mu_0)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  sample_data
+t = 0.88024, df = 24, p-value = 0.3875
+alternative hypothesis: true mean is not equal to 50
+95 percent confidence interval:
+ 47.75878 55.57462
+sample estimates:
+mean of x 
+  51.6667 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manual calculation</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x_bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(sample_data)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sd</span>(sample_data)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(sample_data)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>t_stat <span class="ot">&lt;-</span> (x_bar <span class="sc">-</span> mu_0) <span class="sc">/</span> (s <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="sc">-</span><span class="fu">abs</span>(t_stat), <span class="at">df =</span> df)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Manual Calculation:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Manual Calculation:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Sample mean:"</span>, <span class="fu">round</span>(x_bar, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sample mean: 51.667 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Sample SD:"</span>, <span class="fu">round</span>(s, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sample SD: 9.467 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"t-statistic:"</span>, <span class="fu">round</span>(t_stat, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>t-statistic: 0.88 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Degrees of freedom:"</span>, df, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Degrees of freedom: 24 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"p-value (two-sided):"</span>, <span class="fu">round</span>(p_value, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>p-value (two-sided): 0.3875 </code></pre>
+</div>
+</div>
+</section>
+<section id="one-sample-proportion-test" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="one-sample-proportion-test"><span class="header-section-number">11.2</span> One-Sample Proportion Test</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Testing population proportion</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># H0: pi = 0.20 vs H1: pi != 0.20</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>successes <span class="ot">&lt;-</span> <span class="dv">26</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>pi_0 <span class="ot">&lt;-</span> <span class="fl">0.20</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Using prop.test (with continuity correction)</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>prop_result <span class="ot">&lt;-</span> <span class="fu">prop.test</span>(successes, n, <span class="at">p =</span> pi_0)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(prop_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    1-sample proportions test with continuity correction
+
+data:  successes out of n, null probability pi_0
+X-squared = 1.8906, df = 1, p-value = 0.1691
+alternative hypothesis: true p is not equal to 0.2
+95 percent confidence interval:
+ 0.1797427 0.3590222
+sample estimates:
+   p 
+0.26 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manual z-test calculation</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>p_hat <span class="ot">&lt;-</span> successes <span class="sc">/</span> n</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(pi_0 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> pi_0) <span class="sc">/</span> n)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>z_stat <span class="ot">&lt;-</span> (p_hat <span class="sc">-</span> pi_0) <span class="sc">/</span> se</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>p_value_z <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(z_stat))</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Manual z-test:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Manual z-test:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Sample proportion:"</span>, p_hat, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sample proportion: 0.26 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Standard error:"</span>, <span class="fu">round</span>(se, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Standard error: 0.04 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"z-statistic:"</span>, <span class="fu">round</span>(z_stat, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>z-statistic: 1.5 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"p-value (two-sided):"</span>, <span class="fu">round</span>(p_value_z, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>p-value (two-sided): 0.1336 </code></pre>
+</div>
+</div>
+</section>
+<section id="correlation-test" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="correlation-test"><span class="header-section-number">11.3</span> Correlation Test</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Testing correlation coefficient</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fl">0.6</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> <span class="fl">0.8</span>)  <span class="co"># Correlated with rho ~ 0.6</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Test H0: rho = 0</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>cor_result <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(x, y)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(cor_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  x and y
+t = 4.1711, df = 28, p-value = 0.0002652
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.3330771 0.8007416
+sample estimates:
+      cor 
+0.6190606 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manual calculation</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">cor</span>(x, y)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>t_stat_cor <span class="ot">&lt;-</span> r <span class="sc">*</span> <span class="fu">sqrt</span>(n <span class="sc">-</span> <span class="dv">2</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> r<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>df_cor <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="dv">2</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>p_value_cor <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="sc">-</span><span class="fu">abs</span>(t_stat_cor), <span class="at">df =</span> df_cor)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Manual Calculation:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Manual Calculation:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Sample correlation:"</span>, <span class="fu">round</span>(r, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sample correlation: 0.6191 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"t-statistic:"</span>, <span class="fu">round</span>(t_stat_cor, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>t-statistic: 4.171 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"p-value:"</span>, <span class="fu">round</span>(p_value_cor, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>p-value: 3e-04 </code></pre>
+</div>
+</div>
+</section>
+<section id="fisher-z-transformation-1" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="fisher-z-transformation-1"><span class="header-section-number">11.4</span> Fisher z-Transformation</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fisher z-transformation for testing rho = rho_0 (non-zero)</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>fisher_z <span class="ot">&lt;-</span> <span class="cf">function</span>(r) {</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">log</span>((<span class="dv">1</span> <span class="sc">+</span> r) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> r))</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Test H0: rho = 0.5 vs H1: rho != 0.5</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fl">0.72</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>rho_0 <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>z_r <span class="ot">&lt;-</span> <span class="fu">fisher_z</span>(r)</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>z_rho <span class="ot">&lt;-</span> <span class="fu">fisher_z</span>(rho_0)</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>se_z <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">sqrt</span>(n <span class="sc">-</span> <span class="dv">3</span>)</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>z_stat_fisher <span class="ot">&lt;-</span> (z_r <span class="sc">-</span> z_rho) <span class="sc">/</span> se_z</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>p_value_fisher <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(z_stat_fisher))</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Testing H0: rho ="</span>, rho_0, <span class="st">"vs H1: rho !="</span>, rho_0, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Testing H0: rho = 0.5 vs H1: rho != 0.5 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Sample r:"</span>, r, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sample r: 0.72 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Fisher z(r):"</span>, <span class="fu">round</span>(z_r, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fisher z(r): 0.9076 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Fisher z(rho_0):"</span>, <span class="fu">round</span>(z_rho, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fisher z(rho_0): 0.5493 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"z-statistic:"</span>, <span class="fu">round</span>(z_stat_fisher, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>z-statistic: 2.457 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"p-value:"</span>, <span class="fu">round</span>(p_value_fisher, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>p-value: 0.014 </code></pre>
+</div>
+</div>
+</section>
+<section id="visualizing-hypothesis-testing" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="visualizing-hypothesis-testing"><span class="header-section-number">11.5</span> Visualizing Hypothesis Testing</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Two-sided hypothesis test visualization</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>mu_0 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">1000</span>)</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Critical values</span></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>z_crit <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">data =</span> <span class="fu">subset</span>(df, x <span class="sc">&lt;=</span> <span class="sc">-</span>z_crit), <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), </span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">data =</span> <span class="fu">subset</span>(df, x <span class="sc">&gt;=</span> z_crit), <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), </span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span>z_crit, z_crit), <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="sc">-</span>z_crit, <span class="at">y =</span> <span class="fl">0.05</span>, <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"-z[α/2] = "</span>, <span class="fu">round</span>(<span class="sc">-</span>z_crit, <span class="dv">2</span>)), </span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">hjust =</span> <span class="fl">1.1</span>, <span class="at">parse =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> z_crit, <span class="at">y =</span> <span class="fl">0.05</span>, <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"z[α/2] = "</span>, <span class="fu">round</span>(z_crit, <span class="dv">2</span>)), </span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">parse =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="sc">-</span><span class="dv">3</span>, <span class="at">y =</span> <span class="fl">0.1</span>, <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"α/2 = "</span>, alpha<span class="sc">/</span><span class="dv">2</span>), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="fl">0.1</span>, <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"α/2 = "</span>, alpha<span class="sc">/</span><span class="dv">2</span>), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="fl">0.2</span>, <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"1 - α = "</span>, <span class="dv">1</span> <span class="sc">-</span> alpha)) <span class="sc">+</span></span>
+<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Two-Sided Hypothesis Test (α = 0.05)"</span>,</span>
+<span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Reject H₀ if |z| &gt; 1.96"</span>,</span>
+<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"z-value"</span>,</span>
+<span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Density"</span>) <span class="sc">+</span></span>
+<span id="cb49-32"><a href="#cb49-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="w14_Chapter08SingleTests_files/figure-html/visualization-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="power-analysis" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="power-analysis"><span class="header-section-number">11.6</span> Power Analysis</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizing power and Type II error</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>mu_0 <span class="ot">&lt;-</span> <span class="dv">0</span>      <span class="co"># Mean under H0</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>mu_1 <span class="ot">&lt;-</span> <span class="fl">1.5</span>    <span class="co"># Mean under H1 (true mean)</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">1</span>     <span class="co"># Standard deviation</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">25</span>        <span class="co"># Sample size</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span>  <span class="co"># Significance level</span></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>z_crit <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>crit_value <span class="ot">&lt;-</span> mu_0 <span class="sc">+</span> z_crit <span class="sc">*</span> se</span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">1000</span>)</span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>y_h0 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x, <span class="at">mean =</span> mu_0, <span class="at">sd =</span> se)</span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>y_h1 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x, <span class="at">mean =</span> mu_1, <span class="at">sd =</span> se)</span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a>df_h0 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y_h0, <span class="at">dist =</span> <span class="st">"H0"</span>)</span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a>df_h1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y_h1, <span class="at">dist =</span> <span class="st">"H1"</span>)</span>
+<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate power</span></span>
+<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a>power <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(crit_value, <span class="at">mean =</span> mu_1, <span class="at">sd =</span> se)</span>
+<span id="cb50-24"><a href="#cb50-24" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(crit_value, <span class="at">mean =</span> mu_1, <span class="at">sd =</span> se)</span>
+<span id="cb50-25"><a href="#cb50-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-26"><a href="#cb50-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb50-27"><a href="#cb50-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># H0 distribution</span></span>
+<span id="cb50-28"><a href="#cb50-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> df_h0, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb50-29"><a href="#cb50-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">data =</span> <span class="fu">subset</span>(df_h0, x <span class="sc">&gt;=</span> crit_value), <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), </span>
+<span id="cb50-30"><a href="#cb50-30" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb50-31"><a href="#cb50-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># H1 distribution</span></span>
+<span id="cb50-32"><a href="#cb50-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> df_h1, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb50-33"><a href="#cb50-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">data =</span> <span class="fu">subset</span>(df_h1, x <span class="sc">&gt;=</span> crit_value), <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), </span>
+<span id="cb50-34"><a href="#cb50-34" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"green"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb50-35"><a href="#cb50-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">data =</span> <span class="fu">subset</span>(df_h1, x <span class="sc">&lt;=</span> crit_value), <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), </span>
+<span id="cb50-36"><a href="#cb50-36" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb50-37"><a href="#cb50-37" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Critical value line</span></span>
+<span id="cb50-38"><a href="#cb50-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> crit_value, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb50-39"><a href="#cb50-39" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Annotations</span></span>
+<span id="cb50-40"><a href="#cb50-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> mu_0, <span class="at">y =</span> <span class="fu">max</span>(y_h0) <span class="sc">*</span> <span class="fl">1.1</span>, <span class="at">label =</span> <span class="st">"H₀: μ = 0"</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb50-41"><a href="#cb50-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> mu_1, <span class="at">y =</span> <span class="fu">max</span>(y_h1) <span class="sc">*</span> <span class="fl">1.1</span>, <span class="at">label =</span> <span class="st">"H₁: μ = 1.5"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb50-42"><a href="#cb50-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> crit_value <span class="sc">+</span> <span class="fl">0.5</span>, <span class="at">y =</span> <span class="fu">max</span>(y_h0) <span class="sc">*</span> <span class="fl">0.6</span>, </span>
+<span id="cb50-43"><a href="#cb50-43" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"α = "</span>, <span class="fu">round</span>(alpha, <span class="dv">2</span>)), <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb50-44"><a href="#cb50-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> mu_1 <span class="sc">-</span> <span class="fl">0.8</span>, <span class="at">y =</span> <span class="fu">max</span>(y_h1) <span class="sc">*</span> <span class="fl">0.4</span>, </span>
+<span id="cb50-45"><a href="#cb50-45" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"β = "</span>, <span class="fu">round</span>(beta, <span class="dv">3</span>)), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb50-46"><a href="#cb50-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> mu_1 <span class="sc">+</span> <span class="fl">0.8</span>, <span class="at">y =</span> <span class="fu">max</span>(y_h1) <span class="sc">*</span> <span class="fl">0.4</span>, </span>
+<span id="cb50-47"><a href="#cb50-47" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"Power = "</span>, <span class="fu">round</span>(power, <span class="dv">3</span>)), <span class="at">color =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
+<span id="cb50-48"><a href="#cb50-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Type I Error (α), Type II Error (β), and Power"</span>,</span>
+<span id="cb50-49"><a href="#cb50-49" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"n = "</span>, n, <span class="st">", σ = "</span>, sigma, <span class="st">", α = "</span>, alpha),</span>
+<span id="cb50-50"><a href="#cb50-50" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Sample Mean"</span>,</span>
+<span id="cb50-51"><a href="#cb50-51" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Density"</span>) <span class="sc">+</span></span>
+<span id="cb50-52"><a href="#cb50-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="w14_Chapter08SingleTests_files/figure-html/power_analysis-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<p><em>Note: This document was converted from lecture slides for GISC6301 Geo-spatial Data Fundamentals (Fall 2025) by Tiefelsdorf.</em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
